@@ -32,4 +32,26 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+	public $components = array(
+		'RequestHandler',
+        'Session',
+        'Auth'
+    );
+
+    public function beforeFilter() {
+    	$this->Auth->userModel = 'User';
+    	$this->Auth->authorize = array('Controller');
+    	$this->Auth->loginAction = array('controller' => 'user', 'action' => 'login');
+		$this->Auth->authenticate = array(
+		    'Form' => array(
+		        'fields' => array('username' => 'email', 'password' => 'password'),
+		        'scope' => array('emailConfirmed' => '1')
+		    ),
+		);
+		$this->Auth->authError = "Acceso denegado.";
+		$this->Auth->unauthorizedRedirect = array('controller' => 'user', 'action' => 'login');
+		$this->Auth->loginRedirect = array('controller' => 'Property','action'=>'simple_search');
+    	$this->Auth->logoutRedirect = array('controller' => 'InmobiliariaZumo');
+        $this->Auth->allow('index','register');
+    } 
 }
