@@ -55,7 +55,7 @@ class BinluuEmailComponent extends Component {
     			break;    		
     	}
         /*$email = new CakeEmail('binluumail');
-        $email->from($user_db['User']['email']);
+        $email->from($user_db['User']['username']);
         $email->to($user_to);
         $email->subject($subject);
         $email->send($message);*/

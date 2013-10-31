@@ -313,7 +313,6 @@ CREATE TABLE `users` (
   `username` varchar(60) DEFAULT NULL,
   `password` varchar(128) DEFAULT NULL,
   `name` varchar(180) DEFAULT NULL,
-  `email` varchar(120) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `mail_confirmed` tinyint(1) DEFAULT NULL,
   `rol` enum('Person','Adviser','Admin') DEFAULT NULL,
@@ -330,7 +329,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `username`, `password`, `name`, `email`, `phone`, `mail_confirmed`, `rol`, `last_login`, `active`, `image`) VALUES (1,'rgarcia','123123','Ricardo García','rgarcia.cejudo@gmail.com','7223733606',0,'Admin',NULL,1,NULL);
+INSERT INTO `users` (`id`, `username`, `password`, `name`, `phone`, `mail_confirmed`, `rol`, `last_login`, `active`, `image`) VALUES (1,'rgarcia.cejudo@gmail.com','123123','Ricardo García','7223733606',0,'Admin',NULL,1,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -343,4 +342,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-30 23:33:08
+-- Dump completed on 2013-10-30 23:39:12
