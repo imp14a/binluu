@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.32, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.10, for osx10.7 (x86_64)
 --
 -- Host: localhost    Database: binluu
 -- ------------------------------------------------------
--- Server version	5.5.32-log
+-- Server version 5.6.10
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -309,7 +309,7 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(60) DEFAULT NULL,
   `password` varchar(128) DEFAULT NULL,
   `name` varchar(180) DEFAULT NULL,
@@ -320,7 +320,7 @@ CREATE TABLE `users` (
   `active` tinyint(1) DEFAULT NULL,
   `image` varchar(280) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -329,6 +329,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`id`, `username`, `password`, `name`, `phone`, `mail_confirmed`, `rol`, `last_login`, `active`, `image`) VALUES (1,'rgarcia.cejudo@gmail.com','123123','Ricardo García','7223733606',0,'Admin',NULL,1,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -341,4 +342,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-23 18:45:36
+-- Dump completed on 2013-10-30 23:39:12
