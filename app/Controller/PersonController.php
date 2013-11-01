@@ -1,0 +1,55 @@
+<?php
+
+App::uses('AppController', 'Controller');
+
+class PersonController extends AppController {
+
+	public $uses = array('Person','User','IdealProperty','PersonProfile');
+    public $components = array('BinluuEmail');
+
+	public function index(){
+	}
+
+	public function register(){
+		$this->set('title_for_layout','Registro de usuarios');
+        if (!empty($this->data)) {
+
+            $data = $this->data;
+            
+            $data['User']['rol'] = "Person";
+            $data['User']['active'] = 1;
+            if($this->Person->saveAssociated($data)){
+                $this->Session->setFlash('Registrado!, te hemos enviado un correo de confirmación para que puedas acceder.');
+                $this->BinluuEmail->sendMail($this->User->getInsertID(),$data['User']['username'],CONFIRM_EMAIL_TYPE);
+                $this->redirect(array('controller'=>'User','action' => 'login'));
+            }else{
+                $this->Session->setFlash("Ha ocurrido en error, intente de nuevo.");
+            }
+        }
+	}
+
+    public function edit( $id = null){
+
+        $id = $id!=null?$id:$this->Session->read('Auth.User.id');
+        
+        if(!empty($this->data)){
+            $options = array('user_id'=>$id);
+            $p = $this->Person->find('first',$options);
+            $data = $this->data;
+            $data['User']['id'] = $id;
+            $data['Person']['id'] = $p['Person']['id'];
+            $data['PersonProfile']['id'] = $p['PersonProfile']['id'];
+            $data['IdealProperty']['id'] = $p['IdealProperty']['id'];
+            if($this->Person->saveAssociated($data)){
+                $this->Session->setFlash('Información actualizada correctamente!.');
+            }
+        }
+
+        $options = array('user_id'=>$id);
+        $this->set("person",$this->Person->find('first',$options));
+    }
+
+
+
+}
+?>
