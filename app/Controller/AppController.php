@@ -44,14 +44,23 @@ class AppController extends Controller {
     	$this->Auth->loginAction = array('controller' => 'user', 'action' => 'login');
 		$this->Auth->authenticate = array(
 		    'Form' => array(
-		        'fields' => array('username' => 'email', 'password' => 'password'),
-		        'scope' => array('emailConfirmed' => '1')
+		        'fields' => array('username' => 'username', 'password' => 'password'),
+		        'scope' => array('mail_confirmed' => 1,'active'=>1)
 		    ),
 		);
 		$this->Auth->authError = "Acceso denegado.";
 		$this->Auth->unauthorizedRedirect = array('controller' => 'user', 'action' => 'login');
-		$this->Auth->loginRedirect = array('controller' => 'Property','action'=>'simple_search');
-    	$this->Auth->logoutRedirect = array('controller' => 'InmobiliariaZumo');
-        $this->Auth->allow('index','register');
-    } 
+		$this->Auth->loginRedirect = array('controller' => 'User','action'=>"home");
+    	$this->Auth->logoutRedirect = array('controller' => 'User','action'=>'login');
+        $this->Auth->allow('login','register');
+    }
+
+    public function isAuthorized($user) {
+	    // Admin can access every action
+	    //if (isset($user['isAdmin']) && $user['isAdmin']) {
+	        return true;
+	    //}
+	    // Default deny
+	    //return false;
+	}
 }

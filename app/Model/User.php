@@ -17,7 +17,7 @@ class User extends AppModel {
 			'valid' => array('rule' => array('checkpasswords'),
 				'message' => 'Las contraseñas deben coincidir')
 			),
-		'email' => array(
+		'username' => array(
 			'valid' => array('rule' => array('checkemail'),
 				'message' => 'El email que desea agregar ya existe')
 			)
@@ -31,9 +31,15 @@ class User extends AppModel {
     public function checkemail()
     {
         $username = $this->find('count', array(
-            'conditions' => array('email' => $this->data['User']['email']),
+            'conditions' => array('username' => $this->data['User']['username']),
             'recursive' => -1));
         return $username === 0;
+    }
+    public function beforeSave($options = null) {
+        if (isset($this->data['User']['password'])) {
+            $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
+        }
+        return true;
     }
 }
 
