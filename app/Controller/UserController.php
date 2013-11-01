@@ -36,13 +36,14 @@ class UserController extends AppController {
         $this->logout();
     }
 
-    public function password($id = null){
+    public function password($id = null,$redirectTo = 'Person'){
         $id = $id!=null?$id:$this->Session->read('Auth.User.id');
         if(!empty($this->data)){
         	$data = $this->data;
         	$data['User']['id'] = $id;
 	        $this->User->save($data);
-	        $this->redirect(array('controller'=>'User','action'=>'edit'));
+            $this->Session->setFlash('Contraseña actualizada correctamente.');
+	        $this->redirect(array('controller'=>$redirectTo,'action'=>'edit'));
         }
     }
 }

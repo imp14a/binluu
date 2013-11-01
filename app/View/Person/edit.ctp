@@ -83,7 +83,7 @@ function placeMarker(location) {
 			<div id="map-canvas" style="width:400px; height:400px;"></div>
 		</div>
 	<?php echo $this->Form->end("Actualizar")?>
-	<?php echo $this->Form->create(null,array('url' => array('controller'=>'User','action'=>'password'))); ?>
+	<?php echo $this->Form->create(null,array('url' => array('controller'=>'User','action'=>'password','redirectTo'=>"Person"))); ?>
 		<div class="userinfo">
 			<?php echo $this->Form->input("User.username",array("type"=>"email",'disabled'=>'disabled','value'=>$person['User']['username'])); ?>
 			<?php echo $this->Form->password("User.password"); ?>
