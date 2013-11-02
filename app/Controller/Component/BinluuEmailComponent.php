@@ -67,6 +67,9 @@ class BinluuEmailComponent extends Component {
         return strtr(base64_encode($encrypted), '+/=', '-_,');
     }
 
+    public function sendAdviserConfirmMail($user_id, $username, $user_password){
+    }
+
 
 }
 
