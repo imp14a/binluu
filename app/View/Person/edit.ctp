@@ -65,7 +65,7 @@ function placeMarker(location) {
 </script>
 <div>
 	<?php echo $this->Form->create("Edit"); ?>
-		<h3>Registrate</h3>
+		<h3>Actualiza tu informaci&oacute;n</h3>
 		<div class="profileinfo">
 			<?php echo $this->Form->input("User.name",array("value"=>$person['User']['name'])); ?>
 			<?php echo $this->Form->input("User.last_name",array("value"=>$person['User']['last_name'])); ?>

@@ -2,58 +2,54 @@
 
 App::uses('AppController', 'Controller');
 
-class PersonController extends AppController {
+class AdminController extends AppController {
 
-	public $uses = array('Person','User','IdealProperty','PersonProfile');
+    public $uses = array('User');
     public $components = array('BinluuEmail');
 
-	public function index(){
-	}
-
-    public function home(){
-        if($this->Session->read('Auth.User.rol')!='Person'){
+    public function index(){
+        if($this->Session->read('Auth.User.rol')!='Admin'){
             $this->Session->setFlash('No tienes permisos para acceder a esta opcion');
             $this->redirect(array('controller'=>'User','action'=>'home'));
         }
     }
 
-	public function register(){
-		$this->set('title_for_layout','Registro de usuarios');
+    public function register(){
+        $this->set('title_for_layout','Registro de usuarios');
         if (!empty($this->data)) {
-
             $data = $this->data;
-            
-            $data['User']['rol'] = "Person";
+            $data['User']['rol'] = "Admin";
             $data['User']['active'] = 1;
-            if($this->Person->saveAssociated($data)){
-                $this->Session->setFlash('Registrado!, te hemos enviado un correo de confirmación para que puedas acceder.');
+            $data['User']['mail_confirmed'] = 1;
+            if($this->User->save($data)){
+                $this->Session->setFlash('Registrado!');
                 $this->BinluuEmail->sendMail($this->User->getInsertID(),$data['User']['username'],CONFIRM_EMAIL_TYPE);
                 $this->redirect(array('controller'=>'User','action' => 'login'));
             }else{
                 $this->Session->setFlash("Ha ocurrido en error, intente de nuevo.");
             }
         }
-	}
+    }
+
+    public function contact(){
+        if(!empty($this->data)){
+            $this->BinluuEmail->sendConfirmMail($this->data['name'],$this->data['email'],$this->data['message']);
+            $this->Session->setFlash("Tu mensaje se ha enviado correctamente. En breve nos pondremos en contacto.");
+        }
+    }
 
     public function edit( $id = null){
 
         $id = $id!=null?$id:$this->Session->read('Auth.User.id');
-        
+
         if(!empty($this->data)){
-            $options = array('user_id'=>$id);
-            $p = $this->Person->find('first',$options);
             $data = $this->data;
             $data['User']['id'] = $id;
-            $data['Person']['id'] = $p['Person']['id'];
-            $data['PersonProfile']['id'] = $p['PersonProfile']['id'];
-            $data['IdealProperty']['id'] = $p['IdealProperty']['id'];
-            if($this->Person->saveAssociated($data)){
+            if($this->User->save($data)){
                 $this->Session->setFlash('Información actualizada correctamente!.');
             }
         }
-
-        $options = array('user_id'=>$id);
-        $this->set("person",$this->Person->find('first',$options));
+        $this->set("admin",$this->User->findById($id));
     }
 
 

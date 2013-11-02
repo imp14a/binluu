@@ -9,7 +9,17 @@ class UserController extends AppController {
 	public $uses = array('User');
 
 	public function home() {
-
+        switch($this->Session->read('Auth.User.rol')){
+            case 'Admin':
+                $this->redirect(array('controller'=>'Admin'));
+            break;
+            case 'Adviser':
+                $this->redirect(array('controller'=>'Adviser'));
+            break;
+            default:
+                $this->redirect(array('controller'=>'Person','action'=>'home'));
+            break;
+        }
 	}
 
 	public function login() {
@@ -36,7 +46,7 @@ class UserController extends AppController {
         $this->logout();
     }
 
-    public function password($id = null,$redirectTo = 'Person'){
+    public function password($redirectTo = 'Person', $id = null){
         $id = $id!=null?$id:$this->Session->read('Auth.User.id');
         if(!empty($this->data)){
         	$data = $this->data;
