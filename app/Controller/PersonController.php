@@ -56,7 +56,8 @@ class PersonController extends AppController {
         $this->set("person",$this->Person->find('first',$options));
     }
 
-
-
+    public function beforeFilter(){
+        $this->Auth->allow('edit');
+    }
 }
 ?>

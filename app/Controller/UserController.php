@@ -56,5 +56,25 @@ class UserController extends AppController {
 	        $this->redirect(array('controller'=>$redirectTo,'action'=>'edit'));
         }
     }
+
+    public function activate($id){
+        if (!$this->request->is('post')) {  
+            return;
+        }
+        $this->User->id = $id;
+        $user_db = $this->User->read();
+        $user_db['User']['active'] = !$user_db['User']['active'];
+        if($this->User->save($user_db, false)){
+            $this->Session->setFlash('Usuario actualizado!');
+            $this->redirect($this->referer());
+        } 
+        else{
+            $this->Session->setFlash('Ha ocurrido un error, intente de nuevo.');
+        }
+    }
+
+    public function beforeFilter(){
+        $this->Auth->allow('activate');
+    }
 }
 ?>

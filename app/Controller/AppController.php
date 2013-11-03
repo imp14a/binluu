@@ -41,7 +41,7 @@ class AppController extends Controller {
     public function beforeFilter() {
     	$this->Auth->userModel = 'User';
     	$this->Auth->authorize = array('Controller');
-    	$this->Auth->loginAction = array('controller' => 'user', 'action' => 'login');
+    	$this->Auth->loginAction = array('Controller' => 'User', 'action' => 'login');
 		$this->Auth->authenticate = array(
 		    'Form' => array(
 		        'fields' => array('username' => 'username', 'password' => 'password'),
@@ -49,9 +49,9 @@ class AppController extends Controller {
 		    ),
 		);
 		$this->Auth->authError = "Acceso denegado.";
-		$this->Auth->unauthorizedRedirect = array('controller' => 'user', 'action' => 'login');
-		$this->Auth->loginRedirect = array('controller' => 'User','action'=>"home");
-    	$this->Auth->logoutRedirect = array('controller' => 'User','action'=>'login');
+		$this->Auth->unauthorizedRedirect = array('Controller' => 'User', 'action' => 'login');
+		$this->Auth->loginRedirect = array('Controller' => 'User','action'=>"home");
+    	$this->Auth->logoutRedirect = array('Controller' => 'User','action'=>'login');
         $this->Auth->allow('login','register','contact');
     }
 
