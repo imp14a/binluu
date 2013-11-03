@@ -1,6 +1,8 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::import('Model', 'Person');
+App::import('Model', 'Adviser');
 
 class AdminController extends AppController {
 
@@ -50,6 +52,22 @@ class AdminController extends AppController {
             }
         }
         $this->set("admin",$this->User->findById($id));
+    }
+
+    public function userlist(){
+        $user = new Person();
+        $users = $user->find('all');
+        $this->set('users', $users);
+    }
+
+    public function adviserlist(){
+        $user = new Adviser();
+        $users = $user->find('all');
+        $this->set('users', $users);
+    }
+
+    public function beforeFilter(){
+        $this->Auth->allow('userlist', 'adviserlist');
     }
 
 
