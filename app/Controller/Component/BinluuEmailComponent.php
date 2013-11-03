@@ -34,23 +34,26 @@ class BinluuEmailComponent extends Component {
     	switch ($email_type) {
     		case CONFIRM_EMAIL_TYPE:
     		    $subject = 'Confirmación de correo';
-    			$link = "http://".$_SERVER['HTTP_HOST']."/index.php/User/confirm/".urlencode($this->getSecretUserId($user_from_id));
+    			$link = "http://".$_SERVER['HTTP_HOST']."/index.php/User/confirm/".urlencode($this->getSecretId($user_from_id));
     			$message = 'Hola, ' . utf8_encode($user_db['User']['name']) . ', para confirmar tu correo da clic en la siguiente dirección: '.$link;        
     			break;
     		case INVITE_EMAIL_TYPE:
     			$subject = 'Te han invitado a un evento';
-    			$link = "http://".$_SERVER['HTTP_HOST']."/index.php/User/confirm/".urlencode($this->getSecretUserId($user_from_id));
-    			$message = "El usuario ".$user_db['User']['name']." te ha invitado a asistir al evento ".$event_db['Event']['name'].".";   			
+    			$link = "http://".$_SERVER['HTTP_HOST']."/index.php/Event/view/".urlencode($this->getSecretId($event_id));
+    			$message = "El usuario ".$user_db['User']['name']." te ha invitado a asistir al evento ".$event_db['Event']['name'].".\n".
+                            "Ver el evento: ".$link;   			
     			break;
     		case ACCEPT_INVITE_EMAIL_TYPE:
     			$subject = 'Han aceptado una invitación';
-    			$link = "http://".$_SERVER['HTTP_HOST']."/index.php/User/confirm/".urlencode($this->getSecretUserId($user_from_id));
-    			$message = "El usuario ".$user_db['User']['name']." ha confirmado su asistencia al evento ".$event_db['Event']['name'].".";   			
+    			$link = "http://".$_SERVER['HTTP_HOST']."/index.php/Event/view/".urlencode($this->getSecretId($event_id));
+    			$message = "El usuario ".$user_db['User']['name']." ha confirmado su asistencia al evento ".$event_db['Event']['name'].".\n".
+                            "Ver el evento: ".$link;           			
     			break;
     		case CANCEL_INVITE_EMAIL_TYPE:
     		    $subject = 'Han cancelado una invitación';
-    		    $link = "http://".$_SERVER['HTTP_HOST']."/index.php/User/confirm/".urlencode($this->getSecretUserId($user_from_id));
-    		    $message = "El usuario ".$user_db['User']['name']." ha cancelado su asistencia al evento ".$event_db['Event']['name'].".";   			
+    		    $link = "http://".$_SERVER['HTTP_HOST']."/index.php/Event/view/".urlencode($this->getSecretId($event_id));
+    		    $message = "El usuario ".$user_db['User']['name']." ha cancelado su asistencia al evento ".$event_db['Event']['name'].".\n".
+                            "Ver el evento: ".$link;   			
     			break;
     		case CANCEL_EVENT_EMAIL_TYPE:
     		    $subject = 'Han cancelado un evento'; 
@@ -75,16 +78,14 @@ class BinluuEmailComponent extends Component {
                 return true;
             }
             else{
-                //MOSTRAR ERROR
                 return false;
             }   
         } catch (Exception $e) {
-            //MOSRAR ERROR
             return false;
         }
     }
 
-    public function getSecretUserId($id){
+    public function getSecretId($id){
         $key = pack('H*', "bcb04b7e103a0cd8b54763051cef08bc55abe029fdebae5e1d417e2ffb2a00a3");
         $encrypted = Security::rijndael(intval($id), $key, 'encrypt');
         return strtr(base64_encode($encrypted), '+/=', '-_,');
