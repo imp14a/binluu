@@ -17,10 +17,6 @@ class EventController extends AppController {
             }
 		}
 	}
-
-	public function beforeFilter(){
-		$this->Auth->allow('create');
-	}
 }
 
 ?>

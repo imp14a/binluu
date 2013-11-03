@@ -57,11 +57,5 @@ class AdviserController extends AppController {
         $options = array('user_id'=>$id);
         $this->set("adviser",$this->Adviser->find('first',$options));
     }
-
-    public function beforeFilter(){
-        $this->Auth->allow('edit');
-    }
-
-
 }
 ?>

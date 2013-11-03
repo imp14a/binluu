@@ -73,8 +73,5 @@ class UserController extends AppController {
         }
     }
 
-    public function beforeFilter(){
-        $this->Auth->allow('activate');
-    }
 }
 ?>

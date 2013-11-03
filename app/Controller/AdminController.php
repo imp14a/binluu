@@ -73,12 +73,5 @@ class AdminController extends AppController {
         }
         $this->set('users', $users);
     }
-
-    public function beforeFilter(){
-        $this->Auth->allow('userlist', 'adviserlist');
-    }
-
-
-
 }
 ?>
