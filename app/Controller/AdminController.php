@@ -53,25 +53,5 @@ class AdminController extends AppController {
         }
         $this->set("admin",$this->User->findById($id));
     }
-
-    public function userlist($status = null){
-        $user = new Person();
-        if($status!=null){
-            $users = $user->find('all',array('conditions'=>array('User.active'=>$status)));
-        }else{
-            $users = $user->find('all');
-        }
-        $this->set('users', $users);
-    }
-
-    public function adviserlist($status = null){
-        $user = new Adviser();
-        if($status!=null){
-            $users = $user->find('all',array('conditions'=>array('User.active'=>$status)));
-        }else{
-            $users = $user->find('all');
-        }
-        $this->set('users', $users);
-    }
 }
 ?>

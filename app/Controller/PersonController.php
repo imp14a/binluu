@@ -48,16 +48,24 @@ class PersonController extends AppController {
             $data['PersonProfile']['id'] = $p['PersonProfile']['id'];
             $data['IdealProperty']['id'] = $p['IdealProperty']['id'];
             if($this->Person->saveAssociated($data)){
-                if($this->BinluuImage->saveImage($this->User->getInsertID(), $data['User']['image'])){
-                    $this->Session->setFlash('Información actualizada correctamente!.');
-                }else{
-                    $this->Session->setFlash('Ha ocurrido un error, intente de nuevo.');
-                }
+                $this->Session->setFlash('Información actualizada correctamente!.');
+            }else{
+                $this->Session->setFlash('Ha ocurrido un error, intente de nuevo.');
             }
         }
 
         $options = array('user_id'=>$id);
         $this->set("person",$this->Person->find('first',$options));
+    }
+
+    public function listAll($status = null){
+        
+        if($status!=null){
+            $users = $this->Person->find('all',array('conditions'=>array('User.active'=>$status)));
+        }else{
+            $users = $this->Person->find('all');
+        }
+        $this->set('users', $users);
     }
 }
 ?>

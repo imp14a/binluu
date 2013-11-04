@@ -35,8 +35,8 @@
         <?php endforeach; ?>
         <?php echo $this->Html->link('REGRESAR', array('controller' => 'Admin', 'action'=>'panelAdministration')); ?>
         |
-        <?php echo $this->Html->link('USUARIOS ACTIVOS', array('controller'=>'Admin', 'action'=>'userlist', 1)); ?>
+        <?php echo $this->Html->link('USUARIOS ACTIVOS', array('controller'=>'Person', 'action'=>'listAll', 1)); ?>
         |
-        <?php echo $this->Html->link('USUARIOS DESACTIVOS', array('controller'=>'Admin', 'action'=>'userlist', 0)); ?>
+        <?php echo $this->Html->link('USUARIOS DESACTIVOS', array('controller'=>'Person', 'action'=>'listAll', 0)); ?>
     </table>
 </div>

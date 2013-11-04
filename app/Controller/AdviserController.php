@@ -20,6 +20,9 @@ class AdviserController extends AppController {
             $data = $this->data;
             $data['User']['rol'] = "Adviser";
             $data['User']['active'] = 1;
+            $data['Account']['status'] = "A";
+            $data['Account']['credits'] = 0;
+
             if($this->Adviser->saveAssociated($data)){
                 $this->Session->setFlash('Registrado!, le hemos enviado un correo de confirmación para que puedas acceder.');
                 /*$this->BinluuEmail->sendAdviserConfirmMail($this->User->getInsertID(),$data['User']['username'],
@@ -56,6 +59,16 @@ class AdviserController extends AppController {
         }
         $options = array('user_id'=>$id);
         $this->set("adviser",$this->Adviser->find('first',$options));
+    }
+
+    public function listAll($status = null){
+
+        if($status!=null){
+            $users = $this->Adviser->find('all',array('conditions'=>array('User.active'=>$status)));
+        }else{
+            $users = $this->Adviser->find('all');
+        }
+        $this->set('users', $users);
     }
 }
 ?>

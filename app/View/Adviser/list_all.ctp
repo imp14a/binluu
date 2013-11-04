@@ -32,8 +32,8 @@
         <?php endforeach; ?>
         <?php echo $this->Html->link('REGRESAR', array('controller' => 'Admin', 'action'=>'panelAdministration')); ?>
         |
-        <?php echo $this->Html->link('PROMOTORES ACTIVOS', array('controller'=>'Admin', 'action'=>'adviserlist', 1)); ?>
+        <?php echo $this->Html->link('PROMOTORES ACTIVOS', array('controller'=>'Adviser', 'action'=>'listAll', 1)); ?>
         |
-        <?php echo $this->Html->link('PROMOTORES DESACTIVOS', array('controller'=>'Admin', 'action'=>'adviserlist', 0)); ?>
+        <?php echo $this->Html->link('PROMOTORES DESACTIVOS', array('controller'=>'Adviser', 'action'=>'listAll', 0)); ?>
     </table>
 </div>
