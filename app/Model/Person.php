@@ -3,7 +3,6 @@
 class Person extends AppModel {
 
 	public $name = 'Person';
-	public $useTable = "persons";
 
 	public $hasOne = array("PersonProfile","IdealProperty");
 	//public $hasMany = array("IdealProperty");

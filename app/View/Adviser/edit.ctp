@@ -1,7 +1,16 @@
 <div>
-	<?php echo $this->Form->create("Edit"); ?>
 		<h3>Actualiza tu informaci&oacute;n</h3>
 		<div class="profileinfo">
+			<?php echo $this->Form->create(null,array('url' => array('controller'=>'User','action'=>'image','Adviser', $adviser['User']['id']), 'type'=>'file')); ?>
+			<?php 
+				$sex = 'M';
+				$image = $adviser['User']['image']===NULL?$sex==='M'?'default_img_male.png':'default_img_female.png':$adviser['User']['image'];
+				$image = DS.'files'.DS.$image;
+				echo $this->Html->image($image); ?>
+			<?php echo $this->Form->input('User.image', array('label'=>'Imagen de perfil', 'type'=>'file')) ;?>
+			<?php echo $this->Form->end('Actualizar imagen'); ?>
+
+			<?php echo $this->Form->create("Edit"); ?>
 			<?php echo $this->Form->input("User.name",array('value'=>$adviser['User']['name'])); ?>
 			<?php echo $this->Form->input("User.last_name",array('value'=>$adviser['User']['last_name'])); ?>
 			<?php echo $this->Form->input("Adviser.company",array('value'=>$adviser['Adviser']['company'])); ?>

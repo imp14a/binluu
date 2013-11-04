@@ -64,9 +64,19 @@ function placeMarker(location) {
 
 </script>
 <div>
-	<?php echo $this->Form->create("Edit"); ?>
+	
 		<h3>Actualiza tu informaci&oacute;n</h3>
 		<div class="profileinfo">
+			<?php echo $this->Form->create(null,array('url' => array('controller'=>'User','action'=>'image','Person', $person['User']['id']), 'type'=>'file')); ?>
+			<?php 
+				$sex = $person['PersonProfile']['sex'];
+				$image = $person['User']['image']===NULL?$sex==='M'?'default_img_male.png':'default_img_female.png':$person['User']['image'];
+				$image = DS.'files'.DS.$image;
+				echo $this->Html->image($image); ?>
+			<?php echo $this->Form->input('User.image', array('label'=>'Imagen de perfil', 'type'=>'file')) ;?>
+			<?php echo $this->Form->end('Actualizar imagen'); ?>
+
+			<?php echo $this->Form->create("Edit", array('type'=>'file')); ?>
 			<?php echo $this->Form->input("User.name",array("value"=>$person['User']['name'])); ?>
 			<?php echo $this->Form->input("User.last_name",array("value"=>$person['User']['last_name'])); ?>
 			<?php echo $this->Form->input("PersonProfile.age",array("value"=>$person['PersonProfile']['age'])); ?>
@@ -83,7 +93,7 @@ function placeMarker(location) {
 			<div id="map-canvas" style="width:400px; height:400px;"></div>
 		</div>
 	<?php echo $this->Form->end("Actualizar")?>
-	<?php echo $this->Form->create(null,array('url' => array('controller'=>'User','action'=>'password','redirectTo'=>"Person"))); ?>
+	<?php echo $this->Form->create(null,array('url' => array('controller'=>'User','action'=>'password','Person', $person['User']['id']))); ?>
 		<div class="userinfo">
 			<?php echo $this->Form->input("User.username",array("type"=>"email",'disabled'=>'disabled','value'=>$person['User']['username'])); ?>
 			<?php echo $this->Form->password("User.password"); ?>

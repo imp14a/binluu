@@ -14,6 +14,7 @@ class TestController extends AppController {
 			$this->BinluuImage->saveImage(4,$this->request->data['User']['image_file']);
 		}*/
 		//var_dump($this->BinluuImage->getDefaultImage('F'));
+		var_dump($this->BinluuImage->thumb(2, 128));
 	}
 
 	public function beforeFilter(){

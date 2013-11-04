@@ -7,7 +7,6 @@
             <th>Email</th>
             <th>Compa&ntilde;ia</th>
             <th>Web</th>
-            <th>Tel&eacute;fono</th>
             <th>&Uacute;ltimo Login</th>
             <th>Ver Perfil</th>
             <th>Activar/Desactivar</th>
@@ -18,7 +17,6 @@
             <td><?php echo $user['User']['username']; ?></td>
             <td><?php echo $user['Adviser']['company']; ?></td>
             <td><?php echo $user['Adviser']['web']; ?></td>
-            <td><?php echo $user['User']['phone']; ?></td>
             <td><?php echo $user['User']['last_login']; ?></td>
             <td><?php echo $this->Html->link('ver', array('controller' => 'Adviser', 'action' => 'edit', $user['Adviser']['id'])); ?>
             <td>

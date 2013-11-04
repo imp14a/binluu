@@ -5,7 +5,7 @@ App::uses('AppController', 'Controller');
 class PersonController extends AppController {
 
 	public $uses = array('Person','User','IdealProperty','PersonProfile');
-    public $components = array('BinluuEmail');
+    public $components = array('BinluuEmail', 'BinluuImage');
 
 	public function index(){
 	}
@@ -48,7 +48,11 @@ class PersonController extends AppController {
             $data['PersonProfile']['id'] = $p['PersonProfile']['id'];
             $data['IdealProperty']['id'] = $p['IdealProperty']['id'];
             if($this->Person->saveAssociated($data)){
-                $this->Session->setFlash('Información actualizada correctamente!.');
+                if($this->BinluuImage->saveImage($this->User->getInsertID(), $data['User']['image'])){
+                    $this->Session->setFlash('Información actualizada correctamente!.');
+                }else{
+                    $this->Session->setFlash('Ha ocurrido un error, intente de nuevo.');
+                }
             }
         }
 

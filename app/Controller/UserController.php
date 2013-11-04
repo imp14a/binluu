@@ -7,6 +7,7 @@ App::uses('Model', 'User');
 class UserController extends AppController {
 
 	public $uses = array('User');
+    public $components = array('BinluuImage');
 
 	public function home() {
         switch($this->Session->read('Auth.User.rol')){
@@ -55,6 +56,21 @@ class UserController extends AppController {
             $this->Session->setFlash('Contraseña actualizada correctamente.');
 	        $this->redirect(array('controller'=>$redirectTo,'action'=>'edit'));
         }
+    }
+
+    public function image($redirectTo = 'Person', $id = null){
+        $id = $id!=null?$id:$this->Session->read('Auth.User.id');
+        $size = 128;
+        if(!empty($this->data)){
+            $data = $this->data;
+            $data['User']['id'] = $id;
+            $this->BinluuImage->saveImage($id, $data['User']['image']);
+            $data['User']['image'] = $this->BinluuImage->thumb($id, $size);
+            
+            $this->Session->setFlash('Imagen actualizada correctamente.');
+            $this->redirect(array('controller'=>$redirectTo,'action'=>'edit'));
+        }
+
     }
 
     public function activate($id){

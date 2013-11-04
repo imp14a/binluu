@@ -18,8 +18,8 @@ class BinluuImageComponent extends Component {
     	$user->id = $user_id;
     	$user_db = $user->read();
 		if ($post_image['error'] === UPLOAD_ERR_OK) {
-			if (move_uploaded_file($post_image['tmp_name'], WWW_ROOT.DS.'files'.DS.$post_image['name'])) {
-				$user_db['User']['image'] = $post_image['name'];
+			if (move_uploaded_file($post_image['tmp_name'], WWW_ROOT.DS.'files'.DS.'user_profile_'.$user_id.'.'.$format)) {
+				$user_db['User']['image'] = 'user_profile_'.$user_id.'.'.$format;
 				if($user->save($user_db, false)){
 					return true;
 				}else{
@@ -37,56 +37,46 @@ class BinluuImageComponent extends Component {
 	/**
 	 * Función que genera una miniatura de la imagen del usuario
 	 * @param  [int]     $user_id [id del usuario a obtener imagen miniatura]
-	 * @param  [decimal] $percent [Porcentaje de reducción de ministura]
-	 * @return [bool]             [Estatus del proceso a miniatura]
+	 * @param  [decimal] $size 	  [Porcentaje de reducción de ministura]
+	 * @return [string]           [URL de la imagen miniatura]
 	 */
-	public function thumb($user_id, $percent){
+	public function thumb($user_id, $size){
 		$user = ClassRegistry::init('User');
 		$user->id = $user_id;
     	$user_db = $user->read();
 		$filename = WWW_ROOT.DS.'files'.DS.$user_db['User']['image'];
-
-		$format='';
-	    if(preg_match("/.jpg/i", "$filename"))
-	    {
-	        $format = 'image/jpeg';
-	    }
-	    if (preg_match("/.gif/i", "$filename"))
-	    {
-	        $format = 'image/gif';
-	    }
-	    if(preg_match("/.png/i", "$filename"))
-	    {
-	        $format = 'image/png';
-	    }
+		$thumbname = WWW_ROOT.DS.'files'.DS.'thumb_'.$user_db['User']['image'];
+		if(file_exists($thumbname)){
+			return $thumbname;
+		}
+		$format=$this->getImageType($filename);
 	    if($format!='')
 	    {
 			list($width, $height) = getimagesize($filename);
-			$newwidth = $width * $percent;
-			$newheight = $height * $percent;
+			$newwidth = $size;
+			$newheight = $size;
 			switch($format)
 	        {
-	            case 'image/jpeg':
+	            case 'jpeg':
 	            	$source = imagecreatefromjpeg($filename);
 	            	break;
-	            case 'image/gif';
+	            case 'gif';
 	            	$source = imagecreatefromgif($filename);
 	            	break;
-	            case 'image/png':
+	            case 'png':
 	            	$source = imagecreatefrompng($filename);
 	            	break;
 	        }
 	        $thumb = imagecreatetruecolor($newwidth, $newheight);
 	        imagealphablending($thumb, false);
 			imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-
-			if(imagejpeg($thumb, WWW_ROOT.DS.'files'.DS.'thumb_'.$user_db['User']['image'])){
-				return true;
+			if(imagejpeg($thumb, WWW_ROOT.DS.'files'.DS.'thumb_user_profile_'.$user_id.'.'.$format)){
+				return WWW_ROOT.DS.'files'.DS.'thumb_user_profile_'.$user_id.'.'.$format;
 			}else{
-				return false;
+				return NULL;
 			}
 		}
-		return false;
+		return NULL;
 	}
 
 	/**
@@ -103,6 +93,27 @@ class BinluuImageComponent extends Component {
 			default:
 				return null;
 		}		
+	}
+
+	public function getImageType($imagename){
+		$format='';
+		if(preg_match("/.jpeg/i", "$imagename"))
+	    {
+	        $format = 'jpeg';
+	    }
+	    if(preg_match("/.jpg/i", "$imagename"))
+	    {
+	        $format = 'jpeg';
+	    }
+	    if (preg_match("/.gif/i", "$imagename"))
+	    {
+	        $format = 'gif';
+	    }
+	    if(preg_match("/.png/i", "$imagename"))
+	    {
+	        $format = 'png';
+	    }
+	    return $format;
 	}
 }
 
