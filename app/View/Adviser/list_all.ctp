@@ -35,5 +35,10 @@
         <?php echo $this->Html->link('PROMOTORES ACTIVOS', array('controller'=>'Adviser', 'action'=>'listAll', 1)); ?>
         |
         <?php echo $this->Html->link('PROMOTORES DESACTIVOS', array('controller'=>'Adviser', 'action'=>'listAll', 0)); ?>
+        |
+        <?php echo $this->Html->link('TODOS', array('controller'=>'Adviser', 'action'=>'listAll')); ?>
+        |
+        <?php echo $this->Paginator->prev(' < ', array(), null, array('class' => 'prev disabled'));?>
+        <?php echo $this->Paginator->next(' > ', array(), null, array('class' => 'next disabled'));?>
     </table>
 </div>

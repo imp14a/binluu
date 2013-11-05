@@ -5,7 +5,14 @@ App::uses('AppController', 'Controller');
 class AdviserController extends AppController {
 
     public $uses = array('Adviser','User');
-    public $components = array('BinluuEmail');
+    public $components = array('BinluuEmail', 'Paginator');
+
+    public $paginate = array(
+        'limit' => 25,
+        'order' => array(
+            'User.name' => 'asc'
+        )
+    );
 
     public function index(){
         if($this->Session->read('Auth.User.rol')!='Adviser'){
@@ -62,11 +69,11 @@ class AdviserController extends AppController {
     }
 
     public function listAll($status = null){
-
+        $this->Paginator->settings = $this->paginate;
         if($status!=null){
-            $users = $this->Adviser->find('all',array('conditions'=>array('User.active'=>$status)));
+            $users = $this->Paginator->paginate('Adviser', array('User.active' => $status));
         }else{
-            $users = $this->Adviser->find('all');
+            $users = $this->Paginator->paginate('Adviser');
         }
         $this->set('users', $users);
     }
