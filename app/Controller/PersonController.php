@@ -5,7 +5,14 @@ App::uses('AppController', 'Controller');
 class PersonController extends AppController {
 
 	public $uses = array('Person','User','IdealProperty','PersonProfile');
-    public $components = array('BinluuEmail', 'BinluuImage');
+    public $components = array('BinluuEmail', 'BinluuImage', 'Paginator');
+
+    public $paginate = array(
+        'limit' => 25,
+        'order' => array(
+            'User.name' => 'asc'
+        )
+    );
 
 	public function index(){
 	}
@@ -59,11 +66,11 @@ class PersonController extends AppController {
     }
 
     public function listAll($status = null){
-        
+        $this->Paginator->settings = $this->paginate;
         if($status!=null){
-            $users = $this->Person->find('all',array('conditions'=>array('User.active'=>$status)));
+            $users = $this->Paginator->paginate('Person', array('User.active' => $status));
         }else{
-            $users = $this->Person->find('all');
+            $users = $this->Paginator->paginate('Person');
         }
         $this->set('users', $users);
     }
