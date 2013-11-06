@@ -9,7 +9,7 @@ class EventController extends AppController {
 		if(!empty($this->request->data)){
 			$this->request->data['Event']['adviser_id'] = $this->Session->read('Auth.User.id');
 			//TODO: DEterminar la propiedad de la cual se creará el evento	
-			if($this->Event->save($this->request->data)){
+			if($this->Event->saveAll($this->request->data)){
                 $this->Session->setFlash('Registrado!, tu evento se ha agregado con éxito.');
                 $this->redirect(array('controller'=>'Adviser','action' => 'index'));
             }else{
