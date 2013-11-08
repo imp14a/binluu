@@ -1,0 +1,76 @@
+
+
+* {
+	margin:0;
+	padding:0;
+}
+
+#container{
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+#header{
+	height: 120px;
+	display: block;
+
+}
+#header .logo{
+	background-image: url('/img/logo.png');
+	width: 145px;
+	height: 48px;
+	background-repeat: no-repeat;
+	margin-top: 50px;
+	display: inline-block;
+}
+#header #slogan{
+	display: inline-block;
+	font-size: 17pt;
+	margin-left: 45px;
+	font-family: StoneInformalStd-SemiboldIt;
+	color: darkgray;
+}
+
+#footer{
+	font-size: 15pt;
+	height: 100px;
+	display: block;
+	margin-top: 50px;
+	color: darkgray;
+	font-family: StoneSansStd-Medium;
+}
+#footer span{
+	display: inline-block;
+}
+#footer .contact{
+	background-image: url('/img/contact.png');
+	width: 110px;
+	background-position: right;
+	background-repeat: no-repeat;
+}
+#footer .adviser{
+	background-image: url('/img/adviser.png');
+	width: 234px;
+	background-position: top right;
+	background-repeat: no-repeat;
+}
+
+#footer div{
+	display: inline-block;
+	margin-left: 70px;
+}
+
+@font-face {
+	font-family: StoneInformalStd-BoldItalic;
+	src: url(font/StoneInformalStd-BoldItalic.otf);
+}
+@font-face {
+	font-family: StoneInformalStd-SemiboldIt;
+	src: url(font/StoneInformalStd-SemiboldIt.otf);
+}
+@font-face {
+	font-family: StoneSansStd-Medium;
+	src: url(font/StoneSansStd-Medium.otf);
+}
+
+

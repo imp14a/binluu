@@ -30,7 +30,8 @@ $cakeDescription = __d('cake_dev', 'Binluu');
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
+		//echo $this->Html->css('cake.generic');
+		echo $this->Html->css('binluu.default');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -41,7 +42,8 @@ $cakeDescription = __d('cake_dev', 'Binluu');
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://binluu.com.mx'); ?></h1>
+			<?php echo $this->Html->link($this->Html->div('logo','') ,array('controller' => 'User', 'action' => 'home'), array('escape'=>false)); ?>
+			<span id="slogan">La red de departamentos compartidos m&aacute;s grande de M&eacute;xico.</span>
 		</div>
 		<div id="content">
 
@@ -50,12 +52,9 @@ $cakeDescription = __d('cake_dev', 'Binluu');
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
+			<span>binluu&reg; Todos los derechos reservados 2013</span>
+			<?php echo $this->Html->link($this->Html->div('contact','Contacto') ,array('controller' => 'User', 'action' => 'home'), array('escape'=>false)); ?>
+			<?php echo $this->Html->link($this->Html->div('adviser','Soy asesor inmobiliario',array('style'=>'float:right; color: #FF6400;')) ,array('controller' => 'Adviser', 'action' => 'contact'), array('escape'=>false)); ?>
 		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>

@@ -16,7 +16,6 @@
 	        </div>
 	    <?php echo $this->Form->end();?>
 	    <?php echo $this->Html->link('Registrate',array('controller'=>'Person','action'=>'register'));?>
-	    <?php echo $this->Html->link('Soy asesor inmobiliario',array('controller'=>'Adviser','action'=>'contact'));?>
 	    
 	</div>
 </div>
