@@ -4,7 +4,7 @@ ALTER TABLE `binluu`.`credit_transactions` CHANGE COLUMN `credit_transactionscol
 ALTER TABLE `binluu`.`credit_transactions` CHANGE COLUMN `date` `date` DATETIME NULL DEFAULT NULL  ;
 
 /* 07/11/13 */
-CREATE TABLE `binluu`.`peroperty_images` (
+CREATE TABLE `binluu`.`property_images` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `adviser_property_id` INT NULL,
   `image` VARCHAR(480) NULL,
