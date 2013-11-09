@@ -64,7 +64,7 @@ class AdviserController extends AppController {
                 $this->Session->setFlash('Información actualizada correctamente!.');
             }
         }
-        $options = array('user_id'=>$id);
+        $options = array('conditions'=> array('user_id'=>$id));
         $this->set("adviser",$this->Adviser->find('first',$options));
     }
 

@@ -7,6 +7,18 @@ App::uses('Component', 'Controller');
  */
 class BinluuImageComponent extends Component {
 
+	public function uploadImage($imagename, $post_image){
+		if ($post_image['error'] === UPLOAD_ERR_OK) {
+			if (move_uploaded_file($post_image['tmp_name'], WWW_ROOT.DS.'files'.DS.$imagename)) {
+				return true;
+			}else{
+				return false;			
+			}
+		}
+		else{
+			return false;
+		}
+	}
 	/**
 	 * Función que salva o actualiza la imagen del perfil de un usuario.
 	 * @param  [int]  $user_id    [id del usuario]

@@ -47,7 +47,10 @@ function initialize() {
 
     google.maps.event.addListener(map, 'dblclick', function(event) {    
     	placeMarker(event.latLng);    	
-	});    
+	}); 
+
+	<?php echo "latlng = new google.maps.LatLng(".$property['AdviserProperty']['latitude'].", ".$property['AdviserProperty']['longitude'].", true);";
+		echo "placeMarker(latlng);";?>
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -81,6 +84,8 @@ function placeMarker(location) {
 	}
 	$('AdviserPropertyLatitude').value = latitude;
 	$('AdviserPropertyLongitude').value = longitude;
+	map.setCenter(location);
+    map.setZoom(17);
 }
 
 function codeAddress(address) {
@@ -101,6 +106,7 @@ function codeAddress(address) {
 	<br>
 	<?php echo $this->Html->link('REGRESAR', array('action'=>'index'));?>
 	<?php echo $this->Form->create('AddProperty', array('type'=>'file'));?>
+	<?php echo $this->Form->input('AdviserProperty.id', array('type'=>'hidden'));?>
 	<h4>Descripci&oacute;n</h4>
 	<?php echo $this->Form->input('AdviserProperty.description', array('label'=>false));?>
 	<h4>Ubicaci&oacute;n</h4>
@@ -111,19 +117,24 @@ function codeAddress(address) {
 	<?php echo $this->Form->input('AdviserProperty.latitude', array('type'=>'hidden'));?>
 	<?php echo $this->Form->input('AdviserProperty.longitude', array('type'=>'hidden'));?>
 	<h4>Im&aacute;genes</h4>
+	<?php echo $this->Form->input('DefaultImage.id', array('type'=>'hidden'));?>
 	<?php echo $this->Form->input('DefaultImage.image', array('label'=>'Imagen Default', 'type'=>'file'));?>
 	<?php echo $this->Form->input('DefaultImage.type', array('type'=>'hidden', 'value'=>'default'));?>
+	<?php echo $this->Form->input('PropertyImage.0.id', array('type'=>'hidden'));?>
 	<?php echo $this->Form->input('PropertyImage.0.image', array('label'=>'Imagen 1','type'=>'file'));?>
 	<?php echo $this->Form->input('PropertyImage.0.type', array('type'=>'hidden', 'value'=>'description'));?>
+	<?php echo $this->Form->input('PropertyImage.1.id', array('type'=>'hidden'));?>
 	<?php echo $this->Form->input('PropertyImage.1.image', array('label'=>'Imagen 2','type'=>'file'));?>
 	<?php echo $this->Form->input('PropertyImage.1.type', array('type'=>'hidden', 'value'=>'description'));?>
+	<?php echo $this->Form->input('PropertyImage.2.id', array('type'=>'hidden'));?>
 	<?php echo $this->Form->input('PropertyImage.2.image', array('label'=>'Imagen 3','type'=>'file'));?>
 	<?php echo $this->Form->input('PropertyImage.2.type', array('type'=>'hidden', 'value'=>'description'));?>
+	<?php echo $this->Form->input('PropertyImage.3.id', array('type'=>'hidden'));?>
 	<?php echo $this->Form->input('PropertyImage.3.image', array('label'=>'Imagen 4','type'=>'file'));?>
 	<?php echo $this->Form->input('PropertyImage.3.type', array('type'=>'hidden', 'value'=>'description'));?>
 	<button id="adder" type="button">Agregar otra imagen</button>
 	<div id="adderContainer"></div>
-	<?php echo $this->Form->end('GUARDAR PROPIEDAD');?>
+	<?php echo $this->Form->end('ACTUALIZAR PROPIEDAD');?>
 </div>
 
 <script>

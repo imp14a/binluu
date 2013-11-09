@@ -10,12 +10,12 @@
         </tr>
         <?php foreach ($properties as $property): ?>
         <tr>
-            <td><?php echo $property['User']['name']; ?></td>
-            <td><?php echo $this->Html->link('editar', array('controller' => 'AdviserProperty', 'action' => 'add', $user['AdviserProperty']['id'])); ?>
+            <td><?php echo $property['AdviserProperty']['description']; ?></td>
+            <td><?php echo $this->Html->link('editar', array('controller' => 'AdviserProperty', 'action' => 'edit', $property['AdviserProperty']['id'])); ?>
             <td>
                 <?php echo $this->Form->postLink(
                     'borrar',
-                    array('action' => 'delete', $user['AdviserProperty']['id']),
+                    array('action' => 'delete', $property['AdviserProperty']['id']),
                     array('confirm' => 'Desea eliminar la propiedad?'));
                 ?>
             </td>
@@ -23,6 +23,6 @@
         <?php endforeach; ?>
         <?php echo $this->Html->link('AGREGAR PROPIEDAD', array('action'=>'add'));?>
         |
-        <?php echo $this->Html->link('REGRESAR', array('controller'=>'Admin','action'=>'index'));?>
+        <?php echo $this->Html->link('REGRESAR', array('controller'=>'Adviser','action'=>'index'));?>
     </table>
 </div>

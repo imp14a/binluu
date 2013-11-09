@@ -16,7 +16,7 @@
 
 }
 #header .logo{
-	background-image: url('/img/logo.png');
+	background-image: url(../img/logo.png);
 	width: 145px;
 	height: 48px;
 	background-repeat: no-repeat;
@@ -43,13 +43,13 @@
 	display: inline-block;
 }
 #footer .contact{
-	background-image: url('/img/contact.png');
+	background-image: url(../img/contact.png);
 	width: 110px;
 	background-position: right;
 	background-repeat: no-repeat;
 }
 #footer .adviser{
-	background-image: url('/img/adviser.png');
+	background-image: url(../img/adviser.png);
 	width: 234px;
 	background-position: top right;
 	background-repeat: no-repeat;

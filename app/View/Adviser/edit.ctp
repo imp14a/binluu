@@ -15,7 +15,6 @@
 			<?php echo $this->Form->input("User.last_name",array('value'=>$adviser['User']['last_name'])); ?>
 			<?php echo $this->Form->input("Adviser.company",array('value'=>$adviser['Adviser']['company'])); ?>
 			<?php echo $this->Form->input("Adviser.web",array('value'=>$adviser['Adviser']['web'])); ?>
-			<?php echo $this->Form->input("User.phone",array('value'=>$adviser['User']['phone'])); ?>
 		</div>
 	<?php echo $this->Form->end("Actualizar")?>
 
