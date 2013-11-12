@@ -30,7 +30,7 @@ class BinluuEmailComponent extends Component {
     	$event = ClassRegistry::init('Event');
     	$user_db = $user->findById($user_from_id);
     	if ($event_id != null && $email_type != CONFIRM_EMAIL_TYPE)
-    		$event_db = $event_db->findById($event_id);
+    		$event_db = $event->findById($event_id);
     	switch ($email_type) {
     		case CONFIRM_EMAIL_TYPE:
     		    $subject = 'Confirmación de correo';
@@ -68,6 +68,7 @@ class BinluuEmailComponent extends Component {
             if($email->send($message)){
                 //SALVAR DATOS DE EMAIL
                 $mail = ClassRegistry::init('Mail');
+                $mail->create();
                 $mail->set('user_id', $user_from_id);
                 $mail->set('from', $user_db['User']['username']);
                 $mail->set('to', $user_to);
@@ -85,10 +86,23 @@ class BinluuEmailComponent extends Component {
         }
     }
 
+    /**
+     * Obtiene el hash de un id
+     * @param  [int] $id [id a cifrar]
+     * @return [string]     [id cifrado]
+     */
     public function getSecretId($id){
         $key = pack('H*', "bcb04b7e103a0cd8b54763051cef08bc55abe029fdebae5e1d417e2ffb2a00a3");
         $encrypted = Security::rijndael(intval($id), $key, 'encrypt');
         return strtr(base64_encode($encrypted), '+/=', '-_,');
+    }
+
+    public function getIdFromSecretId($secret_id){
+        $secret_id = urldecode($secret_id);
+        $secret_id = base64_decode(strtr($secret_id, '-_,', '+/='));
+        $key = pack('H*', "bcb04b7e103a0cd8b54763051cef08bc55abe029fdebae5e1d417e2ffb2a00a3");
+        $decrypted = Security::rijndael($secret_id, $key, 'decrypt');
+        return $decrypted;
     }
 
     /**

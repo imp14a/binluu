@@ -136,7 +136,7 @@ CREATE TABLE `event_profiles` (
   `ocupation` varchar(400) DEFAULT NULL,
   `interests` varchar(400) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +145,7 @@ CREATE TABLE `event_profiles` (
 
 LOCK TABLES `event_profiles` WRITE;
 /*!40000 ALTER TABLE `event_profiles` DISABLE KEYS */;
-INSERT INTO `event_profiles` (`id`, `event_id`, `age`, `sex`, `ocupation`, `interests`) VALUES (1,2,20,'M','Estudiante','Libros\r\nMúsica');
+INSERT INTO `event_profiles` (`id`, `event_id`, `age`, `sex`, `ocupation`, `interests`) VALUES (1,2,24,'M','Ingeniero','Libros Música'),(2,3,24,'M','Ingeniero','Música Libros Vino Deportes');
 /*!40000 ALTER TABLE `event_profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,7 +164,7 @@ CREATE TABLE `events` (
   `date` date DEFAULT NULL,
   `property_description` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,7 +173,7 @@ CREATE TABLE `events` (
 
 LOCK TABLES `events` WRITE;
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
-INSERT INTO `events` (`id`, `adviser_id`, `property_id`, `name`, `date`, `property_description`) VALUES (2,1,2,'Evento 1','2013-11-09','Evento de prueba');
+INSERT INTO `events` (`id`, `adviser_id`, `property_id`, `name`, `date`, `property_description`) VALUES (2,1,2,'Evento 1','2013-11-09','Evento de prueba'),(3,1,2,'Evento 2','2013-11-12','Evento para invitar usuarios');
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,8 +187,8 @@ DROP TABLE IF EXISTS `ideal_properties`;
 CREATE TABLE `ideal_properties` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `person_id` int(11) DEFAULT NULL,
-  `latitude` float DEFAULT NULL,
-  `longitude` float DEFAULT NULL,
+  `latitude` varchar(100) DEFAULT NULL,
+  `longitude` varchar(100) DEFAULT NULL,
   `address` varchar(460) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
@@ -200,7 +200,7 @@ CREATE TABLE `ideal_properties` (
 
 LOCK TABLES `ideal_properties` WRITE;
 /*!40000 ALTER TABLE `ideal_properties` DISABLE KEYS */;
-INSERT INTO `ideal_properties` (`id`, `person_id`, `latitude`, `longitude`, `address`) VALUES (1,1,19.2855,-99.6513,NULL);
+INSERT INTO `ideal_properties` (`id`, `person_id`, `latitude`, `longitude`, `address`) VALUES (1,1,'19.16187054143172','-99.61611662060022',NULL);
 /*!40000 ALTER TABLE `ideal_properties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,7 +220,7 @@ CREATE TABLE `mails` (
   `content` text,
   `sended` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -229,7 +229,7 @@ CREATE TABLE `mails` (
 
 LOCK TABLES `mails` WRITE;
 /*!40000 ALTER TABLE `mails` DISABLE KEYS */;
-INSERT INTO `mails` (`id`, `user_id`, `from`, `to`, `subject`, `content`, `sended`) VALUES (1,1,'rgarcia.cejudo@gmail.com','rgarcia.cejudo@gmail.com','Confirmación de correo','Hola, Ricardo, para confirmar tu correo da clic en la siguiente dirección: http://binluu.com.mx/index.php/User/confirm/6ONcIKOuoaKz-p9MJ2MlwH3h3wFBXbFtwPiVdsfSe8gkJEZetM3NeJzdwUEZv_mKfbB5F0KGiuSCzOLssyTCRuNZ',1),(2,2,'ricardo_soulost@hotmail.com','ricardo_soulost@hotmail.com','Confirmación de correo','Hola, Usuario 1, para confirmar tu correo da clic en la siguiente dirección: http://binluu.com.mx/index.php/User/confirm/SBg8cqYrlRdasmLskmpb3i29s9XjtJN1c8YJbJV8Q9UkJMkro8moNTztdCLBxjUch1OqdIdh3gdDsID6cf37lJo8',1);
+INSERT INTO `mails` (`id`, `user_id`, `from`, `to`, `subject`, `content`, `sended`) VALUES (1,1,'rgarcia.cejudo@gmail.com','rgarcia.cejudo@gmail.com','Confirmación de correo','Hola, Ricardo, para confirmar tu correo da clic en la siguiente dirección: http://binluu.com.mx/index.php/User/confirm/6ONcIKOuoaKz-p9MJ2MlwH3h3wFBXbFtwPiVdsfSe8gkJEZetM3NeJzdwUEZv_mKfbB5F0KGiuSCzOLssyTCRuNZ',1),(2,2,'ricardo_soulost@hotmail.com','ricardo_soulost@hotmail.com','Confirmación de correo','Hola, Usuario 1, para confirmar tu correo da clic en la siguiente dirección: http://binluu.com.mx/index.php/User/confirm/SBg8cqYrlRdasmLskmpb3i29s9XjtJN1c8YJbJV8Q9UkJMkro8moNTztdCLBxjUch1OqdIdh3gdDsID6cf37lJo8',1),(3,3,'info@zumoinmobiliaria.com.mx','rgarcia.cejudo@gmail.com','Te han invitado a un evento','El usuario Promotor 1 te ha invitado a asistir al evento Evento 1.\nVer el evento: http://binluu.com.mx/index.php/Event/view/s3jJPE0lr3xBE3bemfA78Yz8gKNWSwCNp1AfCS28aHYkJPCOjuznB7HJLAlZQSDznCPI1EcGTp_8M9Pq5MU29iti',1);
 /*!40000 ALTER TABLE `mails` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -244,7 +244,7 @@ CREATE TABLE `people` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,7 +253,7 @@ CREATE TABLE `people` (
 
 LOCK TABLES `people` WRITE;
 /*!40000 ALTER TABLE `people` DISABLE KEYS */;
-INSERT INTO `people` (`id`, `user_id`) VALUES (1,2);
+INSERT INTO `people` (`id`, `user_id`) VALUES (1,2),(2,5);
 /*!40000 ALTER TABLE `people` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -272,7 +272,7 @@ CREATE TABLE `person_profiles` (
   `interests` varchar(400) DEFAULT NULL,
   `sex` enum('M','F') DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,7 +281,7 @@ CREATE TABLE `person_profiles` (
 
 LOCK TABLES `person_profiles` WRITE;
 /*!40000 ALTER TABLE `person_profiles` DISABLE KEYS */;
-INSERT INTO `person_profiles` (`id`, `person_id`, `age`, `ocupation`, `interests`, `sex`) VALUES (1,1,24,'Ingeniero','Música\r\nLibros\r\nVino','M');
+INSERT INTO `person_profiles` (`id`, `person_id`, `age`, `ocupation`, `interests`, `sex`) VALUES (1,1,24,'Ingeniero','Música\r\nLibros\r\nVino','M'),(2,2,24,'Ingeniero','Vino Musica','M');
 /*!40000 ALTER TABLE `person_profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -324,9 +324,9 @@ CREATE TABLE `requests` (
   `event_id` int(11) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `status` enum('A','C','N') DEFAULT 'N',
-  `notified_by_mail` tinyint(1) DEFAULT NULL,
+  `notified_by_mail` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -335,6 +335,7 @@ CREATE TABLE `requests` (
 
 LOCK TABLES `requests` WRITE;
 /*!40000 ALTER TABLE `requests` DISABLE KEYS */;
+INSERT INTO `requests` (`id`, `person_id`, `event_id`, `date`, `status`, `notified_by_mail`) VALUES (12,1,2,'2013-11-12','N',0),(13,2,2,'2013-11-12','N',0);
 /*!40000 ALTER TABLE `requests` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -357,7 +358,7 @@ CREATE TABLE `users` (
   `active` tinyint(1) DEFAULT NULL,
   `image` varchar(280) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -366,7 +367,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `username`, `password`, `name`, `last_name`, `mail_confirmed`, `rol`, `last_login`, `active`, `image`) VALUES (1,'rgarcia.cejudo@gmail.com','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','Ricardo','',1,'Admin','2013-11-09 12:10:02',1,NULL),(2,'ricardo_soulost@hotmail.com','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','Usuario 1','',1,'Person',NULL,1,'user_profile_2.jpeg'),(3,'info@zumoinmobiliaria.com.mx','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','Promotor 1','',1,'Adviser','2013-11-09 12:15:41',1,'user_profile_3.jpeg'),(4,'ricardo@wowinteractive.com.mx','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','Promotor 2','',NULL,'Adviser',NULL,1,NULL);
+INSERT INTO `users` (`id`, `username`, `password`, `name`, `last_name`, `mail_confirmed`, `rol`, `last_login`, `active`, `image`) VALUES (1,'rgarcia.cejudo@gmail.com','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','Ricardo','',1,'Admin','2013-11-09 12:10:02',1,NULL),(2,'ricardo_soulost@hotmail.com','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','Usuario 1','',1,'Person',NULL,1,'user_profile_2.jpeg'),(3,'info@zumoinmobiliaria.com.mx','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','Promotor 1','',1,'Adviser','2013-11-11 21:59:44',1,'user_profile_3.jpeg'),(4,'ricardo@wowinteractive.com.mx','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','Promotor 2','',NULL,'Adviser',NULL,1,NULL),(5,'rgarcia.cejudo@gmail.com','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','Usuario 2',NULL,1,NULL,NULL,1,'user_profile_2.jpeg');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -379,4 +380,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-09 14:28:33
+-- Dump completed on 2013-11-11 23:58:14
