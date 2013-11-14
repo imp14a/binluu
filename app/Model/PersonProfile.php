@@ -4,6 +4,11 @@ class PersonProfile extends AppModel {
 
 	public $name = 'PersonProfile';
 
+	public $hasAndBelongsToMany = array(
+		'CategoryTag' => array(
+            'className' => 'PersonProfile',
+        ));
+
 	public $validate = array(
 		'sex' => array(
 			'required' => array('rule' => array('minLength', '1'),
