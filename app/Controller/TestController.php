@@ -20,5 +20,15 @@ class TestController extends AppController {
 	public function beforeFilter(){
 		$this->Auth->allow('index');
 	}
+
+	public function getUsers(){
+		$this->loadModel('User');
+		$this->layout = "ajax";
+		$out = array();
+		foreach($this->User->find('all') as $res){
+			array_push($out, utf8_encode($res['User']['username']));
+		}
+		$this->set('output', $out);
+	}
 }
 ?>
