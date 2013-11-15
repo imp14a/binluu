@@ -58,14 +58,15 @@ class EventController extends AppController {
 			'conditions'=>array(
 				'PersonProfile.age'=>$event_profile['EventProfile']['age'],
 				'PersonProfile.ocupation'=>$event_profile['EventProfile']['ocupation'],
-				'PersonProfile.sex'=>$event_profile['EventProfile']['sex'],
-				$interests)));
+				'PersonProfile.sex'=>$event_profile['EventProfile']['sex']/*,
+				$interests*/)));
 		$enum = array();
 		foreach($persons as $person)
     {
     	$enum[$person['Person']['id']] = $person['User']['name'];
     }
 		$this->set('options', $enum);		
+		$this->set('persons', $persons);
 		if(!empty($this->request->data)){
 			$data = array('Request'=>array());
 			$data['Request']['event_id'] = $event_id;

@@ -18,11 +18,13 @@
 			echo $this->Form->input('EventProfile.age', array('label'=>false));
 			echo "<label>Sexo:</label>";
 			echo $this->Form->input('EventProfile.sex', array('label'=>false, 'options'=>$sex, 'empty'=>'(Seleccione el sexo)'));
-			echo "<label>Ocupación:</label>";
-			echo $this->Form->input('EventProfile.ocupation', array('label'=>false));
-			echo "<label>Intereses</label>";
-			echo "<br>";
-			echo $this->Form->textarea('EventProfile.interests', array('label'=>false,"rows"=>"9"));
+			echo "<label>Presupuesto</label>";
+			echo $this->Form->input('EventProfile.price', array('label'=>false));
+			//echo "<label>Ocupación:</label>";
+			//echo $this->Form->input('EventProfile.ocupation', array('label'=>false));
+			//echo "<label>Intereses</label>";
+			//echo "<br>";
+			//echo $this->Form->textarea('EventProfile.interests', array('label'=>false,"rows"=>"9"));
 		?>		
 	<?php echo $this->Form->end("CREAR EVENTO"); ?>
 </div>
