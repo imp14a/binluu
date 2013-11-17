@@ -6,7 +6,11 @@ class PersonProfile extends AppModel {
 
 	public $hasAndBelongsToMany = array(
 		'CategoryTag' => array(
-            'className' => 'PersonProfile',
+            'className' => 'CategoryTag',
+            'joinTable' => 'person_profile_tags',
+            'foreignKey' => 'person_profile_id',
+            'associationForeignKey' => 'category_tag_id',
+            'unique' => true
         ));
 
 	public $validate = array(

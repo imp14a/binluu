@@ -6,24 +6,19 @@
   <?php foreach ($persons as $person) {
     echo $this->Form->input('person_id', array(
       'type' => 'checkbox',
+      'hiddenField' => false,
       'label' => $person['User']['name'],
       'name' => 'data[Request][person_id][]',
       'id' => 'RequestPersonId'.$person['Person']['id'],
-      'value' => $person['Person']['id'],
-      'after' => '<div class="tags">'/*.
-                  foreach ($person['PersonProfile']['interest'] as $tag) {
-                    '<label class="tag">'.$tag['name'].'</label>';
-                  }*/
-                  .'</div>'
+      'value' => $person['Person']['id']
       ));
+    echo '<div class="tags">';
+    foreach ($person['PersonProfile']['CategoryTag'] as $tag)
+    {
+      echo '<label class="tag">'.$tag['name'].'</label>';
+    }
+    echo '</div>';
   }?>
-	<?php echo '';/*$this->Form->input('person_id', array(
-    'label' => false,
-    'type' => 'select',
-    'multiple' => 'checkbox',
-    'options' => $options,
-    'after' => '<div class="tags"><label>Miuchi</label><label>Otro</label></div>'
-  ));*/?>
   <?php echo $this->Form->end('ENVIAR INVITACIÓN');?>
 
 </div>

@@ -19,7 +19,7 @@
 			echo "<label>Sexo:</label>";
 			echo $this->Form->input('EventProfile.sex', array('label'=>false, 'options'=>$sex, 'empty'=>'(Seleccione el sexo)'));
 			echo "<label>Presupuesto</label>";
-			echo $this->Form->input('EventProfile.price', array('label'=>false));
+			echo $this->Form->input('EventProfile.budget', array('label'=>false));
 			//echo "<label>Ocupación:</label>";
 			//echo $this->Form->input('EventProfile.ocupation', array('label'=>false));
 			//echo "<label>Intereses</label>";

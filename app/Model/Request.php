@@ -8,6 +8,10 @@ class Request extends AppModel {
         'Person' => array(
             'className' => 'Person',
             'foreignKey' => 'person_id'
+        ),
+        'Event' => array(
+        		'className' => 'Event',
+        		'foreignKey' => 'event_id'
         )
     );
 	

@@ -19,6 +19,11 @@ class AdviserPropertyController extends AppController {
 	public function add(){
 		$this->set('title_for_layout', 'Agregar propiedad');
 		if(!empty($this->request->data)){
+			$this->loadModel('Adviser');
+			$adviser = $this->Adviser->find('first', array('conditions'=>array('user_id'=>$this->Session->read('Auth.User.id'))));
+			$adviser_id = $adviser['Adviser']['id'];
+			
+			$this->request->data['AdviserProperty']['adviser_id'] = $adviser_id;
 			$default = $this->request->data['DefaultImage']; 
 			$images = $this->request->data['PropertyImage'];
 			$ok = $this->BinluuImage->uploadImage($default['image']['name'], $default['image']);

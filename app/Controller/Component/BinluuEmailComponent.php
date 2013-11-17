@@ -40,20 +40,20 @@ class BinluuEmailComponent extends Component {
     		case INVITE_EMAIL_TYPE:
     			$subject = 'Te han invitado a un evento';
     			$link = "http://".$_SERVER['HTTP_HOST']."/index.php/Event/view/".urlencode($this->getSecretId($event_id));
-    			$message = "El usuario ".$user_db['User']['name']." te ha invitado a asistir al evento ".$event_db['Event']['name'].".\n".
-                            "Ver el evento: ".$link;   			
+    			$message = "El usuario ".$user_db['User']['name'].' '.$user_db['User']['last_name']." te ha invitado a asistir al evento ".$event_db['Event']['name'].".\n".
+                            "Ver evento: ".$link;   			
     			break;
     		case ACCEPT_INVITE_EMAIL_TYPE:
     			$subject = 'Han aceptado una invitación';
     			$link = "http://".$_SERVER['HTTP_HOST']."/index.php/Event/view/".urlencode($this->getSecretId($event_id));
-    			$message = "El usuario ".$user_db['User']['name']." ha confirmado su asistencia al evento ".$event_db['Event']['name'].".\n".
-                            "Ver el evento: ".$link;           			
+    			$message = "El usuario ".$user_db['User']['name'].' '.$user_db['User']['last_name']." ha confirmado su asistencia al evento ".$event_db['Event']['name'].".\n".
+                            "Ver evento: ".$link;           			
     			break;
     		case CANCEL_INVITE_EMAIL_TYPE:
     		    $subject = 'Han cancelado una invitación';
     		    $link = "http://".$_SERVER['HTTP_HOST']."/index.php/Event/view/".urlencode($this->getSecretId($event_id));
-    		    $message = "El usuario ".$user_db['User']['name']." ha cancelado su asistencia al evento ".$event_db['Event']['name'].".\n".
-                            "Ver el evento: ".$link;   			
+    		    $message = "El usuario ".$user_db['User']['name'].' '.$user_db['User']['last_name']." ha cancelado su asistencia al evento ".$event_db['Event']['name'].".\n".
+                            "Ver evento: ".$link;   			
     			break;
     		case CANCEL_EVENT_EMAIL_TYPE:
     		    $subject = 'Han cancelado un evento'; 
@@ -80,7 +80,7 @@ class BinluuEmailComponent extends Component {
             }
             else{
                 return false;
-            }   
+            } 
         } catch (Exception $e) {
             return false;
         }
