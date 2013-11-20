@@ -5,7 +5,7 @@
 	padding:0;
 }
 body{
-        min-width: 768px;
+        min-width: 1024px;
         width: 100%;
         height: 100%;
         background-image: url('/img/background.jpeg');
@@ -70,10 +70,19 @@ body,html{
 	display: inline-block;
 	margin-left: 70px;
 }
+.clear{
+    clear: left;
+    clear: right;
+}
+
 
 @font-face {
 	font-family: StoneInformalStd-BoldItalic;
 	src: url(font/StoneInformalStd-BoldItalic.otf);
+}
+@font-face {
+	font-family: StoneSansStd-MediumItalic;
+	src: url(font/StoneSansStd-MediumItalic.otf);
 }
 @font-face {
 	font-family: StoneInformalStd-SemiboldIt;
@@ -82,6 +91,10 @@ body,html{
 @font-face {
 	font-family: StoneSansStd-Medium;
 	src: url(font/StoneSansStd-Medium.otf);
+}
+@font-face {
+	font-family: StoneSansStd-BoldItalic;
+	src: url(font/StoneSansStd-BoldItalic.otf);
 }
 
 

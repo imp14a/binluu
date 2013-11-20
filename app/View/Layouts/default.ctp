@@ -52,7 +52,8 @@ $cakeDescription = __d('cake_dev', 'Binluu');
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			<span>binluu&reg; Todos los derechos reservados 2013</span>
+			<span>binluu&reg; 2013</span>
+                        <?php echo $this->Html->link($this->Html->div('faq','Preguntas frecuentes') ,array('controller' => 'User', 'action' => 'faq'), array('escape'=>false)); ?>
 			<?php echo $this->Html->link($this->Html->div('contact','Contacto') ,array('controller' => 'User', 'action' => 'home'), array('escape'=>false)); ?>
 			<?php echo $this->Html->link($this->Html->div('adviser','Soy asesor inmobiliario',array('style'=>'float:right; color: #FF6400;')) ,array('controller' => 'Adviser', 'action' => 'contact'), array('escape'=>false)); ?>
 		</div>

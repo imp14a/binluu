@@ -45,7 +45,7 @@ class AccountComponent extends Component {
 		$a = new Account();
 		$account = $a->find('first',array('id'=>$account_id));
 		
-		if(empty($account){
+		if(empty($account)){
 			$errorMessaje = 'La cuenta no existe';
 			return false;
 		}

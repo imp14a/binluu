@@ -66,9 +66,9 @@ function placeMarker(location) {
 	<?php echo $this->Form->create("Register"); ?>
 		<h3>Registrate</h3>
 		<div class="profileinfo">
-			<?php echo $this->Form->input("User.name"); ?>
-			<?php echo $this->Form->input("User.last_name"); ?>
-			<?php echo $this->Form->input("PersonProfile.age"); ?>
+			<?php echo $this->Form->input("User.name",array('label'=>false,'placeholder'=>"Nombre")); ?>
+			<?php echo $this->Form->input("User.last_name",array('label'=>false,'placeholder'=>"Apellidos")); ?>
+			<?php echo $this->Form->input("PersonProfile.age",array('label'=>false,'placeholder'=>"Edad")); ?>
 			<?php $options = array('M' => 'Masculino', 'F' => 'Femenino'); 
 				echo $this->Form->radio("PersonProfile.sex",$options); 
 				?>
