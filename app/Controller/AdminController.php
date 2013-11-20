@@ -53,5 +53,15 @@ class AdminController extends AppController {
         }
         $this->set("admin",$this->User->findById($id));
     }
+
+    public function isAuthorized($user) {
+        if(in_array($this->action, array('contact'))){
+            return true;
+        }
+        if (isset($user['rol']) && $user['rol'] === 'Admin') {
+            return true;
+        }
+        return false;
+    }
 }
 ?>

@@ -28,6 +28,13 @@ class AccountController extends AppController {
 		}
 	}
 
+	public function isAuthorized($user) {
+		if (isset($user['rol']) && $user['rol'] === 'Admin') {
+	    return true;
+	  }
+	  return false;
+	}
+
 }
 
 ?>
