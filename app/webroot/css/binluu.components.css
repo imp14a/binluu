@@ -6,7 +6,28 @@
 
 */
 
-input type[text]{
-    
+.input input[type=text],input[type=password],input[type=number],input[type=email]{
+    text-align: center;
+    margin-top: 20px;
+    border: none;
+    width: 80%;
+    height: 24px;
 }
-
+.input input::-webkit-input-placeholder {
+    font-size: 10pt;
+    color: #b3b3b3;
+    font-family: StoneSansStd-Medium;
+    text-align: center;
+}
+.input input::-moz-placeholder { /* Firefox 18- */
+    color: red;
+    text-align: center;
+}
+.input input::-moz-placeholder {  /* Firefox 19+ */
+    color: red;
+    text-align: center;
+}
+.input input:-ms-input-placeholder {
+    color: red;
+    text-align: center;
+}

@@ -75,7 +75,18 @@ body,html{
     clear: right;
 }
 
-
+.title{
+    margin-top: 15px;
+    font-family: StoneSansStd-MediumItalic;
+    font-size: 17pt;
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+form{
+    text-align: center;
+}
 @font-face {
 	font-family: StoneInformalStd-BoldItalic;
 	src: url(font/StoneInformalStd-BoldItalic.otf);
