@@ -16,7 +16,7 @@ class EventController extends AppController {
 	public function create(){
 		$this->set('title_for_layout','Creación de eventos');
 		$this->loadModel('AdviserProperty');
-		$this->AdviserProperty->recursive= -1;
+		$this->AdviserProperty->recursive = -1;
 		$this->loadModel('Adviser');
 		$adviser = $this->Adviser->find('first', array('conditions'=>array('user_id'=>$this->Session->read('Auth.User.id'))));
 		$adviser_id = $adviser['Adviser']['id'];
@@ -130,6 +130,16 @@ class EventController extends AppController {
 		$event = $this->Event->find('first', array('conditions'=>array('Event.id'=>$event_id)));
 		$this->set('event', $event);
 	}
+
+	public function isAuthorized($user) {
+    if($this->action === 'index' && isset($user['rol']) && ($user['rol'] === 'Adviser' || $user['rol'] === 'Person')){
+        return true;
+    }
+    if(isset($user['rol']) && $user['rol'] === 'Adviser'){
+    	return true;
+    }
+    return false;
+  }
 }
 
 ?>

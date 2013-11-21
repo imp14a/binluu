@@ -79,7 +79,10 @@ class AdviserController extends AppController {
     }
 
     public function isAuthorized($user) {
-        if(in_array($this->action, array('listAll')) && isset($user['rol']) && $user['rol'] === 'Admin'){
+        if($this->action === 'contact'){
+            return true;
+        }
+        if($this->action === 'listAll' && isset($user['rol']) && $user['rol'] === 'Admin'){
             return true;
         }
         if($this->action != 'listAll' && isset($user['rol']) && $user['rol'] === 'Adviser'){

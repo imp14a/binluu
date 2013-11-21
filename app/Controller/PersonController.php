@@ -74,5 +74,18 @@ class PersonController extends AppController {
         }
         $this->set('users', $users);
     }
+
+    public function isAuthorized($user) {
+        if($this->action === 'register'){
+            return true;
+        }
+        if($this->action === 'listAll' && isset($user['rol']) && $user['rol'] === 'Admin'){
+            return true;
+        }
+        if(in_array($this->action, array('home', 'edit')) && isset($user['rol']) && $user['rol'] === 'Person'){
+            return true;
+        }
+        return false;
+    }
 }
 ?>

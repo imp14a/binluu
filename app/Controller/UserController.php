@@ -89,5 +89,21 @@ class UserController extends AppController {
         }
     }
 
+    public function isAuthorized($user) {
+        if($this->action === 'login'){
+            return true;
+        }
+        if(isset($user['rol']) && in_array($this->action, array('password', 'image', 'logout', 'home'))){
+            return true;
+        }
+        if($this->action === 'delete' && isset($user['rol']) && ($user['rol'] === 'Person' || $user['rol'] === 'Adviser')){
+          return true;
+        }
+        if($this->action === 'activate' && isset($user['rol']) && $user['rol'] === 'Admin'){
+            return true;
+        }
+        return false;
+    }
+
 }
 ?>

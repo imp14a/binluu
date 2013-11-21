@@ -113,4 +113,11 @@ class AdviserPropertyController extends AppController {
         }
 	}
 
+	public function isAuthorized($user) {
+    if(isset($user['rol']) && $user['rol'] === 'Adviser'){
+        return true;
+    }
+    return false;
+  }
+
 }

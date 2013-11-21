@@ -30,6 +30,8 @@
             </td>
         </tr>
         <?php endforeach; ?>
+        <?php echo $this->Html->link('REGRESAR', array('controller' => $isPerson?'Person':'Adviser', 'action' => $isPerson?'home':'index')); ?>
+        |
         <?php echo $this->Paginator->counter('Página {:page} de {:pages}');?>
         <?php echo $this->Paginator->prev(' < ', array(), null, array('class' => 'prev disabled'));?>
         <?php echo $this->Paginator->next(' > ', array(), null, array('class' => 'next disabled'));?>

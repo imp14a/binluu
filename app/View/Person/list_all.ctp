@@ -33,7 +33,7 @@
                 ?>
             </td>
         <?php endforeach; ?>
-        <?php echo $this->Html->link('REGRESAR', array('controller' => 'Admin', 'action'=>'panelAdministration')); ?>
+        <?php echo $this->Html->link('REGRESAR', array('controller' => 'Admin', 'action'=>'index')); ?>
         |
         <?php echo $this->Html->link('USUARIOS ACTIVOS', array('controller'=>'Person', 'action'=>'listAll', 1)); ?>
         |

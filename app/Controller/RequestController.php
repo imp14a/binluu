@@ -45,6 +45,13 @@ class RequestController extends AppController {
 			$this->Session->setFlash('Ha ocurrido un error, intente de nuevo');
 		}
 	}
+
+	public function isAuthorized($user) {
+    if(isset($user['rol']) && $user['rol'] === 'Person'){
+      return true;
+    }
+    return false;
+  }
 }
 
 ?>

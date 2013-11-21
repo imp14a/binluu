@@ -30,7 +30,7 @@
             </td>
         </tr>
         <?php endforeach; ?>
-        <?php echo $this->Html->link('REGRESAR', array('controller' => 'Admin', 'action'=>'panelAdministration')); ?>
+        <?php echo $this->Html->link('REGRESAR', array('controller' => 'Admin', 'action'=>'index')); ?>
         |
         <?php echo $this->Html->link('PROMOTORES ACTIVOS', array('controller'=>'Adviser', 'action'=>'listAll', 1)); ?>
         |
