@@ -36,6 +36,7 @@ $cakeDescription = __d('cake_dev', 'Binluu');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->Html->script('prototype');
+                echo $this->Html->script('scriptaculous/scriptaculous');
 		echo $this->fetch('script');
 	?>
 </head>

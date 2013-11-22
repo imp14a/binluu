@@ -31,3 +31,24 @@
     color: red;
     text-align: center;
 }
+div.slider { 
+	width:256px; 
+	margin:0px 0; 
+	background-color:#ccc; 
+	height:3px; 
+	position: relative; 
+}
+
+div.slider div.handle { 
+	width:15px; 
+	height:15px; 
+	cursor:move; 
+	position: absolute; 
+	background: url('/app/webroot/css/img/level_slider.png') no-repeat;
+	top: -6px;
+}
+
+div.slider div.range {
+	background-color: #FFCC00;
+	height: 3px;
+}
