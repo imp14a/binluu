@@ -8,6 +8,7 @@ class EventController extends AppController {
 
 	public $paginate = array(
         'limit' => 25,
+        'recursive' => 3,
         'order' => array(
             'Event.name' => 'asc'
         )
@@ -106,6 +107,7 @@ class EventController extends AppController {
 
 	public function index(){
 		$this->set('title_for_layout', 'Mis eventos');
+		$this->Paginator->settings = $this->paginate;
 		switch ($this->Session->read('Auth.User.rol')) {
 			case 'Adviser':
 				$this->loadModel('Adviser');
@@ -119,9 +121,7 @@ class EventController extends AppController {
 				$person_id = $person['Person']['id'];
 				$events = $this->Paginator->paginate('Request', array('Request.person_id'=>$person_id));
 				break;
-		}
-		$this->Paginator->settings = $this->paginate;
-		
+		}		
 		$this->set('events', $events);
 	}
 

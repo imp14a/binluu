@@ -1,0 +1,59 @@
+p.title{
+	color: #FF6400;
+}
+
+.event_item{
+	height: 250px;
+}
+
+.images{
+	width: 30%;
+	float: left;
+	height: 200px;
+}
+
+.description{
+	width: 40%;
+	float: left;
+}
+
+.request{
+	margin-left: 70%;
+	text-align: center;
+}
+
+.event_title{
+	height: 30px;
+}
+
+.invited_users{
+	position: relative;
+	left: -30px;
+}
+
+.block{
+	display: block;
+	font-family: StoneSansStd-Bold;
+	font-size: 15pt;
+	text-decoration: none;
+	line-height: 1.5;
+}
+
+.legend{
+	height: 25px;
+	width: 80px;
+	border: 1px solid #FFF;
+	margin: 0 auto 15px;
+}
+
+.response{
+	height: 25px;
+	width: 80px;
+	margin: 0 auto 15px;
+	background: #EEEEEE;
+	color: #CCC;
+}
+
+.cintillo{
+	text-align: center;
+}
