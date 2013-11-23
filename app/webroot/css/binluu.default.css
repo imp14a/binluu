@@ -104,5 +104,9 @@ body,html{
 	font-family: StoneSansStd-BoldItalic;
 	src: url(font/StoneSansStd-BoldItalic.otf);
 }
+@font-face {
+	font-family: StoneSansStd-Bold;
+	src: url(font/StoneSansStd-Bold.otf);
+}
 
 
