@@ -84,9 +84,6 @@ body,html{
     text-align: center;
     color: #fff;
 }
-form{
-    text-align: center;
-}
 @font-face {
 	font-family: StoneInformalStd-BoldItalic;
 	src: url(font/StoneInformalStd-BoldItalic.otf);

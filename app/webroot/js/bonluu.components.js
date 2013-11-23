@@ -15,7 +15,7 @@ BinluuSlider.prototype = {
         this.options = options;
         var that = this;
         this.slider = new Control.Slider($(element).select('.handle'), element, {
-            range: $R(0, 8), 
+            range: $R(0, this.options.size), 
             increment: 1,
             sliderValue: [0, 8],
             onSlide: function(values) {
@@ -24,11 +24,6 @@ BinluuSlider.prototype = {
                 valMax = (values.map(Math.round)[1] - this.range.start) / (this.range.end - this.range.start);
                 valMax = $(that.element).getWidth() * valMax;
                 
-                id_range.setStyle({
-                    'margin-left': valMin + 'px',
-                    'width': (valMax - valMin) + 'px'
-                });
-
                 for(i=0;i<that.inputs.length;i++){
                     switch(values.map(Math.round)[i]){
                         case this.range.start:
@@ -45,6 +40,8 @@ BinluuSlider.prototype = {
             },
             restricted: true
         });
+        this.slider.setValue(options.initMin,0);
+        this.slider.setValue(options.initMax,1);
     },
     setRangeValues:function(newValue){
        this.options.rangeValues = newValue;
