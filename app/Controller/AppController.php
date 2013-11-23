@@ -52,7 +52,7 @@ class AppController extends Controller {
 		$this->Auth->unauthorizedRedirect = array('controller' => 'User', 'action' => 'login');
 		$this->Auth->loginRedirect = array('controller' => 'User','action'=>"home");
     	$this->Auth->logoutRedirect = array('controller' => 'User','action'=>'login');
-        $this->Auth->allow('login','register','contact');
+        $this->Auth->allow('login','register','contact','getTagsByCategory');
     }
 
     public function isAuthorized($user) {

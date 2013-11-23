@@ -84,3 +84,42 @@ BinluuProcess.prototype = {
 
     }
 };
+
+var BinluuTagSelector = Class.create();
+
+BinluuTagSelector.prototype = {
+    container:null,
+    options:null,
+     initialize:function(container,options){
+        this.container = container;
+        this.options = options;
+        $(container).hide();
+        var that = this;
+        $(options.actionButton).observe('click',function(){
+            if($(that.container).hasClassName('active')){
+                $(that.container).removeClassName('active');
+                $(that.container).hide();
+            }else{
+                $(that.container).addClassName('active');
+                $(that.container).show();
+            }
+            
+        });
+
+        $(container).select('.tag').each(function(element){
+            $(element).observe('click',function(){
+                var remove = false;
+                if($(element).hasClassName('selected')){
+                    $(element).removeClassName('selected');
+                    remove = true;
+                }else{
+                    $(element).addClassName('selected');
+                    remove = false;
+                }
+                that.options.tagChanged(element,remove);
+            });
+        });
+
+     }
+
+}

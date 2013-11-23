@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 class PersonController extends AppController {
 
-    public $uses = array('Person', 'User', 'IdealProperty', 'PersonProfile');
+    public $uses = array('Person', 'User', 'IdealProperty', 'PersonProfile','InterestCategory');
     public $components = array('BinluuEmail', 'BinluuImage', 'Paginator','ReCaptcha');
     public $paginate = array(
         'limit' => 25,
@@ -27,6 +27,7 @@ class PersonController extends AppController {
     public function register() {
         $this->set('title_for_layout', 'Registro de usuarios');
         $this->set('captcha',$this->ReCaptcha->recaptcha_get_html("6LenjeoSAAAAAKnORAHl_6axBenfII6MBXD-UK9T"));
+        $this->set('tags', $this->InterestCategory->findByName('general')['CategoryTag']);
         if (!empty($this->data)) {
             $data = $this->data;
             $data['User']['rol'] = "Person";

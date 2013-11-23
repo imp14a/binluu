@@ -69,6 +69,9 @@ function placeMarker(location) {
 
 </script>
 <style>
+    body{
+        font-family: StoneSansStd-Medium;
+    }
     .stepProces{
         display: inline-block;
     }
@@ -127,7 +130,6 @@ function placeMarker(location) {
         height: 28px;
         line-height: 28px;
         display: block;
-        font-family: StoneSansStd-Medium;
         padding-left: 5px;
         text-decoration: none;
         color: #ff6400;
@@ -149,7 +151,6 @@ function placeMarker(location) {
         margin-top: 15px;
         width: 80%;
         margin-left: 10%;
-        font-family: StoneSansStd-Medium;
         font-size: 13pt;
         color: white;
     }
@@ -177,21 +178,124 @@ function placeMarker(location) {
         background-size: cover;
         padding-left: 10px;
         text-align: left;
-        font-family: StoneSansStd-Medium;
         padding-top: 3px;
         margin-top: 40px;
         margin-right: 30px;
         float: right;
     }
-    textarea{
+    .tagContainer{
         width: 80%;
         height: 80px;
+        background-color: white;
         margin-top: 20px;
-        padding-top: 10px;
-        padding-left: 30px;
+        margin-left: 10%;
+        overflow: auto;
+    }
+    .showTagsButton{
+        background-image: url('/img/open_tags.png');
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        float: right;
+        margin-right: 4px;
+        margin-top: 4px;
+    }
+    .alternateBox{
+        width: 600px;
+        height: 620px;
+        display: inline-block;
+        background-image: url('/img/register_image.png');
+        background-size: cover;
+    }
+    .sexQuestion{
+        width: 80%;
+        height: 84px;
+        background-image: url('/img/register_question.png');
+        margin-left: 10%;
+        margin-top: 20px;
+        background-repeat: no-repeat;
+        background-color: white;
+    }
+    .optionButton{
+        background-color: #ff6300;
+        margin-top: 10px;
+        float: right;
+        clear: right;
+        width: 60px;
+        color: white;
+        font-family: StoneSansStd-MediumItalic;
+    }
+    .submit{
+        margin-top: 60px;
+        border: none;
+        background-image: url('/img/submit_register.png');
+        background-color: white;
+        width: 165px;
+        height: 43px;
+        cursor: pointer;
+    }
+    .inforegister{
+        margin-top: 20px;
+        color: #999999;
+        font-size: 12pt;
+    }
+    .inforegister a{
+        color: #FF6400;
+        text-decoration: none;
+    }
+    .tagSelector{
+        background-image: url('/img/background_tags');
+        background-size: contain;
+        margin-top: 100px;
+        height: 270px;
+        border-radius: 20px;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        width: 550px;
+        padding: 20px;
+        text-align: justify;
+    }
+    .tag{
+        cursor: pointer;
+        margin-top: 5px;
+        display: inline-block;
+        padding: 4px;
+        background-color: white;
+        border: 3px solid #999;
+        border-radius: 15px;
+        background: #dcdcdc; /* Old browsers */
+        background: -moz-linear-gradient(top, #dcdcdc 0%, #ffffff 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dcdcdc), color-stop(100%,#ffffff));
+        background: -webkit-linear-gradient(top, #dcdcdc 0%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #dcdcdc 0%,#ffffff 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #dcdcdc 0%,#ffffff 100%); /* IE10+ */
+        background: linear-gradient(to bottom, #dcdcdc 0%,#ffffff 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dcdcdc', endColorstr='#ffffff',GradientType=0 );
+    }
+    .tag.selected{
+        border: 3px solid #F8C175;
+        background: #ff6400; /* Old browsers */
+        background: -moz-linear-gradient(top, #ff6400 0%, #f49719 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff6400), color-stop(100%,#f49719));
+        background: -webkit-linear-gradient(top, #ff6400 0%,#f49719 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #ff6400 0%,#f49719 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #ff6400 0%,#f49719 100%); /* IE10+ */
+        background: linear-gradient(to bottom, #ff6400 0%,#f49719 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff6400', endColorstr='#f49719',GradientType=0 );
+    }
+    .usedTag{
+        background-color: #e4e4e4;
+        padding: 3px;
+        border-radius: 12px;
+        padding-left: 6px;
+        padding-right: 6px;
+        display: inline-block;
+        margin-top: 2px;
+        font-size: 10pt;
+        margin-left: 4px;
     }
 </style>
-<div style="margin-left: 15%;">
+<div style="text-align: center;">
     <?php echo $this->Html->link("< Regresar",array('controller'=>"User",'action'=>"login"),array('class'=>'backButton'));?>
     <div id="stepProces" class="stepProces">
         <?php echo $this->Form->create("Register"); ?>
@@ -200,7 +304,7 @@ function placeMarker(location) {
                 <span class="title">Informaci&oacute;n b&aacute;sica</span>
                 <?php echo $this->Form->input("User.name",array('label'=>false,'placeholder'=>"Nombre")); ?>
                 <?php echo $this->Form->input("User.last_name",array('label'=>false,'placeholder'=>"Apellidos")); ?>
-		<?php echo $this->Form->input("PersonProfile.age",array('label'=>false,'placeholder'=>"Edad",'class'=>"half", "min"=>14,"max"=>100)); ?>
+		        <?php echo $this->Form->input("PersonProfile.age",array('label'=>false,'placeholder'=>"Edad",'class'=>"half", "min"=>14,"max"=>100)); ?>
                 <div class="input select">
                     <?php $options = array('N'=>'Sexo','M' => 'Masculino', 'F' => 'Femenino'); 
                     echo $this->Form->select('sex', $options,array('disabled' => array('N'),"value"=>"N","class"=>"optionEmpty half",'empty'=>false));  ?>
@@ -219,8 +323,8 @@ function placeMarker(location) {
                             <div class="top" style="left: 97%;"></div>
                         </div>
                     </div>
-                     <?php echo $this->Form->input('min_price', array('label' => 'Desde','value'=>'$ 500.00','readonly',"class"=>"midle")); ?>
-                     <?php echo $this->Form->input('max_price', array('label' => 'Hasta','value'=>'$ 12,000.00','readonly',"class"=>"midle")); ?>
+                     <?php echo $this->Form->input('PersonProfile.min_budget', array('label' => 'Desde','value'=>'$ 500.00','readonly',"class"=>"midle")); ?>
+                     <?php echo $this->Form->input('PersonProfile.max_budget', array('label' => 'Hasta','value'=>'$ 12,000.00','readonly',"class"=>"midle")); ?>
                 </div>
                 
                 <div class="captcha">
@@ -237,18 +341,31 @@ function placeMarker(location) {
                 <p class="mapinfo">Indica en el mapa donde deseas vivir se creara un radio de 1.5km a partir del punto que escojas</p>
                 <a href="javascript:void(0)" class="next" step="2">Siguiente</a>
             </div>
-        </div>            
+        </div>
         <div class="step" id="2">
             
-            <div class="information container">
+            <div class="information container" style="height: 440px;">
                 <span class="title" style="margin-top:60px;">Para poder mostrarte recomendaciones personalizadas, &iexcl;Cuent&aacute;nos m&aacute; de t&iacute; &excl; </span>
                 <?php echo $this->Form->input("PersonProfile.ocupation",array('label'=>false,'placeholder'=>"Ocupación")); ?>
                 <?php echo $this->Form->input('PersonProfile.transport', array('label'=>false,'placeholder'=>"Medio de transporte")); ?>
-                <?php echo $this->Form->textarea('PersonProfile.interest', array('label'=>false,"rows"=>"4","placeholder"=>"Intereses")); ?>
-                <button type=="submit" >Registrarme</button>
-                <p class="inforegistr">
+                <div class="tagContainer" id="tagContainer">
+                    <div class="showTagsButton" id="showTagsButton"></div>
+                </div>
+                <div class="sexQuestion">
+                    <div class="optionButton">Si</div>
+                    <div class="optionButton">No</div>
+                </div>
+                <button type=="submit" class="submit"></button>
+                <p class="inforegister">
                     Al hacer clic en Registrarme, aceptas los <?php echo $this->Html->link("Términos y condiciones",array("controller"=>"Bonluu","action"=>"terms"));?> y que has leido la <?php echo $this->Html->link("Políticas de uso de datos",array("controller"=>"Bonluu","action"=>"politics"));?>
                 </p>
+            </div>
+            <div class="alternateBox">
+                <div class="tagSelector" id="tagSelector">
+                    <?php foreach($tags as $tag): ?>
+                        <span class="tag" id="<?php echo $tag['id']; ?>"><?php echo $tag['name']?></span>
+                    <?php endforeach;?>
+                </div>
             </div>
         </div>
         <?php echo $this->Form->end(); ?>
@@ -275,7 +392,29 @@ var slider = new BinluuSlider('slider',
                         size:14
                     }
                 );
-                    
 var stepProcess = new BinluuProcess('stepProces');
+
+var binluuTagSelector = new BinluuTagSelector('tagSelector',{
+    actionButton:'showTagsButton',
+    tagChanged: function(tag,remove){
+        if(remove){
+            $('tagContainer').select("#"+$(tag).readAttribute('id')).each(function(t){
+                $(t).remove();
+            });
+        }else{
+            $('tagContainer').insert({
+                bottom: new Element('span',{id:$(tag).readAttribute('id'),class:"usedTag"}).update($(tag).innerHTML)
+                    .insert({
+                        bottom: new Element('input',{type:'hidden',value:$(tag).readAttribute('id')})
+                    })
+            });
+        }
+        $('tagContainer').select('input').each(function(input,indx){
+            $(input).writeAttribute('id','PersonProfileCategoryTag'+indx);
+            $(input).writeAttribute('name','data[PersonProfile][CategoryTag]['+indx+']');
+        });
+    }
+
+});
 
 </script>
