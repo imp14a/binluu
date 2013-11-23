@@ -27,7 +27,8 @@ class PersonController extends AppController {
     public function register() {
         $this->set('title_for_layout', 'Registro de usuarios');
         $this->set('captcha',$this->ReCaptcha->recaptcha_get_html("6LenjeoSAAAAAKnORAHl_6axBenfII6MBXD-UK9T"));
-        $this->set('tags', $this->InterestCategory->findByName('general')['CategoryTag']);
+        $res = $this->InterestCategory->findByName('general');
+        $this->set('tags', $res['CategoryTag']);
         if (!empty($this->data)) {
             $data = $this->data;
             $data['User']['rol'] = "Person";
