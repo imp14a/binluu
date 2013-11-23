@@ -1,5 +1,31 @@
 p.title{
 	color: #FF6400;
+	margin-bottom: 20px;
+}
+
+.detail label{
+	color: #535353;
+	font-family: StoneSansStd-Medium;
+}
+
+.datetime{
+	float: left;
+	margin: 10px;
+}
+.event_title{
+	font-family: StoneSansStd-MediumItalic;
+	font-size: 14pt;	
+}
+
+.invited_users{
+	font-family: StoneSansStd-MediumItalic;	
+	font-size: 14pt;
+	color: #FC4C08;
+}
+
+.detail p{
+	color: #FC4C08;
+	font-family: StoneSansStd-Medium;
 }
 
 .event_item{
@@ -36,22 +62,32 @@ p.title{
 	font-family: StoneSansStd-Bold;
 	font-size: 15pt;
 	text-decoration: none;
-	line-height: 1.5;
+	line-height: 1.7;
 }
 
 .legend{
-	height: 25px;
-	width: 80px;
+	height: 30px;
+	width: 100px;
 	border: 1px solid #FFF;
 	margin: 0 auto 15px;
 }
 
 .response{
-	height: 25px;
-	width: 80px;
+	height: 30px;
+	width: 100px;
 	margin: 0 auto 15px;
 	background: #EEEEEE;
 	color: #CCC;
+}
+
+.accept{
+	background: #7BBE31;
+	color: #FFF;
+}
+
+.cancel{
+	background: #FB0007;
+	color: #FFF;
 }
 
 .cintillo{

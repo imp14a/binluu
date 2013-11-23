@@ -8,7 +8,7 @@ class EventController extends AppController {
 
 	public $paginate = array(
         'limit' => 25,
-        'recursive' => 3,
+        'recursive' => 4,
         'order' => array(
             'Event.name' => 'asc'
         )
@@ -120,6 +120,13 @@ class EventController extends AppController {
 				$person = $this->Person->find('first', array('conditions'=>array('user_id'=>$this->Session->read('Auth.User.id'))));
 				$person_id = $person['Person']['id'];
 				$events = $this->Paginator->paginate('Request', array('Request.person_id'=>$person_id));
+				$this->loadModel('Request');
+				$aux_events = $this->Paginator->paginate('Request', array('Request.person_id'=>$person_id));
+				foreach ($aux_events as $event) {
+					$guests = $this->Request->find('all', array(
+						'conditions'=>array('event_id'=>$event['Event']['id'])));
+					//$events['Guests'] = $guests;
+				}
 				break;
 		}		
 		$this->set('events', $events);
