@@ -43,10 +43,11 @@ class AdviserController extends AppController {
         }
     }
 
-    public function contact(){        
+    public function contact(){
+        $this->set('contact_info_send',false);       
         if(!empty($this->data)){
             $this->BinluuEmail->sendConfirmMail($this->data['Contact']['name'],$this->data['Contact']['email'],$this->data['Contact']['message']);
-            $this->Session->setFlash("Tu mensaje se ha enviado correctamente. En breve nos pondremos en contacto.");
+            $this->set('contact_info_send',true);
         }
     }
 

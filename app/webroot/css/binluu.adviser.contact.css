@@ -1,0 +1,32 @@
+.concatContent{
+    margin-top: 30px;
+    height: 400px;
+}
+.mainImage{
+    height: 400px;
+    width: 55%;
+    display: inline-block;
+    border: 1px solid black;
+    float: left;
+}
+.title{
+    margin-top: 15px;
+    font-family: StoneSansStd-MediumItalic;
+    font-size: 17pt;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.information{
+    background-color: #3ea1cb;
+    display: inline-block;
+    width: 35%;
+    color: #fff;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100%;
+    min-width: 230px;
+    float: right;
+    margin-right: 5%;
+    height: 400px;
+}

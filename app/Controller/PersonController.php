@@ -28,7 +28,11 @@ class PersonController extends AppController {
         $this->set('title_for_layout', 'Registro de usuarios');
         $this->set('captcha',$this->ReCaptcha->recaptcha_get_html("6LenjeoSAAAAAKnORAHl_6axBenfII6MBXD-UK9T"));
         $res = $this->InterestCategory->findByName('general');
+        $resMedios = $this->InterestCategory->findByName('Medios de transporte');
+        $resOcupacio = $this->InterestCategory->findByName('Ocupación');
         $this->set('tags', $res['CategoryTag']);
+        $this->set('transports', $resMedios['CategoryTag']);
+        $this->set('ocupations', $resOcupacio['CategoryTag']);
         if (!empty($this->data)) {
             $data = $this->data;
             $data['User']['rol'] = "Person";

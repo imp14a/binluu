@@ -54,6 +54,13 @@ INSERT INTO `binluu`.`category_tags` (`interest_category_id`, `name`) VALUES ('1
 INSERT INTO `binluu`.`category_tags` (`interest_category_id`, `name`) VALUES ('1', 'Tatuajes');
 INSERT INTO `binluu`.`category_tags` (`interest_category_id`, `name`) VALUES ('1', 'Futbol soccer');
 
+INSERT INTO `binluu`.`category_tags` (`interest_category_id`, `name`) VALUES (2, 'Auto propio');
+INSERT INTO `binluu`.`category_tags` (`interest_category_id`, `name`) VALUES (2, 'Motocicleta');
+INSERT INTO `binluu`.`category_tags` (`interest_category_id`, `name`) VALUES (2, 'Bicicleta');
+INSERT INTO `binluu`.`category_tags` (`interest_category_id`, `name`) VALUES (2, 'A pie');
+INSERT INTO `binluu`.`category_tags` (`interest_category_id`, `name`) VALUES (2, 'Metro');
+INSERT INTO `binluu`.`category_tags` (`interest_category_id`, `name`) VALUES (2, 'Transporte público');
+
 
 #UPDATE `binluu`.`category_tags` SET `interest_category_id`='2' WHERE `id`='41';
 INSERT INTO `binluu`.`category_tags` (`interest_category_id`, `name`) VALUES ('3', 'Estudiante');

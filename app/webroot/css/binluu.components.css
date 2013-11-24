@@ -10,13 +10,23 @@
     display: inline;
 }
 
-.input input[type=text],input[type=password],input[type=number],input[type=email]{
+.input input[type=text],input[type=password],input[type=number],input[type=email],input[type=tel]{
     text-align: left;
     margin-top: 20px;
     border: none;
     width: 80%;
     height: 24px;
     padding-left: 30px;
+}
+textarea{
+    text-align: left;
+    margin-top: 20px;
+    border: none;
+    width: 80%;
+    height: 110px;
+    padding-left: 30px;
+    font-size: 10pt;
+    padding-top: 5px;
 }
 .input select{
     text-align: center;
