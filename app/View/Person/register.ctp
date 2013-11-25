@@ -81,7 +81,7 @@ function placeMarker(location) {
 		        <?php echo $this->Form->input("PersonProfile.age",array('label'=>false,'placeholder'=>"Edad",'class'=>"half", "min"=>14,"max"=>100)); ?>
                 <div class="input select">
                     <?php $options = array('N'=>'Sexo','M' => 'Masculino', 'F' => 'Femenino'); 
-                    echo $this->Form->select('UserProfile.sex', $options,array('disabled' => array('N'),"value"=>"N","class"=>"optionEmpty half",'empty'=>false));  ?>
+                    echo $this->Form->select('PersonProfile.sex', $options,array('disabled' => array('N'),"value"=>"N","class"=>"optionEmpty half",'empty'=>false));  ?>
                 </div>
                 <?php echo $this->Form->input("User.username",array("type"=>"email",'label'=>false,"placeholder"=>"Correo electrónico")); ?>
                 <?php echo $this->Form->password("User.password",array('placeholder'=>"Contraseña"))?>
@@ -219,7 +219,7 @@ var binluuTagSelector = new BinluuTagSelector('tagSelector',{
         if($('tagContainer').select('input').length>0){
             $('tagContainer').select('input').each(function(input,indx){
                 $(input).writeAttribute('id','PersonProfileCategoryTag'+indx);
-                $(input).writeAttribute('name','data[PersonProfile][CategoryTag]['+indx+']');
+                $(input).writeAttribute('name','data[PersonProfile]['+indx+'][CategoryTag][id]');
             });
             $('emptyIntereses').hide();
         }else{

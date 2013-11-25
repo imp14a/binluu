@@ -9,9 +9,8 @@ class PersonProfile extends AppModel {
             'className' => 'CategoryTag',
             'joinTable' => 'person_profile_tags',
             'foreignKey' => 'person_profile_id',
-            'associationForeignKey' => 'category_tag_id',
-            'unique' => true
-        ));
+            'associationForeignKey' => 'category_tag_id'
+    ));
 
 	public $validate = array(
 		'sex' => array(

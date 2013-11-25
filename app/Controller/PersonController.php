@@ -38,8 +38,12 @@ class PersonController extends AppController {
             $data['User']['rol'] = "Person";
             $data['User']['active'] = 1;
             if ($this->Person->saveAssociated($data)) {
+
+                
+
                 $this->Session->setFlash('Registrado!, te hemos enviado un correo de confirmación para que puedas acceder.');
                 $this->BinluuEmail->sendMail($this->User->getInsertID(), $data['User']['username'], CONFIRM_EMAIL_TYPE);
+                $this->set("after_register");
                 $this->redirect(array('controller' => 'User', 'action' => 'login'));
             } else {
                 $this->Session->setFlash("Ha ocurrido en error, intente de nuevo.");
