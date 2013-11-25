@@ -87,10 +87,16 @@ class PersonController extends AppController {
         if ($this->action === 'listAll' && isset($user['rol']) && $user['rol'] === 'Admin') {
             return true;
         }
-        if (in_array($this->action, array('home', 'edit')) && isset($user['rol']) && $user['rol'] === 'Person') {
+        if (in_array($this->action, array('home', 'edit', 'view')) && isset($user['rol']) && $user['rol'] === 'Person') {
             return true;
         }
         return false;
+    }
+
+    public function view($id){
+        $this->set('title_for_layout', 'Perfil de usuario');
+        $this->Person->recursive = 2;
+        $this->set('person', $this->Person->read(null, $id));
     }
 
 }

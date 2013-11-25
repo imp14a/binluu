@@ -122,10 +122,12 @@ class EventController extends AppController {
 				$events = $this->Paginator->paginate('Request', array('Request.person_id'=>$person_id));
 				$this->loadModel('Request');
 				$aux_events = $this->Paginator->paginate('Request', array('Request.person_id'=>$person_id));
+				$no_events = 0;
+				$this->Request->recursive = 2;
 				foreach ($aux_events as $event) {
 					$guests = $this->Request->find('all', array(
 						'conditions'=>array('event_id'=>$event['Event']['id'])));
-					//$events['Guests'] = $guests;
+					$events[$no_events++]['Request']['Guests'] = $guests;
 				}
 				break;
 		}		

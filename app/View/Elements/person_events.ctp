@@ -47,10 +47,14 @@ document.observe('dom:loaded', function() {
 	  	</div>
 			<div class="invited_users">
 				<label>Tambi&eacute;n fueron invitados:</label>
-				<?php //var_dump($event); ?>
-				<?php //foreach ($guests as $guest): ?>
-				<?php //echo $this->Html->image(''); ?>
-				<?php //endforeach; ?>
+				<?php $guests = $event['Request']['Guests']; ?>
+				<?php foreach ($guests as $guest): ?>
+				<?php $image = $guest['Person']['User']['image']===null?$guest['Person']['PersonProfile']['sex']==='M'?'default_img_male.png':'default_img_female.png':$guest['Person']['User']['image']; ?>
+				<?php echo $this->Html->link(
+						$this->Html->image('/files/'.$image, array('alt'=>$guest['Person']['User']['name'], 'width'=>'48px')),
+						array('controller'=>'Person', 'action'=>'view', $guest['Person']['id']),
+						array('escape'=>false, 'class'=>'guest')); ?>
+				<?php endforeach; ?>
 			</div>
 	  </div>
 	  <div class="request">

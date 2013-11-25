@@ -1,3 +1,23 @@
+.person_profile label p{
+	margin: 10px;
+}
+
+.image{
+	float: left;
+	height: 200px;
+	margin-right: 50px;
+}
+
+.person_profile label{
+	font-weight: bold;
+	color: #535353;
+}
+
+.person_profile p{
+	margin-left: 30px;
+	color: #FC4C08;
+}
+
 p.title{
 	color: #FF6400;
 	margin-bottom: 20px;
@@ -92,4 +112,9 @@ p.title{
 
 .cintillo{
 	text-align: center;
+}
+
+.guest{
+	position: relative;
+	top: 10px;
 }

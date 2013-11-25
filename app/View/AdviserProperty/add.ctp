@@ -103,6 +103,8 @@ function codeAddress(address) {
 	<?php echo $this->Form->create('AddProperty', array('type'=>'file'));?>
 	<h4>Descripci&oacute;n</h4>
 	<?php echo $this->Form->input('AdviserProperty.description', array('label'=>false));?>
+	<h4>Direcci&oacute;n</h4>
+	<?php echo $this->Form->input('AdviserProperty.address', array('label'=>false, 'style'=>'width: 225px;')); ?>
 	<h4>Ubicaci&oacute;n</h4>
 	<div class="addresssearch" style="width:80%;">
 		<input id="searchTextField" placeholder="Introduce una ubicación" type="text" autocomplete="off" style="margin: 0 auto;position: relative;width: 99.5%;left: 12.5%;">
