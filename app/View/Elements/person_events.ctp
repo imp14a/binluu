@@ -13,7 +13,7 @@ document.observe('dom:loaded', function() {
 	<p class="title">Eventos a los que has sido invitado :)</p>
 	<?php $no_event = 0; ?>
 	<?php foreach ($events as $event): ?>
-	<?php $images = $event['Event']['Adviser']['AdviserProperty']['0']['PropertyImage']; ?>
+	<?php $images = $event['Event']['AdviserProperty']['PropertyImage']; ?>
 	<div class="event_item">
 		<div class="images">
 			<?php $no_images = 0; ?>
@@ -31,18 +31,19 @@ document.observe('dom:loaded', function() {
 	  </div>
 	  <div class="description">
 	  	<div class="event_title">
-	  		<label>Visita a departamento en <?php echo $event['Event']['address']; ?></label>
+	  		<label>Visita a departamento en <?php echo $event['Event']['AdviserProperty']['address']; ?></label>
 	  	</div>
 	  	<div class="detail">
 	  		<label>Descripci&oacute;n:</label>
 	  		<?php echo $this->Html->para(null, $event['Event']['property_description']); ?>
 	  		<label>Direcci&oacute;n:</label>
-	  		<?php echo $this->Html->para(null, $event['Event']['address']); ?>
+	  		<?php echo $this->Html->para(null, $event['Event']['AdviserProperty']['address']); ?>
+	  		<?php $date = new DateTime($event['Event']['date']); ?>
 	  		<label class="datetime">Fecha:</label>
-	  		<?php echo $this->Html->para('datetime', $event['Event']['date']); ?>
+	  		<?php echo $this->Html->para('datetime', $date->format('d F Y')); ?>
 	  		<label class="datetime">Hora:</label>
-	  		<?php echo $this->Html->para('datetime', $event['Event']['property_description']); ?>
-	  		<label>Invita:</label>
+	  		<?php echo $this->Html->para('datetime', $date->format('H:i:s')); ?>
+	  		<label style="float: left; margin-right: 5px;">Invita:</label>
 	  		<?php echo $this->Html->para(null, $event['Event']['Adviser']['User']['name'].' '.$event['Event']['Adviser']['User']['last_name']); ?>
 	  	</div>
 			<div class="invited_users">

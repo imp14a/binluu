@@ -12,11 +12,11 @@ class Event extends AppModel {
         'Adviser' => array(
             'className' => 'Adviser',
             'foreignKey' => 'adviser_id'
-        )/*,
-        'Event' => array(
-        		'className' => 'Event',
-        		'foreignKey' => 'event_id'
-        )*/
+        ),
+        'AdviserProperty' => array(
+        		'className' => 'AdviserProperty',
+        		'foreignKey' => 'property_id'
+        )
     );
 }
 
