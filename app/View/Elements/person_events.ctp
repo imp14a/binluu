@@ -22,7 +22,7 @@ document.observe('dom:loaded', function() {
 				<?php foreach ($images as $image): ?>
 					<?php if($no_images++ < 3){ ?>
 						<li class="slide">
-							<?php echo $this->Html->image('/files/'.$image['image'], array('alt' => 'test', 'width' => '270px')); ?>
+							<?php echo $this->Html->image('/files/'.$image['image'], array('alt' => 'test', 'height' => '213px')); ?>
 						</li>
 					<?php }?>
 				<?php endforeach; ?>
@@ -42,7 +42,7 @@ document.observe('dom:loaded', function() {
 	  		<label class="datetime">Fecha:</label>
 	  		<?php echo $this->Html->para('datetime', $date->format('d F Y')); ?>
 	  		<label class="datetime">Hora:</label>
-	  		<?php echo $this->Html->para('datetime', $date->format('H:i:s')); ?>
+	  		<?php echo $this->Html->para('datetime', $date->format('H:i:s'), array('style'=>'float: none;')); ?>
 	  		<label style="float: left; margin-right: 5px;">Invita:</label>
 	  		<?php echo $this->Html->para(null, $event['Event']['Adviser']['User']['name'].' '.$event['Event']['Adviser']['User']['last_name']); ?>
 	  	</div>
@@ -52,7 +52,7 @@ document.observe('dom:loaded', function() {
 				<?php foreach ($guests as $guest): ?>
 				<?php $image = $guest['Person']['User']['image']===null?$guest['Person']['PersonProfile']['sex']==='M'?'default_img_male.png':'default_img_female.png':$guest['Person']['User']['image']; ?>
 				<?php echo $this->Html->link(
-						$this->Html->image('/files/'.$image, array('alt'=>$guest['Person']['User']['name'], 'width'=>'48px')),
+						$this->Html->image('/files/'.$image, array('alt'=>$guest['Person']['User']['name'], 'title'=>$guest['Person']['User']['name'], 'width'=>'48px')),
 						array('controller'=>'Person', 'action'=>'view', $guest['Person']['id']),
 						array('escape'=>false, 'class'=>'guest')); ?>
 				<?php endforeach; ?>
@@ -63,9 +63,14 @@ document.observe('dom:loaded', function() {
 	  	<?php echo $this->Html->link('Sí', array('controller'=>'Request', 'action'=>'confirm', $event['Request']['id']), array('class'=>$event['Request']['status'] === 'A' ? 'block response accept' : 'block response')); ?>
 	  	<?php echo $this->Html->link('No', array('controller'=>'Request', 'action'=>'cancel', $event['Request']['id']), array('class'=>$event['Request']['status'] === 'C' ? 'block response cancel' : 'block response')); ?>
 	  </div>
+	  <div class="img_back">
+		<?php echo $this->Html->image('img_left.png', array('alt' => '', 'class'=>'left_img')); ?>
+		<?php echo $this->Html->image('img_right.png', array('alt' => '', 'class'=>'right_img')); ?>
+		</div>
 	</div>
 	<div class="cintillo">
-			<?php echo $this->Html->image('cake_logo.png', array('alt' => 'CakePHP')); ?>
+			<?php echo $this->Html->image('cintillo.png', array('alt' => '')); ?>
 	</div>
+	<br>
 	<?php $no_event++; endforeach; ?>
 </div>

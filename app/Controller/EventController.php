@@ -127,7 +127,7 @@ class EventController extends AppController {
 				foreach ($aux_events as $event) {
 					$guests = $this->Request->find('all', array(
 						'conditions'=>array('event_id'=>$event['Event']['id'],
-						 'user_id'=>$this->Session->read('Auth.User.id'))));
+						 'user_id !='=>$this->Session->read('Auth.User.id'))));
 					$events[$no_events++]['Request']['Guests'] = $guests;
 				}
 				break;
