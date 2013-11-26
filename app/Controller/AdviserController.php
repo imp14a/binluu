@@ -46,7 +46,7 @@ class AdviserController extends AppController {
     public function contact(){
         $this->set('contact_info_send',false);       
         if(!empty($this->data)){
-            $this->BinluuEmail->sendConfirmMail($this->data['Contact']['name'],$this->data['Contact']['email'],$this->data['Contact']['message']);
+            $this->BinluuEmail->sendConfirmMail($this->data['Contact']['name'],$this->data['Contact']['email'],$this->data['Contact']['phone'],$this->data['Contact']['message']);
             $this->set('contact_info_send',true);
         }
     }

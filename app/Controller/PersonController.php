@@ -24,16 +24,20 @@ class PersonController extends AppController {
         }
     }
 
-    public function register($step = 1) {
+    public function register($step = 1,$person_profile_id=null) {
         $this->set('title_for_layout', 'Registro de usuarios');
         $this->set('captcha',$this->ReCaptcha->recaptcha_get_html("6LenjeoSAAAAAKnORAHl_6axBenfII6MBXD-UK9T"));
-        $res = $this->InterestCategory->findByName('general');
-        $resMedios = $this->InterestCategory->findByName('Medios de transporte');
+        $res = $this->InterestCategory->findByName('Intereses');
+        $resMedios = $this->InterestCategory->findByName('Medio de transporte');
         $resOcupacio = $this->InterestCategory->findByName('Ocupación');
         $this->set('tags', $res['CategoryTag']);
         $this->set('transports', $resMedios['CategoryTag']);
         $this->set('ocupations', $resOcupacio['CategoryTag']);
-        $this->set('step',$step); 
+        $this->set('step',$step);
+        if($person_profile_id!=null){
+            $this->set('person_profile_id',$person_profile_id);
+            //TODO poner el user_profile_id
+        }
         if (!empty($this->data)) {
             if($step==1){
                 $data = $this->data;
@@ -49,20 +53,24 @@ class PersonController extends AppController {
                     $this->Session->setFlash("Ha ocurrido en error, intente de nuevo. (El texto introducido es incorrecto)");
                 }else{
                     if ($this->Person->saveAssociated($data)) {
-                        $this->set('step',2);
-                        $this->set('person_id',$this->Person->getInsertID());
+                        $this->redirect(array("controller"=>"Person","action"=>"register",2,$this->PersonProfile->getLastInsertID()));
                     } else {
                         $this->Session->setFlash("Ha ocurrido en error, intente de nuevo. (Aún no seleccionas tu opción en mapa)");
                     }
                 }
+            }elseif($step==2){
+                $data = $this->data;
+                foreach($data['PersonProfileTag'] as $key=>$val){
+                    $data['PersonProfileTag'][$key]['person_profile_id'] = $data['PersonProfile']['id'];
+                }
+                $this->PersonProfile->saveAll($this->data);
+                $person = $this->Person->findByUserId($this->data['PersonProfile']['id']);
+                //debug($person);
+                //$this->Session->setFlash('Registrado!, te hemos enviado un correo de confirmación para que puedas acceder.');
+                $this->BinluuEmail->sendMail($person['User']['id'], $person['User']['username'], CONFIRM_EMAIL_TYPE);
+                $this->set("after_register");
+                $this->redirect(array('controller' => 'User', 'action' => 'login',"after_register"));
             }
-            
-        }elseif($step==2){
-            //TODO guardamos las etiquetas
-            $this->Session->setFlash('Registrado!, te hemos enviado un correo de confirmación para que puedas acceder.');
-            $this->BinluuEmail->sendMail($this->User->getInsertID(), $data['User']['username'], CONFIRM_EMAIL_TYPE);
-            $this->set("after_register");
-            $this->redirect(array('controller' => 'User', 'action' => 'login'));
         }
     }
 

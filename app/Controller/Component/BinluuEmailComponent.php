@@ -131,10 +131,11 @@ class BinluuEmailComponent extends Component {
      * @param  [string] $message [Petición de información]
      * @return [bool]            [Estatus de envío de correo]
      */
-    public function sendConfirmMail($name, $email, $message){
+    public function sendConfirmMail($name, $email,$phone, $message){
         $subject = "Han pedido información acerca del servicio";
         $message = "La inmobiliaria ".$name." ha pedido información para ser promotora de eventos, comunícate con ella.\n".
                     "\nCorreo de contacto: ".$email.
+                    "\nTeléfono de contacto: ".$phone.
                     "\nMensaje: \n".$message;
         $email = new CakeEmail('binluumail');
         $email->from(Configure::read('email.info'));

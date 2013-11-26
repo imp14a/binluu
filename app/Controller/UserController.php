@@ -23,9 +23,12 @@ class UserController extends AppController {
         }
 	}
 
-	public function login() {
+	public function login($type=null) {
         $this->set('title_for_layout','Ingresa');
         if($this->Session->read('Auth.User')) $this->redirect(array('controller'=>'User','action'=>'home'));
+        if($type!=null){
+            $this->set($type,1);
+        }
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
             	$this->User->id = $this->Session->read('Auth.User.id');

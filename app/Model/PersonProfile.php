@@ -4,13 +4,7 @@ class PersonProfile extends AppModel {
 
 	public $name = 'PersonProfile';
 
-	public $hasAndBelongsToMany = array(
-		'CategoryTag' => array(
-            'className' => 'CategoryTag',
-            'joinTable' => 'person_profile_tags',
-            'foreignKey' => 'person_profile_id',
-            'associationForeignKey' => 'category_tag_id'
-    ));
+	public $hasMany = array( 'PersonProfileTag');
 
 	public $validate = array(
 		'sex' => array(
