@@ -1,3 +1,23 @@
+.left_img{
+	position: relative;
+	left: -89.3%;
+	z-index: 1000;
+	top: 43px;
+}
+
+.right_img{
+	position: relative;
+	left: 94.6%;
+	top: -4px;
+}
+
+.events_container{
+	margin-top: 20px;
+	padding-top: 30px;
+	-moz-box-shadow: 2px 2px 50px #888888;
+  -webkit-box-shadow: 2px 2px 50px #888888;
+	box-shadow: 2px 2px 50px #888888;
+}
 .person_profile label p{
 	margin: 10px;
 }
@@ -23,9 +43,15 @@ p.title{
 	margin-bottom: 20px;
 }
 
+.detail{
+	position: relative;
+	top: -31px;
+}
+
 .detail label{
 	color: #535353;
 	font-family: StoneSansStd-Medium;
+
 }
 
 .datetime{
@@ -41,6 +67,9 @@ p.title{
 	font-family: StoneSansStd-MediumItalic;	
 	font-size: 14pt;
 	color: #FC4C08;
+	top: -45px;
+	position: relative;
+	left: -30px;
 }
 
 .detail p{
@@ -49,7 +78,14 @@ p.title{
 }
 
 .event_item{
-	height: 250px;
+	height: 213px;
+	position: relative;
+	left: -60px;
+	width: 112%;
+	background: -webkit-linear-gradient(#EF8416, #FB530A); /* For Safari */
+	background: -o-linear-gradient(#EF8416, #FB530A); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#EF8416, #FB530A); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#EF8416, #FB530A); /* Standard syntax (must be last) */
 }
 
 .images{
@@ -59,22 +95,28 @@ p.title{
 }
 
 .description{
-	width: 40%;
+	width: 55%;
 	float: left;
+	padding-top: 10px;
+	background: #FFF;
+	position: relative;
+	top: 33px;
+	left: -33px;
+	padding-left: 47px;
+	height: 170px;
 }
 
 .request{
-	margin-left: 70%;
+	margin-left: 86%;
 	text-align: center;
+	padding-top: 33px;
 }
 
 .event_title{
 	height: 30px;
-}
-
-.invited_users{
+	color: #FFF;
 	position: relative;
-	left: -30px;
+	top: -31px;
 }
 
 .block{
@@ -90,6 +132,7 @@ p.title{
 	width: 100px;
 	border: 1px solid #FFF;
 	margin: 0 auto 15px;
+	color: #FFF;
 }
 
 .response{
@@ -97,7 +140,7 @@ p.title{
 	width: 100px;
 	margin: 0 auto 15px;
 	background: #EEEEEE;
-	color: #CCC;
+	color: #6D6D6D;
 }
 
 .accept{
@@ -112,6 +155,7 @@ p.title{
 
 .cintillo{
 	text-align: center;
+	margin-top: 30px;
 }
 
 .guest{

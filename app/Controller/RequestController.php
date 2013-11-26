@@ -14,6 +14,9 @@ class RequestController extends AppController {
 
 	public function confirm($id){
 		$this->Request->read(null, $id);
+		if($this->Request->field('status') === 'A'){
+			$this->redirect($this->referer());
+		}
 		$this->Request->set(array(
 			'status' => 'A'
 		));
@@ -31,6 +34,9 @@ class RequestController extends AppController {
 
 	public function cancel($id){
 		$this->Request->read(null, $id);
+		if($this->Request->field('status') === 'C'){ 
+			$this->redirect($this->referer());
+		}
 		$this->Request->set(array(
 			'status' => 'C'
 		));
