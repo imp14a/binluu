@@ -55,6 +55,15 @@ textarea{
     color: red;
     text-align: center;
 }
+.input .error-message{
+    margin-top: 5px;
+    color: white;
+}
+.input .form-error{
+    background-image: url('/img/form-error.png');
+    background-repeat: no-repeat;
+    background-position: right;
+}
 div.slider {
 	margin:0px 0; 
 	background-color:#ccc; 

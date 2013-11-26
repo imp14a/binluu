@@ -69,7 +69,7 @@ class ReCaptchaComponent extends Component {
      */
     function _recaptcha_http_post($host, $path, $data, $port = 80) {
 
-        $req = _recaptcha_qsencode($data);
+        $req = $this->_recaptcha_qsencode($data);
 
         $http_request = "POST $path HTTP/1.0\r\n";
         $http_request .= "Host: $host\r\n";
@@ -156,7 +156,7 @@ class ReCaptchaComponent extends Component {
             return $recaptcha_response;
         }
 
-        $response = _recaptcha_http_post(RECAPTCHA_VERIFY_SERVER, "/recaptcha/api/verify", array(
+        $response = $this->_recaptcha_http_post(RECAPTCHA_VERIFY_SERVER, "/recaptcha/api/verify", array(
             'privatekey' => $privkey,
             'remoteip' => $remoteip,
             'challenge' => $challenge,
