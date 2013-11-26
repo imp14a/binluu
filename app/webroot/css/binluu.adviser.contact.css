@@ -1,13 +1,14 @@
 .concatContent{
     margin-top: 30px;
-    height: 400px;
+    height: 600px;
 }
 .mainImage{
-    height: 400px;
+    height: 600px;
     width: 55%;
     display: inline-block;
-    border: 1px solid black;
     float: left;
+    background-image: url('/img/adviser.jpg');
+    background-size: cover;
 }
 .title{
     margin-top: 15px;
@@ -18,7 +19,7 @@
     text-align: center;
 }
 .information{
-    background-color: #3ea1cb;
+    background-color: #3fa0cd;
     display: inline-block;
     width: 35%;
     color: #fff;
@@ -28,5 +29,20 @@
     min-width: 230px;
     float: right;
     margin-right: 5%;
-    height: 400px;
+    height: 600px;
+    background: -moz-linear-gradient(-45deg, #92d4cf 0%, #3fa0cd 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#92d4cf), color-stop(100%,#3fa0cd)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg, #92d4cf 0%,#3fa0cd 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg, #92d4cf 0%,#3fa0cd 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg, #92d4cf 0%,#3fa0cd 100%); /* IE10+ */
+    background: linear-gradient(135deg, #92d4cf 0%,#3fa0cd 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#92d4cf', endColorstr='#3fa0cd',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.input input{ 
+    margin-top: 30px;
+    height: 28px;
+}
+textarea{
+    margin-top: 30px;
+    margin-bottom: 20px;
 }

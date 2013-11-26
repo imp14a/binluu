@@ -3,6 +3,9 @@
     <?php echo $this->Session->flash('auth'); ?>
     <div  class="loginimage" ></div>
     <div class="loginContainer">
+        <div class="background"></div>
+        <div class="detail"></div>
+        
         <span class="logintitle">Inicia Sesi&oacute;n</span>
         <div class="play"></div>
         <?php echo $this->Form->create('User');?>
@@ -18,6 +21,7 @@
             <span class="notregister">&iquest;A&uacute;n no tienes cuenta&quest;</span>
             <?php echo $this->Html->link('¡Registrate!',array('controller'=>'Person','action'=>'register'),array('class'=>'registerButton'));?>
         </div>
+        
     </div>
     <div class="aboutContent">
         <?php echo $this->Html->link($this->Html->div('about','¿Cómo funciona?') ,array('controller' => 'User', 'action' => 'about'), array('escape'=>false)); ?>

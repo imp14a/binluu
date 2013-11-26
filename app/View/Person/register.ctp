@@ -69,6 +69,11 @@ function placeMarker(location) {
 }
 
 </script>
+<style>
+    .errorRequired{
+        border:1px solid red;
+    }
+</style>
 <div style="text-align: center;">
     <?php echo $this->Html->link("< Regresar",array('controller'=>"User",'action'=>"login"),array('class'=>'backButton'));?>
     <div id="stepProces" class="stepProces">
@@ -164,7 +169,7 @@ function placeMarker(location) {
 </div>
 <script>
     
-    $("UserProfileSex").observe('change',function () {
+    $("PersonProfileSex").observe('change',function () {
         if($(this).value == "N") $(this).addClassName("optionEmpty");
         else $(this).removeClassName("optionEmpty");
     });
@@ -192,7 +197,27 @@ var slider = new BinluuSlider('slider',
                         size:14
                     }
                 );
-var stepProcess = new BinluuProcess('stepProces');
+var stepProcess = new BinluuProcess('stepProces',[
+        {
+            step:1,
+            beforeNext:function(stepContainer){
+                //procedemos a validar
+                var valid=true;
+                $(stepContainer).select('[required=required]').each(function(inp){
+                    console.log("entre a ver jejeje");
+                    if($(inp).value.empty()){
+                        console.log("esta vacia");
+                        $(inp).addClassName('errorRequired');
+                        valid = false;
+                    }else{
+                        $(inp).removeClassName('errorRequired');
+                    }
+                });
+                return valid;
+            }
+        }
+    ]
+);
 
 var binluuSimpleQuestion = new BinluuSimpleQuestion('sexQuestion',{
     optionSelector:".optionButton",

@@ -65,20 +65,27 @@ BinluuProcess.prototype = {
     classNextButton : "next",
     classNextBefore : "before",
     container:null,
+    options:[],
     initialize:function(container,options){
         var that=this;
         this.container = container;
+        this.options = options;
         $(container).select('.step').each(function(element){
             if($(element).readAttribute('id')!="1"){
                 $(element).hide();
-                that.step="1";
+                that.step=1;
             }
         });
+        console.log(options);
         $(container).select('.next').each(function(element){
             $(element).observe('click',function(){
-                $(that.container).select("#"+that.step).each(function(st){$(st).hide();});
-                that.step = $(element).readAttribute('step');
-                $(that.container).select("#"+that.step).each(function(st){$(st).show();});
+                var toClose = $(that.container).select("#"+that.step).detect(function(n){return n;});
+                if(that.options.detect(function(n){return n.step === that.step;}).beforeNext(toClose)){
+                    $(that.container).select("#"+that.step).each(function(st){$(st).hide();});
+                    that.step = Number($(element).readAttribute('step'));
+                    var toOpen = $(that.container).select("#"+that.step).detect(function(n){return n;});
+                    $(toOpen).show();
+                }
             });
         });
 

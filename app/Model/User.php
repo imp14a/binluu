@@ -9,6 +9,9 @@ class User extends AppModel {
 		'name' => array(
 			'required' => array('rule' => array('minLength', '1'),
 				'message' => 'Nombre de usuario obligatorio')),
+                'last_name' => array(
+			'required' => array('rule' => array('minLength', '1'),
+				'message' => 'Los apellidos son obligatorios')),
 		'password'   => array(
 			'required' => array('rule' => array('minLength', '1'),
 				'message' => 'Contraseña obligatoria'),

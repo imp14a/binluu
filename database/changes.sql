@@ -61,8 +61,6 @@ INSERT INTO `binluu`.`category_tags` (`interest_category_id`, `name`) VALUES (2,
 INSERT INTO `binluu`.`category_tags` (`interest_category_id`, `name`) VALUES (2, 'Metro');
 INSERT INTO `binluu`.`category_tags` (`interest_category_id`, `name`) VALUES (2, 'Transporte público');
 
-
-#UPDATE `binluu`.`category_tags` SET `interest_category_id`='2' WHERE `id`='41';
 INSERT INTO `binluu`.`category_tags` (`interest_category_id`, `name`) VALUES ('3', 'Estudiante');
 INSERT INTO `binluu`.`category_tags` (`interest_category_id`, `name`) VALUES ('3', 'Profesionista');
 INSERT INTO `binluu`.`category_tags` (`interest_category_id`, `name`) VALUES ('3', 'Ventas ');
