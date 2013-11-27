@@ -45,7 +45,16 @@ $cakeDescription = __d('cake_dev', 'Binluu');
 		<div id="header">
 			<?php echo $this->Html->link($this->Html->div('logo','') ,array('controller' => 'User', 'action' => 'home'), array('escape'=>false)); ?>
 			<span id="slogan">La red de departamentos compartidos m&aacute;s grande de M&eacute;xico.</span>
-			<div class="user_logged"></div>
+			<div class="user_logged">
+			<?php echo $this->Html->para('welcome', '!Hola, '.$this->Session->read('Auth.User.name').'!'); ?>
+			<?php echo $this->Html->link('Editar perfil', array('controller'=>'Person', 'action'=>'edit'), array('class'=>'edit_profile')); ?>
+			<?php $image = $this->Session->read('Auth.User.image')===null?$this->Session->read('Auth.User.sex')==='M'?'default_img_male.png':'default_img_female.png':$this->Session->read('Auth.User.image'); ?>
+			<?php $image = '/files/'.$image; ?>
+			<div class="image_profile">
+			<?php echo $this->Html->image($image,array('title'=>$this->Session->read('Auth.User.name'), 'width'=>'45px', 'height'=>'46px')); ?>
+			</div>
+			<?php echo $this->Html->link('Cerrar sesion', array('controller'=>'User', 'action'=>'logout'), array('class'=>'logouts')); ?>
+			</div>
 		</div>
 		<div id="content">
 

@@ -91,9 +91,9 @@ class PersonController extends AppController {
             } else {
                 $this->Session->setFlash('Ha ocurrido un error, intente de nuevo.');
             }
-        }
-
-        $options = array('user_id' => $id);
+        }        
+        
+        $options = array('conditions'=>array('user_id' => $id));
         $this->set("person", $this->Person->find('first', $options));
     }
 

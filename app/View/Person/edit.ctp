@@ -68,9 +68,9 @@ function placeMarker(location) {
 	<div class="imageprofile">
 		<?php echo $this->Form->create(null,array('url' => array('controller'=>'User','action'=>'image','Person', $person['User']['id']), 'type'=>'file')); ?>
 			<?php 
-				$sex = $person['PersonProfile']['sex'];
-				$image = $person['User']['image']===NULL?$sex==='M'?'default_img_male.png':'default_img_female.png':$person['User']['image'];
-				$image = DS.'files'.DS.$image;
+				$sex = $person['PersonProfile']['sex'];				
+				$image = $person['User']['image']===null?$sex==='M'?'default_img_male.png':'default_img_female.png':$person['User']['image'];
+				$image = '/files/'.$image;
 				echo $this->Html->image($image); ?>
 				<?php echo $this->Form->input('User.image', array('label'=>'Imagen de perfil', 'type'=>'file')) ;?>
 		<?php echo $this->Form->end('Actualizar imagen'); ?>
