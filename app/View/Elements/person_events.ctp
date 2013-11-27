@@ -22,7 +22,7 @@ document.observe('dom:loaded', function() {
 				<?php foreach ($images as $image): ?>
 					<?php if($no_images++ < 3){ ?>
 						<li class="slide">
-							<?php echo $this->Html->image('/files/'.$image['image'], array('alt' => 'test', 'height' => '213px')); ?>
+							<?php echo $this->Html->image('/files/'.$image['image'], array('alt' => 'test', 'width' => '275px', 'height' => '178px')); ?>
 						</li>
 					<?php }?>
 				<?php endforeach; ?>
@@ -64,8 +64,8 @@ document.observe('dom:loaded', function() {
 	  	<?php echo $this->Html->link('No', array('controller'=>'Request', 'action'=>'cancel', $event['Request']['id']), array('class'=>$event['Request']['status'] === 'C' ? 'block response cancel' : 'block response')); ?>
 	  </div>
 	  <div class="img_back">
-		<?php echo $this->Html->image('img_left.png', array('alt' => '', 'class'=>'left_img')); ?>
-		<?php echo $this->Html->image('img_right.png', array('alt' => '', 'class'=>'right_img')); ?>
+		<div class="left_img"></div>
+		<div class="right_img"></div>
 		</div>
 	</div>
 	<div class="cintillo">

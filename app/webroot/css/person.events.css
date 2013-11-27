@@ -1,21 +1,31 @@
 .left_img{
-	position: relative;
-	left: -89.3%;
+	position: relative;	
+	background: url(/img/img_left.png) no-repeat;
+	left: -62px;	
+	height: 40px;
+	width: 62px;
 	z-index: 1000;
-	top: 43px;
 }
 
-.right_img{
+.right_img{	
 	position: relative;
-	left: 94.6%;
-	top: -4px;
+	right: -62px;
+	float: right;
+	background: url(/img/img_right.png) no-repeat;
+	display: inline-block;
+	height: 40px;
+	width: 62px;
+	z-index: 1000;
+	top: -40px;
 }
 
-.events_container{
+.events_container
+{
+	min-width: 820px;
 	margin-top: 20px;
 	padding-top: 30px;
 	-moz-box-shadow: 2px 2px 50px #888888;
-  -webkit-box-shadow: 2px 2px 50px #888888;
+	-webkit-box-shadow: 2px 2px 50px #888888;
 	box-shadow: 2px 2px 50px #888888;
 }
 .person_profile label p{
@@ -77,11 +87,11 @@ p.title{
 	font-family: StoneSansStd-Medium;
 }
 
-.event_item{
-	height: 213px;
-	position: relative;
-	left: -60px;
-	width: 112%;
+.event_item
+{
+	min-width: 820px;
+	height: 178px;
+	position: relative;		
 	background: -webkit-linear-gradient(#EF8416, #FB530A); /* For Safari */
 	background: -o-linear-gradient(#EF8416, #FB530A); /* For Opera 11.1 to 12.0 */
 	background: -moz-linear-gradient(#EF8416, #FB530A); /* For Firefox 3.6 to 15 */
@@ -91,7 +101,9 @@ p.title{
 .images{
 	width: 30%;
 	float: left;
-	height: 200px;
+	height: 180px;
+	position: relative;
+	left: -62px;
 }
 
 .description{
@@ -106,10 +118,18 @@ p.title{
 	height: 170px;
 }
 
-.request{
-	margin-left: 86%;
-	text-align: center;
+.request
+{	
+	position: relative;
+	right: -62px;
+	margin-left: 86%;	
 	padding-top: 33px;
+	width: 14%;
+	height: 145px;
+	background: -webkit-linear-gradient(#EF8416, #FB530A); /* For Safari */
+	background: -o-linear-gradient(#EF8416, #FB530A); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#EF8416, #FB530A); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#EF8416, #FB530A); /* Standard syntax (must be last) */
 }
 
 .event_title{
@@ -122,9 +142,10 @@ p.title{
 .block{
 	display: block;
 	font-family: StoneSansStd-Bold;
-	font-size: 15pt;
+	font-size: 13pt;
 	text-decoration: none;
 	line-height: 1.7;
+	text-align: center;
 }
 
 .legend{
