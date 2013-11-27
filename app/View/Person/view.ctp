@@ -15,8 +15,8 @@
 		<label>Ocupaci&oacute;n:</label>
 		<?php echo $this->Html->para(null, $person['PersonProfile']['ocupation']); ?>
 		<label>Intereses:</label>
-		<?php foreach ($person['PersonProfile']['CategoryTag'] as $tag): ?>
-		<?php echo $this->Html->para(null, $tag['name']); ?>
+		<?php foreach ($person['PersonProfile']['PersonProfileTag'] as $tag): ?>
+		<?php echo $this->Html->para(null, $tag['tag']); ?>
 		<?php endforeach; ?>
 	</div>
 </div>

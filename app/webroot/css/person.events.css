@@ -1,6 +1,17 @@
+.wrapper{
+	height: 236px;
+	clear: both;
+	position: relative;
+}
+
+.img_back{
+	position: relative;	
+	top: -145px;
+}
+
 .left_img{
 	position: relative;	
-	background: url(/img/img_left.png) no-repeat;
+	background: url(../img/img_left.png) no-repeat;
 	left: -62px;	
 	height: 40px;
 	width: 62px;
@@ -11,7 +22,7 @@
 	position: relative;
 	right: -62px;
 	float: right;
-	background: url(/img/img_right.png) no-repeat;
+	background: url(../img/img_right.png) no-repeat;
 	display: inline-block;
 	height: 40px;
 	width: 62px;
@@ -61,7 +72,6 @@ p.title{
 .detail label{
 	color: #535353;
 	font-family: StoneSansStd-Medium;
-
 }
 
 .datetime{
@@ -107,29 +117,38 @@ p.title{
 }
 
 .description{
-	width: 55%;
+	width: 100%;
 	float: left;
 	padding-top: 10px;
-	background: #FFF;
 	position: relative;
-	top: 33px;
 	left: -33px;
-	padding-left: 47px;
+	padding-left: 69px;
 	height: 170px;
+	top: -184px;
+}
+
+.black{
+	position: relative;
+	top: 35px;
+	left: 213px;
+	background: #FFF;
+	width: 72%;
+	height: 145px;
 }
 
 .request
 {	
 	position: relative;
+	top: -145px;
 	right: -62px;
-	margin-left: 86%;	
+	margin-left: 86%;
 	padding-top: 33px;
 	width: 14%;
 	height: 145px;
-	background: -webkit-linear-gradient(#EF8416, #FB530A); /* For Safari */
-	background: -o-linear-gradient(#EF8416, #FB530A); /* For Opera 11.1 to 12.0 */
-	background: -moz-linear-gradient(#EF8416, #FB530A); /* For Firefox 3.6 to 15 */
-	background: linear-gradient(#EF8416, #FB530A); /* Standard syntax (must be last) */
+	background: -webkit-linear-gradient(#EF8416, #FB530A);
+	background: -o-linear-gradient(#EF8416, #FB530A);
+	background: -moz-linear-gradient(#EF8416, #FB530A);
+	background: linear-gradient(#EF8416, #FB530A);
 }
 
 .event_title{
@@ -144,7 +163,7 @@ p.title{
 	font-family: StoneSansStd-Bold;
 	font-size: 13pt;
 	text-decoration: none;
-	line-height: 1.7;
+	line-height: 2;
 	text-align: center;
 }
 
@@ -176,7 +195,10 @@ p.title{
 
 .cintillo{
 	text-align: center;
-	margin-top: 30px;
+	margin-top: 40px;
+	position: relative;
+	top: -190px;
+	height: 25px;
 }
 
 .guest{

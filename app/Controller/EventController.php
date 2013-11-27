@@ -7,7 +7,7 @@ class EventController extends AppController {
 	public $components = array('BinluuEmail', 'Paginator');
 
 	public $paginate = array(
-        'limit' => 25,
+        'limit' => 2,
         'recursive' => 4,
         'order' => array(
             'Event.name' => 'asc'
