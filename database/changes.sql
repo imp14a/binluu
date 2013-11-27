@@ -78,4 +78,4 @@ CHANGE COLUMN `budget` `max_budget` FLOAT NULL DEFAULT NULL ,
 ADD COLUMN `transport` VARCHAR(180) NULL AFTER `sex`,
 ADD COLUMN `min_budget` FLOAT NULL AFTER `transport`;
 
-
+ALTER TABLE `binluu`.`person_profile_tags` ADD COLUMN `tag` VARCHAR(120) NULL  AFTER `category_tag_id` ;

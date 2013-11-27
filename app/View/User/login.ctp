@@ -1,7 +1,14 @@
 <?php echo $this->Html->css('binluu.login'); ?>
 <div class="loginContent">
     <?php echo $this->Session->flash('auth'); ?>
-    <div  class="loginimage" ></div>
+    <?php if(isset($after_register)):?>
+        <div  class="loginimage" style="background-image: url('/img/after_register.png'); background-size: contain; background-position: center; background-repeat: no-repeat;" ></div>
+    <?php elseif(isset($mail_confirmed)): ?>
+        
+    <?php else: ?>
+        <div  class="loginimage" ></div>
+    <?php endif;?>
+        </>
     <div class="loginContainer">
         <div class="background"></div>
         <div class="detail"></div>

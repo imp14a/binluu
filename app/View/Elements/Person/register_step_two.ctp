@@ -10,8 +10,8 @@
     <div class="stepProces">
         <div class="step">
         <?php echo $this->Form->create("Register",
-            array('url' => array('controller' => 'Person', 'action' => 'register','step'=>2))); ?>
-            <?php echo $this->Form->hidden('Person.id',array('value'=>$person_id));?>
+            array('url' => array('controller' => 'Person', 'action' => 'register',2))); ?>
+            <?php echo $this->Form->hidden('PersonProfile.id',array('value'=>$person_profile_id));?>
             <div class="information container" style="height: 440px;">
                 <span class="title" style="margin-top:60px;">Para poder mostrarte recomendaciones personalizadas, &iexcl;Cuent&aacute;nos m&aacute; de t&iacute; &excl; </span>
                 <div class="input select">
@@ -84,14 +84,14 @@ var binluuTagSelector = new BinluuTagSelector('tagSelector',{
             $('tagContainer').insert({
                 bottom: new Element('span',{id:$(tag).readAttribute('id'),class:"usedTag"}).update($(tag).innerHTML)
                     .insert({
-                        bottom: new Element('input',{type:'hidden',value:$(tag).readAttribute('id')})
+                        bottom: new Element('input',{type:'hidden',value:$(tag).innerHTML})
                     })
             });
         }
         if($('tagContainer').select('input').length>0){
             $('tagContainer').select('input').each(function(input,indx){
                 $(input).writeAttribute('id','PersonProfileCategoryTag'+indx);
-                $(input).writeAttribute('name','data[PersonProfile]['+indx+'][CategoryTag][id]');
+                $(input).writeAttribute('name','data[PersonProfileTag]['+indx+'][tag]');
             });
             $('emptyIntereses').hide();
         }else{

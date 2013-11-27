@@ -176,7 +176,7 @@
         text-decoration: none;
     }
     .tagSelector{
-        background-image: url('/img/background_tags');
+        background-image: url('/img/background_tags.png');
         background-size: contain;
         margin-top: 100px;
         height: 270px;
