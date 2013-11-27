@@ -7,7 +7,7 @@ class EventController extends AppController {
 	public $components = array('BinluuEmail', 'Paginator');
 
 	public $paginate = array(
-        'limit' => 2,
+        'limit' => 3,
         'recursive' => 4,
         'order' => array(
             'Event.name' => 'asc'
@@ -126,6 +126,7 @@ class EventController extends AppController {
 				$this->Request->recursive = 2;
 				foreach ($aux_events as $event) {
 					$guests = $this->Request->find('all', array(
+					    'group' => array('Request.person_id'),
 						'conditions'=>array('event_id'=>$event['Event']['id'],
 						 'user_id !='=>$this->Session->read('Auth.User.id'))));
 					$events[$no_events++]['Request']['Guests'] = $guests;

@@ -1,6 +1,7 @@
 <?php echo $this->Html->css('person.events'); ?>
 <?php echo $this->Html->css('protoshow'); ?>
 <?php echo $this->Html->script('protoshow'); ?>
+<?php $this->layout = 'person'; ?>   
 <script type="text/javascript">
 document.observe('dom:loaded', function() {
 	<?php $no_images = 0; ?>
@@ -9,15 +10,18 @@ document.observe('dom:loaded', function() {
 	<?php $no_images++; endforeach; ?>
 });
 </script>
+<?php if(count($events)===0){ ?>
+<div class="no_requests"></div>
+<?php } else { ?>
 <?php echo $this->Paginator->counter('Página {:page} de {:pages}');?>
 <?php echo $this->Paginator->prev(' < ', array(), null, array('class' => 'prev disabled'));?>
 <?php echo $this->Paginator->next(' > ', array(), null, array('class' => 'next disabled'));?>
-<div class="events_container">
+<div class="events_container" style="<?php echo count($events)>1?count($events)===2?'height:580px;':'height:835px':'height:320px'; ?>">
 	<p class="title">Eventos a los que has sido invitado :)</p>
 	<?php $no_event = 0; ?>
 	<?php foreach ($events as $event): ?>
 	<?php $images = $event['Event']['AdviserProperty']['PropertyImage']; ?>
-	<div class="wrapper" style="<?php echo $no_event>0?$no_event===1?'top:-145px;':'top:-190px;':''; ?>">
+	<div class="wrapper" style="<?php echo $no_event>0?$no_event===1?'top:-145px;':'top:-290px;':''; ?>">
 		<div class="event_item">
 			<div class="images">
 				<?php $no_images = 0; ?>
@@ -57,7 +61,7 @@ document.observe('dom:loaded', function() {
 						<?php foreach ($guests as $guest): ?>
 						<?php $image = $guest['Person']['User']['image']===null?$guest['Person']['PersonProfile']['sex']==='M'?'default_img_male.png':'default_img_female.png':$guest['Person']['User']['image']; ?>
 						<?php echo $this->Html->link(
-								$this->Html->image('/files/'.$image, array('alt'=>$guest['Person']['User']['name'], 'title'=>$guest['Person']['User']['name'], 'width'=>'48px')),
+								$this->Html->image('/files/'.$image, array('alt'=>$guest['Person']['User']['name'], 'title'=>$guest['Person']['User']['name'], 'width'=>'24px', 'height'=>'24px')),
 								array('controller'=>'Person', 'action'=>'view', $guest['Person']['id']),
 								array('escape'=>false, 'class'=>'guest')); ?>
 						<?php endforeach; ?>
@@ -81,3 +85,4 @@ document.observe('dom:loaded', function() {
 	<br>
 	<?php $no_event++; endforeach; ?>
 </div>
+<?php } ?>

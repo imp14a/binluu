@@ -17,7 +17,7 @@ class PersonController extends AppController {
         
     }
 
-    public function home() {
+    public function home() {       
         if ($this->Session->read('Auth.User.rol') != 'Person') {
             $this->Session->setFlash('No tienes permisos para acceder a esta opcion');
             $this->redirect(array('controller' => 'User', 'action' => 'home'));

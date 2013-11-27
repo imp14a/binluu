@@ -1,3 +1,11 @@
+.no_requests
+{
+	margin-top: 30px;
+	background: url(../img/without_requests.png) no-repeat;
+	height: 460px;
+	background-position:center;
+}
+
 .wrapper{
 	height: 236px;
 	clear: both;
@@ -87,7 +95,7 @@ p.title{
 	font-family: StoneSansStd-MediumItalic;	
 	font-size: 14pt;
 	color: #FC4C08;
-	top: -45px;
+	top: -35px;
 	position: relative;
 	left: -30px;
 }
@@ -203,5 +211,10 @@ p.title{
 
 .guest{
 	position: relative;
-	top: 10px;
+	top: 7px;
+	background: url(../img/Recuadro-foto.png) no-repeat;
+	display: inline-block;
+	width: 24px;
+	border: 1px solid #FC4C08;
+	height: 24px;
 }
