@@ -19,7 +19,6 @@
     text-align: center;
 }
 .information{
-    background-color: #3fa0cd;
     display: inline-block;
     width: 35%;
     color: #fff;
@@ -30,6 +29,15 @@
     float: right;
     margin-right: 5%;
     height: 600px;
+    position: relative;
+}
+.information .background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
     background: -moz-linear-gradient(-45deg, #92d4cf 0%, #3fa0cd 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#92d4cf), color-stop(100%,#3fa0cd)); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(-45deg, #92d4cf 0%,#3fa0cd 100%); /* Chrome10+,Safari5.1+ */
@@ -37,6 +45,18 @@
     background: -ms-linear-gradient(-45deg, #92d4cf 0%,#3fa0cd 100%); /* IE10+ */
     background: linear-gradient(135deg, #92d4cf 0%,#3fa0cd 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#92d4cf', endColorstr='#3fa0cd',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.information .detail{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('/img/adviser-detail.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+    position: absolute;
 }
 .input input{ 
     margin-top: 30px;
