@@ -1,6 +1,4 @@
-
-
-
+<?php $this->layout = 'person'; ?>   
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script>
 // Enable the visual refresh

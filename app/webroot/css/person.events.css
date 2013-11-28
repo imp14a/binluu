@@ -1,3 +1,11 @@
+.paginator{
+	float: right;
+	position: relative;
+	top: -43px;
+	color: #FF6400;
+	margin-right: 20px;
+}
+
 .no_requests
 {
 	margin-top: 30px;
@@ -84,8 +92,33 @@ p.title{
 
 .datetime{
 	float: left;
-	margin: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
+
+.img_date{
+	background: url(../img/date.png) no-repeat;
+	background-position: left;
+	background-position-y: 2px;
+	margin-left: 0px;
+	margin-right: 0px;
+	width: 65px; 
+	text-align: right;
+}
+
+.img_time{
+	background: url(../img/time.png) no-repeat;
+	background-position: left;
+	background-position-y: 2px;
+	background-position-x: 8px;
+	margin-left: 0px;
+	margin-right: 10px;
+	width: 65px; 
+	text-align: right;
+}
+
 .event_title{
 	font-family: StoneSansStd-MediumItalic;
 	font-size: 14pt;	
@@ -103,6 +136,7 @@ p.title{
 .detail p{
 	color: #FC4C08;
 	font-family: StoneSansStd-Medium;
+	margin-right: 10%;
 }
 
 .event_item
@@ -217,4 +251,5 @@ p.title{
 	width: 24px;
 	border: 1px solid #FC4C08;
 	height: 24px;
+	z-index: 1000;
 }

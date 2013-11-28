@@ -3,8 +3,40 @@
 	position: relative;
 	height: 120px;
 	float: right;
-	width: 220px;
-	top: -120px;
+	width: 175px;
+	top: -65px;
+}
+
+.welcome{
+	font-size: 13pt;
+}
+
+.name_profile{
+	float: left;
+	text-align: right;
+	font-family: StoneSansStd-MediumItalic;
+	color: #FF6400;
+}
+
+.edit_profile{
+	color: #F49618;
+	text-decoration: none;
+	font-family: StoneSansStd-Medium;
+	font-size: 10pt;
+}
+
+.logout_profile{
+	position: relative;
+	top: 3px;
+	right: -45px;
+	float: right;
+	background: url(../img/logout.png) no-repeat;
+	background-position: right;
+	background-position-y: 1px;
+	width: 110px;
+	color: #F49618;
+	text-decoration: none;
+	font-size: 11pt;
 }
 
 .image_profile
@@ -12,6 +44,9 @@
 	border: 1px solid #FC4C08;
 	width: 45px;
 	height: 45px;
+	float: right;
+	position: relative;
+	top: -12px;
 }
 
 * {

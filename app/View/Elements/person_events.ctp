@@ -13,11 +13,13 @@ document.observe('dom:loaded', function() {
 <?php if(count($events)===0){ ?>
 <div class="no_requests"></div>
 <?php } else { ?>
-<?php echo $this->Paginator->counter('Página {:page} de {:pages}');?>
-<?php echo $this->Paginator->prev(' < ', array(), null, array('class' => 'prev disabled'));?>
-<?php echo $this->Paginator->next(' > ', array(), null, array('class' => 'next disabled'));?>
 <div class="events_container" style="<?php echo count($events)>1?count($events)===2?'height:580px;':'height:835px':'height:320px'; ?>">
 	<p class="title">Eventos a los que has sido invitado :)</p>
+	<div class="paginator">
+		<?php echo $this->Paginator->counter('Página {:page} de {:pages}');?>
+		<?php echo $this->Paginator->prev(' < ', array(), null, array('class' => 'prev disabled'));?>
+		<?php echo $this->Paginator->next(' > ', array(), null, array('class' => 'next disabled'));?>
+	</div>
 	<?php $no_event = 0; ?>
 	<?php foreach ($events as $event): ?>
 	<?php $images = $event['Event']['AdviserProperty']['PropertyImage']; ?>
@@ -48,9 +50,9 @@ document.observe('dom:loaded', function() {
 			  		<label>Direcci&oacute;n:</label>
 			  		<?php echo $this->Html->para(null, $event['Event']['AdviserProperty']['address']); ?>
 			  		<?php $date = new DateTime($event['Event']['date']); ?>
-			  		<label class="datetime">Fecha:</label>
+			  		<label class="datetime img_date">Fecha:</label>
 			  		<?php echo $this->Html->para('datetime', $date->format('d F Y')); ?>
-			  		<label class="datetime">Hora:</label>
+			  		<label class="datetime img_time">Hora:</label>
 			  		<?php echo $this->Html->para('datetime', $date->format('H:i:s'), array('style'=>'float: none;')); ?>
 			  		<label style="float: left; margin-right: 5px;">Invita:</label>
 			  		<?php echo $this->Html->para(null, $event['Event']['Adviser']['User']['name'].' '.$event['Event']['Adviser']['User']['last_name']); ?>

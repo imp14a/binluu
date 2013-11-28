@@ -18,7 +18,7 @@ class UserController extends AppController {
                 $this->redirect(array('controller'=>'Adviser'));
             break;
             default:
-                $this->redirect(array('controller'=>'Person','action'=>'home'));
+                $this->redirect(array('controller'=>'Event'));
             break;
         }
 	}
