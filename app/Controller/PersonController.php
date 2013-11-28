@@ -17,7 +17,7 @@ class PersonController extends AppController {
         
     }
 
-    public function home() {
+    public function home() {       
         if ($this->Session->read('Auth.User.rol') != 'Person') {
             $this->Session->setFlash('No tienes permisos para acceder a esta opcion');
             $this->redirect(array('controller' => 'User', 'action' => 'home'));
@@ -91,9 +91,9 @@ class PersonController extends AppController {
             } else {
                 $this->Session->setFlash('Ha ocurrido un error, intente de nuevo.');
             }
-        }
-
-        $options = array('user_id' => $id);
+        }        
+        
+        $options = array('conditions'=>array('user_id' => $id));
         $this->set("person", $this->Person->find('first', $options));
     }
 

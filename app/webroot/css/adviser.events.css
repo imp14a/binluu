@@ -1,0 +1,84 @@
+.no_events
+{
+	margin-top: 30px;
+	background: url(../img/without_events.png) no-repeat;
+	height: 460px;
+	background-position:center;
+	text-align: center;
+}
+
+.event_creation{
+	padding-left: 40px;
+	min-width: 650px;
+	background: -webkit-linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* For Safari */
+	background: -o-linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* Standard syntax (must be last) */
+	height: 535px;
+	color: #FFF;
+}
+
+.desc_title{
+	padding-top: 30px;
+	padding-left: 30px;
+}
+
+.left{
+	float: left;
+	width: 40%;
+}
+
+.cancel{
+	margin-right: 25px;
+	float: left;
+	text-align: center;
+	line-height: 1.9;
+	height: 28px;
+	text-decoration: none;
+	display: inline-block;
+	width: 100px;
+	border: 1px solid #FFF;
+	color: #FFF;
+	font-family: StoneSansStd-MediumItalic;
+}
+
+input[type=submit]{
+	background: #46A0C3;
+	height: 30px;
+	color: #FFF;
+	border: 1px solid #FFF;
+	font-family: StoneSansStd-MediumItalic;
+	font-size: 13pt;
+	width: 100px;
+	line-height: 1.9;
+	cursor: pointer;
+}
+
+#map{
+	margin-top: 20px;
+	width: 73%;
+	height: 200px;
+	border: 1px solid;
+	float: left;
+}
+
+.images{
+	float: right;
+	width: 244px;
+	margin-top: 20px;
+	height: 200px;
+}
+
+.action{
+	position: relative;
+	top: 27px;
+}
+
+.img_box{
+	width: 222px;
+	height: 100px;
+	border: 1px solid;
+	margin-top: 10px;
+	background: url(../img/photo.png) no-repeat;
+	background-position: center;
+}

@@ -13,9 +13,9 @@
       'value' => $person['Person']['id']
       ));
     echo '<div class="tags">';
-    foreach ($person['PersonProfile']['CategoryTag'] as $tag)
+    foreach ($person['PersonProfile']['PersonProfileTag'] as $tag)
     {
-      echo '<label class="tag">'.$tag['name'].'</label>';
+      echo '<label class="tag">'.$tag['tag'].'</label>';
     }
     echo '</div>';
   }?>

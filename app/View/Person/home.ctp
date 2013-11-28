@@ -1,3 +1,4 @@
+<?php $this->layout = 'person'; ?>   
 <?php echo $this->Html->link('Salir',array('controller'=>'User','action'=>'logout')); ?>
 |
 <?php if($this->Session->read('Auth.User.rol')=="Person"):?>
