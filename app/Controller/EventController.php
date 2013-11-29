@@ -68,7 +68,8 @@ class EventController extends AppController {
 			'conditions'=>array(
 				'PersonProfile.age'=>$event_profile['EventProfile']['age'],
 				'PersonProfile.sex'=>$event_profile['EventProfile']['sex'],
-				'PersonProfile.budget'=>$event_profile['EventProfile']['budget'])));
+				'PersonProfile.min_budget <='=>$event_profile['EventProfile']['budget'],
+				'PersonProfile.max_budget >='=>$event_profile['EventProfile']['budget'])));
 		$enum = array();
 		foreach($persons as $person)
     {
