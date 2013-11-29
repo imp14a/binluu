@@ -9,6 +9,8 @@ echo $this->Html->css('binluu.adviser.contact.css');
 <div class="concatContent">
 	<div class="mainImage" ></div>
 	<div class="information">
+            <div class="background"></div>
+            <div class="detail"></div>
 		<span class="title">Quiero recibir informaci&oacute;n</span>
 		<?php echo $this->Form->create('Contact'); ?>
 			<?php
