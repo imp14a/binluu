@@ -5,8 +5,8 @@
 	    <p class="desc_title">Intoduzca los datos y escoja una ubicaci&oacute;n</p>
 	    <?php echo $this->Form->create('Event'); ?>
 	    <div class="left">
-		    <?php echo $this->Form->input('Event.name', array('label'=>false, 'placeholder'=>'Nombre del evento', 'style'=>'min-width:300px; display:block;')); ?>
-		    <?php echo $this->Form->input('Event.address', array('label'=>false, 'placeholder'=>'Dirección', 'style'=>'min-width:300px; display:block;')); ?>
+		    <?php echo $this->Form->input('Event.name', array('label'=>false, 'placeholder'=>'Nombre del evento', 'style'=>'min-width:300px; display:block;width: 100%;')); ?>
+		    <?php echo $this->Form->input('Event.address', array('label'=>false, 'placeholder'=>'Dirección', 'style'=>'min-width:300px; display:block;width: 100%;')); ?>
 		    <?php echo $this->Form->input('Event.date', array('label'=>false, 'placeholder'=>'Fecha', 'style'=>'width:100px')); ?>
 	    </div>
 	    <div class="right">

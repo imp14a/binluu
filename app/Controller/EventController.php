@@ -64,18 +64,13 @@ class EventController extends AppController {
 		foreach (explode(' ', $event_profile['EventProfile']['interests']) as $interest) {
 			$interests['OR'][$no++] = array('PersonProfile.interests LIKE' => '%'.$interest.'%');
 		}
-		$persons = $this->Person->find('all', array(
-			'conditions'=>array(
-				'PersonProfile.age'=>$event_profile['EventProfile']['age'],
-				'PersonProfile.sex'=>$event_profile['EventProfile']['sex'],
-				'PersonProfile.min_budget <='=>$event_profile['EventProfile']['budget'],
-				'PersonProfile.max_budget >='=>$event_profile['EventProfile']['budget'])));
-		$enum = array();
+		$persons = $this->Person->find('all');
+		/*$enum = array();
 		foreach($persons as $person)
     {
     	$enum[$person['Person']['id']] = $person['User']['name'];
-    }
-		$this->set('options', $enum);		
+    }*/
+		//$this->set('options', $enum);		
 		$this->set('persons', $persons);
 		if(!empty($this->request->data)){
 			$data = array('Request'=>array());

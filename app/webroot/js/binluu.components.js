@@ -36,7 +36,10 @@ BinluuSlider.prototype = {
                             $(that.inputs[i]).value = that.getCurrencyValue(that.options.rangeValues[values.map(Math.round)[i]]);
                         break;
                     }
-                }
+                }                
+            },
+            onChange: function(){
+                eval(that.options.onChange);
             },
             restricted: true
         });

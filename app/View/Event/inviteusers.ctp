@@ -1,24 +1,155 @@
-<div>
-	<?php echo $this->Form->create('Request');?>
-	<h4>Invitar Usuarios</h4>
-	<?php if($this->Session->check('Message')){ echo $this->Session->flash();} ?>  
-	<br>
-  <?php foreach ($persons as $person) {
-    echo $this->Form->input('person_id', array(
-      'type' => 'checkbox',
-      'hiddenField' => false,
-      'label' => $person['User']['name'],
-      'name' => 'data[Request][person_id][]',
-      'id' => 'RequestPersonId'.$person['Person']['id'],
-      'value' => $person['Person']['id']
-      ));
-    echo '<div class="tags">';
-    foreach ($person['PersonProfile']['PersonProfileTag'] as $tag)
-    {
-      echo '<label class="tag">'.$tag['tag'].'</label>';
-    }
-    echo '</div>';
-  }?>
-  <?php echo $this->Form->end('ENVIAR INVITACIÓN');?>
-
+<?php echo $this->Html->css('binluu.components'); ?>
+<?php echo $this->Html->css('binluu.register'); ?>
+<?php echo $this->Html->css('adviser.events'); ?>
+<?php echo $this->Html->script('binluu.components'); ?>
+<div class="event_creation">
+  <div class="back_img">
+    <p class="desc_title">Encuentre perfiles acordes a su oferta</p>
+    <?php echo $this->Form->create('EventProfile'); ?>
+    <div class="left" style="width: 47%;padding-right: 5%;">
+      <?php echo $this->Form->input('age', array('label'=>false, 'placeholder'=>'Edad', 'style'=>'width:35%;float:left;margin-right:30px;')); ?>
+      <div class="input select">
+        <?php $options = array('N'=>'Sexo','M' => 'Masculino', 'F' => 'Femenino'); 
+        echo $this->Form->select('sex', $options,array('disabled' => array('N'),"value"=>"N","class"=>"optionEmpty half",'empty'=>false,'style'=>'width:35%'));  ?>
+      </div>
+      <?php echo $this->Form->input('transport', array('label'=>false, 'placeholder'=>'Medio de transporte', 'style'=>'width:87.3%')); ?>
+      <?php echo $this->Form->input('ocupation', array('label'=>false, 'placeholder'=>'Ocupación', 'style'=>'width:87.3%')); ?>
+      <div class="slider_input" style="margin-left: 6.5%;">
+        <span class="legend">Presupuesto</span>
+        <div class="slider_container">
+          <div id="slider" class="slider">
+              <div class="handle"></div>
+              <div class="handle"></div>
+              <div class="top" style="left: -3%;"></div>
+              <div id="id_range" class="range"></div>
+              <div class="top" style="left: 97%;"></div>
+          </div>
+        </div>
+        <?php echo $this->Form->input('EventProfile.min_budget', array('label' => 'Desde','value'=>'$ 1,000.00','readonly',"class"=>"midle","type"=>"text")); ?>
+        <?php echo $this->Form->input('EventProfile.max_budget', array('label' => 'Hasta','value'=>'$ 12,000.00','readonly',"class"=>"midle","type"=>"text")); ?>
+      </div>
+      <div class="action">
+        <?php echo $this->Html->link('< Regresar', array('action'=>'create'), array('class'=>'cancel')); ?>
+        <?php echo $this->Form->end(array('label'=>'Terminar', 'div'=>array('class'=>'end'))); ?>
+      </div>
+    </div>
+    <div class="users">
+      <a id="up" class="btn_flow"></a>
+      <div id="wrapper" class="wrapper_list">
+        <ul id="user_list" class="invite_list" style="margin-top: 0px;">
+          <?php foreach ($persons as $person): ?>
+          <li>
+            <div class="user_item">
+              <?php $image = $person['User']['image']===null?$person['PersonProfile']['sex']==='M'?'default_img_male.png':'default_img_female.png':$person['User']['image']; ?>
+              <?php echo $this->Html->image('/files/'.$image, array('width'=>'55px', 'height'=>'55px', 'title'=>$person['User']['name'])); ?>
+              <label class="name"><?php echo $person['User']['name']; ?></label>
+              <label><?php echo $person['PersonProfile']['age']; ?> a&ntilde;os</label>
+              <label><?php echo $person['PersonProfile']['ocupation']; ?></label>
+              <a class="invite">Invitar</a>
+            </div>
+          </li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+      <a id="down" class="btn_flow"></a>
+      <?php echo $this->Html->image('loading.gif', array('id'=>'img_loading', 'style'=>'position: relative;top: -213px;left: 143px;display:none;')); ?>
+    </div>
+  </div>
 </div>
+<script>
+    
+    $("EventProfileSex").observe('change',function () {
+        if($(this).value == "N") $(this).addClassName("optionEmpty");
+        else $(this).removeClassName("optionEmpty");
+    });
+
+    var slider = new BinluuSlider('slider',
+                    [   'EventProfileMinBudget',
+                        'EventProfileMaxBudget'
+                    ],
+                    {
+                        rangeValues : [0,1,2,3,4,5,6,7,8,9,10,11,12,13],
+                        minLabel : "$ 500.00",
+                        maxLabel : "+ $ 12,000.00",
+                        concurrency : { coinSimbol: "$",sufijo: ",000.00"},
+                        initMin:1,
+                        initMax:12,
+                        size:14,
+                        onChange: 'getUsers()'
+                    }
+                );
+
+    $('down').observe('click', function(){
+      if(parseInt($('user_list').getStyle('margin-top')) > (Math.ceil($$('li').length/4)-1)*-328){
+        $('user_list').setStyle({
+          'margin-top': (parseInt($('user_list').getStyle('margin-top')) - 328) + 'px'
+        });
+      }
+    });
+
+    $('up').observe('click', function(){
+      if(parseInt($('user_list').getStyle('margin-top')) < 0){
+        $('user_list').setStyle({
+          'margin-top': (parseInt($('user_list').getStyle('margin-top')) + 328) + 'px'
+        });
+      }
+    });
+
+    function getUsers(){
+      $('img_loading').setStyle({
+        'display': 'block'
+      });
+      $('wrapper').addClassName('loading');
+
+      new Ajax.Request('http://binluu.com.mx/index.php/Person/getPersonsByProfile.json', {
+          method: 'get',
+          parameters: {
+            age:        $('EventProfileAge').value,
+            sex:        $('EventProfileSex').value,
+            transport:  $('EventProfileTransport').value,
+            ocupation:  $('EventProfileOcupation').value,
+            minBudget:  $('EventProfileMinBudget').value,
+            maxBudget:  $('EventProfileMaxBudget').value
+
+          },
+          onSuccess: function(transport) {
+            var response = transport.responseJSON || "no response text";
+            var obj = JSON.parse(response);
+            $('user_list').update('');
+            obj.each(function(person){
+              $('user_list').insert(new Element('li').insert(new Element('div', {
+                class: 'user_item'
+              }).insert(new Element('img',{
+                src:   '/app/webroot/files/' + (person.User.image!=null?person.User.image:person.PersonProfile.sex=='M'?'default_img_male.png':'default_img_female.png'),
+                width: '55px',
+                height:'55px'
+              })).insert(new Element('label', {
+                class: 'name'
+              }).update(person.User.name)).insert(new Element('label').update(person.PersonProfile.age + ' años')).insert(new Element('label').update(person.PersonProfile.ocupation)).insert(new Element('a', {
+                class: 'invite'
+              }).update('Invitar'))));
+            });
+            $('img_loading').setStyle({
+              'display': 'none'
+            });
+            $('wrapper').removeClassName('loading');
+          },
+          onFailure: function() {
+            $('img_loading').setStyle({
+              'display': 'none'
+            });
+            $('wrapper').removeClassName('loading');
+          }
+        }
+      );
+    }
+
+    $('EventProfileAge').observe('change', getUsers);
+    $('EventProfileSex').observe('change', getUsers);
+    $('EventProfileTransport').observe('change', getUsers);
+    $('EventProfileOcupation').observe('change', getUsers);
+    $('EventProfileMinBudget').observe('change', getUsers);
+    $('EventProfileMaxBudget').observe('change', getUsers);
+
+
+</script>
