@@ -52,7 +52,7 @@
         </ul>
       </div>
       <a id="down" class="btn_flow"></a>
-      <?php echo $this->Html->image('loading.gif', array('id'=>'img_loading', 'style'=>'position: relative;top: -213px;left: 143px;display:none;')); ?>
+      <?php echo $this->Html->image('loading.gif', array('id'=>'img_loading', 'style'=>'position: relative;top: -213px;left: 48%;display:none;')); ?>
     </div>
   </div>
 </div>
@@ -100,9 +100,10 @@
         'display': 'block'
       });
       $('wrapper').addClassName('loading');
-
+      var obj;
       new Ajax.Request('http://binluu.com.mx/index.php/Person/getPersonsByProfile.json', {
           method: 'get',
+          asynchronous: false,
           parameters: {
             age:        $('EventProfileAge').value,
             sex:        $('EventProfileSex').value,
@@ -114,42 +115,91 @@
           },
           onSuccess: function(transport) {
             var response = transport.responseJSON || "no response text";
-            var obj = JSON.parse(response);
-            $('user_list').update('');
-            obj.each(function(person){
-              $('user_list').insert(new Element('li').insert(new Element('div', {
-                class: 'user_item'
-              }).insert(new Element('img',{
-                src:   '/app/webroot/files/' + (person.User.image!=null?person.User.image:person.PersonProfile.sex=='M'?'default_img_male.png':'default_img_female.png'),
-                width: '55px',
-                height:'55px'
-              })).insert(new Element('label', {
-                class: 'name'
-              }).update(person.User.name)).insert(new Element('label').update(person.PersonProfile.age + ' años')).insert(new Element('label').update(person.PersonProfile.ocupation)).insert(new Element('a', {
-                class: 'invite'
-              }).update('Invitar'))));
-            });
-            $('img_loading').setStyle({
-              'display': 'none'
-            });
-            $('wrapper').removeClassName('loading');
+            obj = JSON.parse(response);
           },
           onFailure: function() {
-            $('img_loading').setStyle({
-              'display': 'none'
-            });
-            $('wrapper').removeClassName('loading');
           }
         }
       );
+      $('user_list').update('');
+      obj.each(function(person){
+        var text = isPersonInvited(<?php echo $event_id; ?>, person.Person.id);
+        var resultInvited = 'Invitar '+text;
+        var linkInvite = new Element('a', {
+          class: resultInvited
+        }).observe('click', function(){
+          if(text!='Invitado'){
+            sendMail(<?php echo $event_id; ?>, person.Person.id);
+            this.update('Invitado');
+            this.addClassName('Invitado');
+          }
+        });
+        linkInvite.update(text);
+        $('user_list').insert(new Element('li').insert(new Element('div', {
+          class: 'user_item'
+        }).insert(new Element('img',{
+          src:   '/app/webroot/files/' + (person.User.image!=null?person.User.image:person.PersonProfile.sex=='M'?'default_img_male.png':'default_img_female.png'),
+          width: '55px',
+          height:'55px'
+        })).insert(new Element('label', {
+          class: 'name'
+        }).update(person.User.name)).insert(new Element('label').update(person.PersonProfile.age + ' años')).insert(new Element('label').update(person.PersonProfile.ocupation)).insert(linkInvite)));
+      });
+      $('img_loading').setStyle({
+        'display': 'none'
+      });
+      $('wrapper').removeClassName('loading');
     }
 
     $('EventProfileAge').observe('change', getUsers);
     $('EventProfileSex').observe('change', getUsers);
     $('EventProfileTransport').observe('change', getUsers);
     $('EventProfileOcupation').observe('change', getUsers);
-    $('EventProfileMinBudget').observe('change', getUsers);
-    $('EventProfileMaxBudget').observe('change', getUsers);
 
+    function isPersonInvited(event_id, person_id){
+      var result;
+      var request = new Ajax.Request('http://binluu.com.mx/index.php/Request/isPersonInvited.json', {
+          method: 'get',
+          asynchronous: false,
+          parameters: {
+            personID: person_id, 
+            eventID:  event_id
+          },
+          onSuccess: function(transport) {
+            var obj = transport.responseJSON;
+            if(typeof obj!='undefined')
+              result = obj.notified_by_mail ? 'Invitado' : 'Invitar';
+            else
+              result= 'Invitar';
+          },
+          onFailure: function(){
+            result= 'Invitar';
+          }
+        });
+      return result; 
+    }
+
+    function sendMail(event_id, person_id){
+      var result;
+      var request = new Ajax.Request('http://binluu.com.mx/index.php/Request/invitePerson.json', {
+          method: 'get',
+          asynchronous: false,
+          parameters: {
+            personID: person_id, 
+            eventID:  event_id
+          },
+          onSuccess: function(transport) {
+            var obj = transport.responseJSON;
+            if(typeof obj!='undefined')
+              result = obj;
+            else
+              result= false;
+          },
+          onFailure: function(){
+            result= false;
+          }
+        });
+      return result;
+    }
 
 </script>

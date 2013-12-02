@@ -15,7 +15,7 @@
 	    <div class="details">
 		    <div id="map">
 		    </div>
-		    <div class="images">
+		    <div class="images_files">
 			    <p>Suba dos fotos del lugar</p>	
 			    <div class="img_box">			    
 			        <?php echo $this->Form->input('PropertyImage.0.image', array('label'=>false , 'type'=>'file', 'style'=>'opacity:0;')); ?>

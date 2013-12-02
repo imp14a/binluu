@@ -130,7 +130,7 @@ class PersonController extends AppController {
     }
 
     public function getPersonsByProfile(){
-        //$this->layout = 'ajax';
+        $this->layout = 'ajax';
         $conditions = array();
         $age = utf8_decode(isset($_REQUEST['age']) ? $_REQUEST[ 'age' ] : null);
         $ocupation = utf8_decode(isset($_REQUEST['ocupation']) ? $_REQUEST[ 'ocupation' ] : null);

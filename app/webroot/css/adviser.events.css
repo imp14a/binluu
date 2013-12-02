@@ -1,3 +1,202 @@
+.response{
+	position: absolute;
+	bottom:  0px;
+}
+
+.invited_users{
+	text-align: center;
+	position: relative;
+	top: -17px;
+	width: 120px;
+}
+
+.wrapper{
+	height: 236px;
+	clear: both;
+	position: relative;
+}
+
+.legend{
+	position: relative;
+	top: -20px;
+	color: #FFF;	
+}
+
+.block{
+	display: block;
+	border: 1px solid #FFF;
+	text-decoration: none;
+	margin-bottom: 10px;
+	width: 118px;
+	padding: 5px;
+	text-align: center;
+	color: #FFF;
+}
+
+.datetime{
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.img_date{
+	background: url(../img/date.png) no-repeat;
+	background-position: left;
+	background-position-y: 2px;
+	margin-left: 0px;
+	margin-right: 0px;
+	width: 65px; 
+	text-align: right;
+}
+
+.img_time{
+	background: url(../img/time.png) no-repeat;
+	background-position: left;
+	background-position-y: 2px;
+	background-position-x: 8px;
+	margin-left: 0px;
+	margin-right: 10px;
+	width: 65px; 
+	text-align: right;
+}
+
+.proto-navigation li {
+	background: -webkit-linear-gradient(#3D9FCD, #8FD2CF) !important;
+	background: -o-linear-gradient(#3D9FCD, #8FD2CF) !important;
+	background: -moz-linear-gradient(#3D9FCD, #8FD2CF) !important;
+	background: linear-gradient(#3D9FCD, #8FD2CF) !important;
+}
+
+.cintillo{
+	text-align: center;
+	margin-top: 84px;
+	position: relative;
+	top: -200px;
+	height: 25px;
+}
+
+.event_title{
+	font-family: StoneSansStd-MediumItalic;
+	font-size: 14pt;	
+	height: 30px;
+	color: #FFF;
+	position: relative;
+	top: -36px;
+}
+
+p.title{
+	color: #FF6400;
+	margin-bottom: 20px;
+}
+
+.detail{
+	position: relative;
+	top: -31px;
+}
+
+.detail label{
+	color: #535353;
+	font-family: StoneSansStd-Medium;
+}
+
+.detail p{
+	font-family: StoneSansStd-Medium;
+	margin-right: 10%;
+}
+
+.description{
+	width: 100%;
+	float: left;
+	padding-top: 10px;
+	position: relative;
+	left: -33px;
+	padding-left: 69px;
+	height: 170px;
+	top: -180px;
+}
+
+.black{
+	position: relative;
+	top: 35px;
+	left: 213px;
+	background: #FFF;
+	width: 66%;
+	height: 142px;
+}
+
+.request
+{	
+	position: relative;
+	top: -142px;
+	right: -62px;
+	margin-left: 84%;
+	padding-top: 33px;
+	width: 16%;
+	height: 192px;
+	background: #3D9FCD;
+}
+
+.images{
+	width: 30%;
+	float: left;
+	height: 180px;
+	position: relative;
+	left: -62px;
+}
+
+.images_files{
+	width: 30%;
+	float: right;
+	height: 180px;
+}
+
+.event_item{
+	background: #3D9FCD;
+	min-width: 820px;
+	height: 225px;
+	position: relative;
+}
+.event_list{
+	padding-top: 40px;
+	background: -webkit-linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* For Safari */
+	background: -o-linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* Standard syntax (must be last) */
+}
+
+.paginator{
+	position: relative;
+	top: 10px;
+	left: 20px;
+	color: #46A0C3;
+	width: 300px;
+}
+
+.list_title{
+	color: #46A0C3;
+	position: relative;
+	top: 10px;
+	float: left;
+	font-family: StoneSansStd-SemiboldItalic;
+}
+
+.new{
+	background: url(../img/Boton-nuevo-evento.png) no-repeat;
+	height: 30px;
+	display: inline-block;
+	line-height: 1.4;
+	text-decoration: none;
+	color: #FFF;
+	padding: 5px;
+	width: 120px;
+	font-family: StoneSansStd-MediumItalic;
+	float: right;
+	position: relative;
+	right: -29%;
+}
+
 .no_events
 {
 	margin-top: 30px;
@@ -77,13 +276,6 @@ input[type=submit]{
 	margin-top: 25px;
 }
 
-.images{
-	float: right;
-	width: 31%;
-	margin-top: 20px;
-	height: 200px;
-}
-
 .action{
 	margin-top: 27px;
 	clear: both;
@@ -93,7 +285,7 @@ input[type=submit]{
 
 .img_box{
 	width: 88%;
-	height: 41%;
+	height: 51%;
 	border: 1px solid;
 	margin-top: 10px;
 	background: url(../img/photo.png) no-repeat;
@@ -113,7 +305,7 @@ input[type=file]
 
 .back_img
 {
-	background: url(../img/fondo-crear.png) no-repeat;
+	background: url(../img/adviser-detail.png) no-repeat;
 	width: 100%;
 	height: 100%;
 	background-position: center;
@@ -194,7 +386,7 @@ input[type=file]
 	background: rgba(120, 131, 128, 0.32);
 }
 
-.invite{
+.Invitar{
 	float: right;
 	display: block;
 	position: relative;
@@ -202,7 +394,7 @@ input[type=file]
 	top: -40px;
 	background: #92D3CF;
 	border: 1px solid #FFF;
-	width: 60px;
+	width: 70px;
 	height: 28px;
 	cursor: pointer;
 	font-family: StoneSansStd-MediumItalic;
@@ -210,6 +402,29 @@ input[type=file]
 	text-align: center;
 }
 
-.invited{
+.Invitado{
+	background: #FF6300;
+}
 
+.event_created{
+	text-align: center;
+	height: 500px;
+	background: url(../img/Fondo-evento-creado.png) no-repeat;
+	background-position: center;
+	color: #FFF;
+}
+
+.index{
+	position: relative;
+	top: 260px;
+	text-align: center;
+	line-height: 2.1;
+	height: 35px;
+	text-decoration: none;
+	display: inline-block;
+	width: 200px;
+	border: 1px solid #FFF;
+	color: #FFF;
+	font-family: StoneSansStd-MediumItalic;
+	font-size: 14pt;
 }
