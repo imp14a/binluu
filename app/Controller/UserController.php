@@ -7,7 +7,7 @@ App::uses('Model', 'User');
 class UserController extends AppController {
 
 	public $uses = array('User');
-    public $components = array('BinluuImage');
+    public $components = array('BinluuImage','BinluuEmail');
 
 	public function home() {
         switch($this->Session->read('Auth.User.rol')){
@@ -106,6 +106,19 @@ class UserController extends AppController {
             return true;
         }
         return false;
+    }
+    
+    public function confirm($access=null){
+        if($access==null) return false;
+        if ($this->request->is('get')) {
+            $decrypted = $this->BinluuEmail->getIdFromSecretId($access);
+            $this->User->id =$decrypted;
+            if($this->User->saveField('mail_confirmed', true, false)){               
+                $this->redirect(array("controller"=>"User","action"=>"login","mail_confirmed"));
+            }else{
+                $this->Session->setFlash('Ha ocurrido un error con la clave proporcionada.');
+            }
+        }
     }
 
 }

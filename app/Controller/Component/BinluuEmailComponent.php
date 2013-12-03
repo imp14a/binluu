@@ -34,37 +34,35 @@ class BinluuEmailComponent extends Component {
     	switch ($email_type) {
     		case CONFIRM_EMAIL_TYPE:
     		    $subject = 'Confirmación de correo';
-    			$link = "http://".$_SERVER['HTTP_HOST']."/index.php/User/confirm/".urlencode($this->getSecretId($user_from_id));
-    			$message = 'Hola, ' . utf8_encode($user_db['User']['name']) . ', para confirmar tu correo da clic en la siguiente dirección: '.$link;        
-    			break;
+                    $link = "http://".$_SERVER['HTTP_HOST']."/User/confirm/".urlencode($this->getSecretId($user_from_id));
+                    $message = "Hola " . utf8_encode($user_db['User']['name']) ."<br /><p>Para completar tu registro necesitamos que confirmes dando clic <a href='$link' >aquí</a>, Gracias por registrarte en www.binluu.com.mx</p>";
+                    break;
     		case INVITE_EMAIL_TYPE:
     			$subject = 'Te han invitado a un evento';
-    			$link = "http://".$_SERVER['HTTP_HOST']."/index.php/Event/view/".urlencode($this->getSecretId($event_id));
-    			$message = "El usuario ".$user_db['User']['name'].' '.$user_db['User']['last_name']." te ha invitado a asistir al evento ".$event_db['Event']['name'].".\n".
-                            "Ver evento: ".$link;   			
+    			$link = "http://".$_SERVER['HTTP_HOST']."/Event/view/".urlencode($this->getSecretId($event_id));
+                        $message = $user_db['User']['name']." te ha invitado al evento:". $event_db['Event']['name'] ."el día:". $event_db['Event']['date']. ", para saber más da clic <a href='$link' >aquí</a> o inicia sesión desde www.binluu.com.mx";
     			break;
     		case ACCEPT_INVITE_EMAIL_TYPE:
     			$subject = 'Han aceptado una invitación';
     			$link = "http://".$_SERVER['HTTP_HOST']."/index.php/Event/view/".urlencode($this->getSecretId($event_id));
-    			$message = "El usuario ".$user_db['User']['name'].' '.$user_db['User']['last_name']." ha confirmado su asistencia al evento ".$event_db['Event']['name'].".\n".
-                            "Ver evento: ".$link;           			
+                        $message = $user_db['User']['name'].' '.$user_db['User']['last_name']." ha confirmado su asistencia al evento: ".$event_db['Event']['name'].", revisa quien mas ha confirmado <a href='$link' >aquí</a> o inicia sesión desde www.binluu.com.mx";          			
     			break;
     		case CANCEL_INVITE_EMAIL_TYPE:
     		    $subject = 'Han cancelado una invitación';
     		    $link = "http://".$_SERVER['HTTP_HOST']."/index.php/Event/view/".urlencode($this->getSecretId($event_id));
-    		    $message = "El usuario ".$user_db['User']['name'].' '.$user_db['User']['last_name']." ha cancelado su asistencia al evento ".$event_db['Event']['name'].".\n".
-                            "Ver evento: ".$link;   			
+                    $message = $user_db['User']['name'].' '.$user_db['User']['last_name']." ha cancelado su asistencia al evento: ".$event_db['Event']['name'].", revisa quien mas ha confirmado o cancelado <a href='$link' >aquí</a> o inicia sesión desde www.binluu.com.mx";   			
     			break;
     		case CANCEL_EVENT_EMAIL_TYPE:
     		    $subject = 'Han cancelado un evento'; 
-    		    $message = "Se ha cancelado el evento ".$event_db['Event']['name'].".";   			
+                    $message = $user_db['User']['name']." ha cancelado el evento: ".$event_db['Event']['name']." al que fuiste invitado, para ver los eventos a los que has sido invitado inicia sesión desde www.binluu.com.mx";
     			break;    		
     	}
         try {
             $email = new CakeEmail('binluumail');
-            $email->from($user_db['User']['username']);
+            $email->from(array(Configure::read('email.info')=>"Información Binluu"));
             $email->to($user_to);
             $email->subject($subject);
+            $email->emailFormat("html");
             if($email->send($message)){
                 //SALVAR DATOS DE EMAIL
                 $mail = ClassRegistry::init('Mail');
@@ -75,13 +73,17 @@ class BinluuEmailComponent extends Component {
                 $mail->set('subject', $subject);
                 $mail->set('content', $message);
                 $mail->set('sended', 1);
+                $mail->set('','html');
                 $mail->save();
                 return true;
             }
             else{
+                
                 return false;
             } 
         } catch (Exception $e) {
+            debug($e);
+            die();
             return false;
         }
     }
@@ -117,7 +119,7 @@ class BinluuEmailComponent extends Component {
         $link = "http://".$_SERVER['HTTP_HOST']."/index.php/Adviser/confirm/".urlencode($this->getSecretUserId($user_id));
         $message = 'Hola, '.$adviser_name.', para confirmar tu correo da clic en la siguiente dirección: '.$link;        
         $email = new CakeEmail('binluumail');
-        $email->from(Configure::read('email.info'));
+        $email->from(array(Configure::read('email.info')=>""));
         $email->to($adviser_email);
         $email->subject($subject);
         return $email->send($message);
@@ -133,10 +135,10 @@ class BinluuEmailComponent extends Component {
      */
     public function sendConfirmMail($name, $email,$phone, $message){
         $subject = "Han pedido información acerca del servicio";
-        $message = "La inmobiliaria ".$name." ha pedido información para ser promotora de eventos, comunícate con ella.\n".
-                    "\nCorreo de contacto: ".$email.
-                    "\nTeléfono de contacto: ".$phone.
-                    "\nMensaje: \n".$message;
+        $message ="<p>".$name." Ha solicitado información, ".
+                    ", Correo electronico: ".$email.
+                    ", Teléfono de contacto: ".$phone.
+                    ", Mensaje: \n".$message;
         $email = new CakeEmail('binluumail');
         $email->from(Configure::read('email.info'));
         $email->to(Configure::read('email.contact'));

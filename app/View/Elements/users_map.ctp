@@ -15,45 +15,28 @@ var map;
 var markersArray = [];
 
 function initialize() {
-	geocoder = new google.maps.Geocoder();
-
-	var mapZoom = 5;
-	if($("IdealPropertyLatitude").getValue()!=""){
-    	mapCenter = new google.maps.LatLng(
-    		Number($("IdealPropertyLatitude").getValue()),
-    		Number($("IdealPropertyLongitude").getValue())
-    	);
-    	mapZoom = 8; 
-    }else{
-    	mapCenter = new google.maps.LatLng(22.913,-101.929);
-    }
-
-	var mapOptions = {
+    geocoder = new google.maps.Geocoder();
+    mapZoom = 5; 
+    mapCenter = new google.maps.LatLng(22.913,-101.929);
+    var mapOptions = {
         zoom: mapZoom,
         center: mapCenter,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-    if($("IdealPropertyLatitude").getValue()!=""){
-    	placeMarker(mapCenter);
-    }
-
     google.maps.event.addListener(map, 'dblclick', function(event) {
-    	placeMarker(event.latLng);
-	});
+        placeMarker(event.latLng);
+    });
 }
 
 function deleteOverlays() {
-	if (markersArray.length >= 1) {
-		markersArray[0].setMap(null);
-		markersArray.length = 0;
-  	}
+    if (markersArray.length >= 1) {
+        markersArray[0].setMap(null);
+        markersArray.length = 0;
+    }
 }
 
 function placeMarker(location) {
-	$('IdealPropertyLatitude').setValue(location.lat());
-	$('IdealPropertyLongitude').setValue(location.lng());
 	deleteOverlays();
 	var marker = new google.maps.Marker({
 	    position: location,
@@ -61,11 +44,15 @@ function placeMarker(location) {
 	});
 	markersArray.push(marker);
 	markersArray[0].setMap(map);
-	
 }
 
 </script>
-
+<style>
+    #map-canvas{
+        width: 500px;
+        height: 500px;
+    }
+</style>
 <div id="map-canvas"></div>
 <script>
     google.maps.event.addDomListener(window, 'load', initialize);
