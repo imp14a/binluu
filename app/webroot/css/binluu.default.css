@@ -93,7 +93,7 @@ body,html{
     color: #fff;
 }
 
-agregar
+/*agregar*/
 @font-face {
 	font-family: StoneInformalStd-BoldItalic;
 	src: url(font/StoneInformalStd-BoldItalic.otf);
@@ -123,4 +123,34 @@ agregar
 	src: url(font/StoneSansStd-SemiboldItalic.otf);
 }
 
-
+/* PARA INTERNET EXPLORER*/
+<!--[if IE]>
+@font-face {
+	font-family: StoneInformalStd-BoldItalic;
+	src: url(font/StoneInformalStd-BoldItalic.eot);
+}
+@font-face {
+	font-family: StoneSansStd-MediumItalic;
+	src: url(font/StoneSansStd-MediumItalic.eot);
+}
+@font-face {
+	font-family: StoneInformalStd-SemiboldIt;
+	src: url(font/StoneInformalStd-SemiboldIt.eot);
+}
+@font-face {
+	font-family: StoneSansStd-Medium;
+	src: url(font/StoneSansStd-Medium.eot);
+}
+@font-face {
+	font-family: StoneSansStd-BoldItalic;
+	src: url(font/StoneSansStd-BoldItalic.eot);
+}
+@font-face {
+	font-family: StoneSansStd-Bold;
+	src: url(font/StoneSansStd-Bold.eot);
+}
+@font-face {
+	font-family: StoneSansStd-SemiboldItalic;
+	src: url(font/StoneSansStd-SemiboldItalic.eot);
+}
+<![endif]-->

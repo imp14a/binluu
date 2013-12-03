@@ -1,3 +1,5 @@
+a img {border: none; }
+
 .search_users{
 	background: #FFBB00;
 	border: 1px solid #FFF;
@@ -420,6 +422,7 @@ input[type=file]
 
 .Invitado{
 	background: #FF6300;
+	cursor: default;
 }
 
 .event_created{

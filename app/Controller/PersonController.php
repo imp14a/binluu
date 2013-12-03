@@ -144,11 +144,11 @@ class PersonController extends AppController {
         if($transport!=null && $transport!='N') array_push($conditions, array('PersonProfile.transport'=>$transport));
         if($minBudget!=null){
             $minBudget = preg_replace('/[^\d\.]/', '', $minBudget);
-            array_push($conditions, array('PersonProfile.min_budget <='=>$minBudget));
+            array_push($conditions, array('PersonProfile.budget >='=>$minBudget));
         } 
         if($maxBudget!=null){
             $maxBudget = preg_replace('/[^\d\.]/', '', $maxBudget);
-            array_push($conditions, array('PersonProfile.max_budget <='=>$maxBudget));
+            array_push($conditions, array('PersonProfile.budget <='=>$maxBudget));
         }
         if(count($conditions) > 0){
             $persons = $this->Person->find('all', array(
