@@ -97,62 +97,37 @@ body,html{
 /*agregar*/
 @font-face {
 	font-family: StoneInformalStd-BoldItalic;
-	src: url(font/StoneInformalStd-BoldItalic.otf);
+	src: url(font/StoneInformalStd-BoldItalic.otf)
+		,url(font/StoneInformalStd-BoldItalic.eot);
 	
 }
 @font-face {
 	font-family: StoneSansStd-MediumItalic;
-	src: url(font/StoneSansStd-MediumItalic.otf);
+	src: url(font/StoneSansStd-MediumItalic.otf)
+		,url(font/StoneSansStd-MediumItalic.eot);
 }
 @font-face {
 	font-family: StoneInformalStd-SemiboldIt;
-	src: url(font/StoneInformalStd-SemiboldIt.otf);
+	src: url(font/StoneInformalStd-SemiboldIt.otf)
+		,url(font/StoneInformalStd-SemiboldIt.eot);
 }
 @font-face {
 	font-family: StoneSansStd-Medium;
-	src: url(font/StoneSansStd-Medium.otf);
+	src: url(font/StoneSansStd-Medium.otf)
+		,url(font/StoneSansStd-Medium.eot);
 }
 @font-face {
 	font-family: StoneSansStd-BoldItalic;
-	src: url(font/StoneSansStd-BoldItalic.otf);
+	src: url(font/StoneSansStd-BoldItalic.otf)
+		,url(font/StoneSansStd-BoldItalic.eot);
 }
 @font-face {
 	font-family: StoneSansStd-Bold;
-	src: url(font/StoneSansStd-Bold.otf);
+	src: url(font/StoneSansStd-Bold.otf)
+		,url(font/StoneSansStd-Bold.eot);
 }
 @font-face {
 	font-family: StoneSansStd-SemiboldItalic;
-	src: url(font/StoneSansStd-SemiboldItalic.otf);
+	src: url(font/StoneSansStd-SemiboldItalic.otf)
+		,url(font/StoneSansStd-SemiboldItalic.eot);
 }
-
-/* PARA INTERNET EXPLORER*/
-<!--[if IE]>
-@font-face {
-	font-family: StoneInformalStd-BoldItalic;
-	src: url(font/StoneInformalStd-BoldItalic.eot);
-}
-@font-face {
-	font-family: StoneSansStd-MediumItalic;
-	src: url(font/StoneSansStd-MediumItalic.eot);
-}
-@font-face {
-	font-family: StoneInformalStd-SemiboldIt;
-	src: url(font/StoneInformalStd-SemiboldIt.eot);
-}
-@font-face {
-	font-family: StoneSansStd-Medium;
-	src: url(font/StoneSansStd-Medium.eot);
-}
-@font-face {
-	font-family: StoneSansStd-BoldItalic;
-	src: url(font/StoneSansStd-BoldItalic.eot);
-}
-@font-face {
-	font-family: StoneSansStd-Bold;
-	src: url(font/StoneSansStd-Bold.eot);
-}
-@font-face {
-	font-family: StoneSansStd-SemiboldItalic;
-	src: url(font/StoneSansStd-SemiboldItalic.eot);
-}
-<![endif]-->
