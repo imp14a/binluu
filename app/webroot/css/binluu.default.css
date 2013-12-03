@@ -10,6 +10,7 @@ body{
         background-repeat: repeat-x;
         background-size: contain;
         font-family: StoneSansStd-Medium;
+        background-attachment: fixed;
 }
 body,html{
         height: 100%;
