@@ -18,7 +18,7 @@ class TestController extends AppController {
 	}
 
 	public function beforeFilter(){
-		$this->Auth->allow('index');
+		$this->Auth->allow('index','userMap');
 	}
 
 	public function getUsers(){
@@ -30,5 +30,9 @@ class TestController extends AppController {
 		}
 		$this->set('output', $out);
 	}
+        
+        public function userMap(){
+            
+        }
 }
 ?>

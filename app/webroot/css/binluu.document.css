@@ -1,0 +1,36 @@
+.title{
+        text-align: center;
+        color:#666;
+    }
+    .att{
+        margin-top: 30px;
+        display: block;
+        text-align: center;
+    }
+    .att span{
+        display: block;
+    }
+    body{
+        color:#666;
+    }
+    label{
+        display: block;
+        color: #ff6400;
+    }
+    h4{
+      margin-top: 20px;  
+    }
+    h3{
+        margin-top: 30px;
+    }
+    strong{
+        display: block;
+        margin-top: 20px;
+    }
+    p{
+        margin-top: 20px;
+    }
+    ol, ul{
+        margin-top: 20px;
+        margin-left: 50px;
+    }
