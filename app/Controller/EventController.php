@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 class EventController extends AppController {
 
-	public $components = array('BinluuEmail', 'Paginator');
+	public $components = array('BinluuEmail', 'Paginator', 'BinluuImage');
 
 	public $paginate = array(
         'limit' => 3,
@@ -14,34 +14,31 @@ class EventController extends AppController {
 
 	public function create(){
 		$this->set('title_for_layout','Creación de eventos');
-		$this->loadModel('AdviserProperty');
-		$this->AdviserProperty->recursive = -1;
+		//SALVAR DATOS
 		$this->loadModel('Adviser');
 		$adviser = $this->Adviser->find('first', array('conditions'=>array('user_id'=>$this->Session->read('Auth.User.id'))));
 		$adviser_id = $adviser['Adviser']['id'];
-		//PROPIEDADES
-		$properties = $this->AdviserProperty->find('all', array('conditions'=>
-			array('adviser_id'=>$adviser_id)));
-		$enum = array();
-		foreach ($properties as $property){
-			$enum[$property['AdviserProperty']['id']] = $property['AdviserProperty']['description'];
-		}
-		$this->set('properties', $enum);
-		//SEXO
-		$this->loadModel('EventProfile');
-		$sex = $this->EventProfile->getColumnType('sex');
-		preg_match_all("/'(.*?)'/", $sex, $enums);
-		unset($enum);
-		foreach($enums[1] as $value )
-  	{
-      $enum[$value] = $value;
-  	}
-		$this->set('sex', $enum);	
-		//SALVAR DATOS
 		if(!empty($this->request->data)){
+			$this->request->data['AdviserProperty']['adviser_id'] = $adviser_id;
+			$this->request->data['AdviserProperty']['latitude'] = '19.161819869398563';
+			$this->request->data['AdviserProperty']['longitude'] = '-99.6160951629281';
 			$this->request->data['Event']['adviser_id'] = $adviser_id;
-			if($this->Event->saveAll($this->request->data)){
-        $this->redirect(array('controller'=>'Event','action' => 'inviteusers', $this->Event->getInsertID()));
+			$this->loadModel('AdviserProperty');
+			$no = 0;
+			foreach ($this->request->data['PropertyImage'] as $image) {
+				$ok = $this->BinluuImage->uploadImage($image['image']['name'], $image['image']);
+				if($ok){
+					$this->request->data['PropertyImage'][$no]['image'] = $image['image']['name'];
+					$no++;
+				}
+			}
+			if($this->AdviserProperty->saveAll($this->request->data)){
+				$this->request->data['Event']['property_id'] = $this->AdviserProperty->getInsertID();
+				if($this->Event->save($this->request->data)){
+					$this->redirect(array('controller'=>'Event','action' => 'inviteusers', $this->Event->getInsertID()));
+				}else{
+        	$this->Session->setFlash("Ha ocurrido en error, intente de nuevo.");
+      	}
       }else{
         $this->Session->setFlash("Ha ocurrido en error, intente de nuevo.");
       }
@@ -52,24 +49,40 @@ class EventController extends AppController {
 		$this->set('title_for_layout','Invitar usuarios a evento');
 		$this->set('event_id', $event_id);
 		$this->loadModel('EventProfile');
-		$event_profile = $this->EventProfile->find('first', array('conditions'=>array('event_id'=>$event_id)));
-		//Analizar usuarios a invitar
-		$this->loadModel('Person');
-		$this->Person->recursive = 2;
-		$interests = array('OR'=>array());
-		$no = 0;
-		foreach (explode(' ', $event_profile['EventProfile']['interests']) as $interest) {
-			$interests['OR'][$no++] = array('PersonProfile.interests LIKE' => '%'.$interest.'%');
-		}
-		$persons = $this->Person->find('all');
-		$this->set('persons', $persons);
+		$this->loadModel('InterestCategory');
+		$this->InterestCategory->recursive = 2;
+		$aux = $this->InterestCategory->find('all', array(
+			'conditions'=>array('InterestCategory.name'=>'Medio de transporte')));
 		if(!empty($this->request->data)){
 			$this->loadModel('EventProfile');
+			$this->request->data['EventProfile']['event_id'] = $event_id;
+			$minBudget = $this->request->data['EventProfile']['min_budget'];
+			$minBudget = preg_replace('/[^\d\.]/', '', $minBudget);
+			$this->request->data['EventProfile']['min_budget'] = $minBudget;
+			$maxBudget = $this->request->data['EventProfile']['max_budget'];
+			$maxBudget = preg_replace('/[^\d\.]/', '', $maxBudget);
+			$this->request->data['EventProfile']['max_budget'] = $maxBudget;
 			if($this->EventProfile->save($this->request->data)){
 				$this->redirect(array('action'=>'eventCreated'));
+			}else{
+				$this->Session->setFlash('Ha ocurrido un error, intente más tarde.');
 			}
-			//Determinar si hubo error y enviar notificación
 		}
+		$enum = array();
+		array_push($enum, array('N'=>'Medio de transporte'));
+		foreach ($aux[0]['CategoryTag'] as $tag) {
+			$enum[$tag['name']] = $tag['name'];
+		}
+		$this->set('transports', $enum);
+		unset($enum);
+		$aux = $this->InterestCategory->find('all', array(
+			'conditions'=>array('InterestCategory.name'=>'Ocupación')));
+		$enum = array();
+		array_push($enum, array('N'=>'Ocupación'));
+		foreach ($aux[0]['CategoryTag'] as $tag) {
+			$enum[$tag['name']] = $tag['name'];
+		}
+		$this->set('ocupations', $enum);
 	}
 
 	public function index(){

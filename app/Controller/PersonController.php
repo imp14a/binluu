@@ -139,11 +139,17 @@ class PersonController extends AppController {
         $minBudget = utf8_decode(isset($_REQUEST['minBudget']) ? $_REQUEST[ 'minBudget' ] : null);
         $maxBudget = utf8_decode(isset($_REQUEST['maxBudget']) ? $_REQUEST[ 'maxBudget' ] : null);
         if($age!=null) array_push($conditions, array('PersonProfile.age'=>$age));
-        if($ocupation!=null) array_push($conditions, array('PersonProfile.ocupation'=>$ocupation));
+        if($ocupation!=null && $ocupation!='N') array_push($conditions, array('PersonProfile.ocupation'=>$ocupation));
         if($sex!=null && $sex!='N') array_push($conditions, array('PersonProfile.sex'=>$sex));
-        if($transport!=null) array_push($conditions, array('PersonProfile.transport'=>$transport));
-        //if($minBudget!=null) array_push($conditions, array('PersonProfile.min_budget BETWEEN ? AND ?'=>array($minBudget, $maxBudget)));
-        //if($maxBudget!=null) array_push($conditions, array('PersonProfile.max_budget BETWEEN ? AND ?'=>array($minBudget, $maxBudget)));
+        if($transport!=null && $transport!='N') array_push($conditions, array('PersonProfile.transport'=>$transport));
+        if($minBudget!=null){
+            $minBudget = preg_replace('/[^\d\.]/', '', $minBudget);
+            array_push($conditions, array('PersonProfile.min_budget <='=>$minBudget));
+        } 
+        if($maxBudget!=null){
+            $maxBudget = preg_replace('/[^\d\.]/', '', $maxBudget);
+            array_push($conditions, array('PersonProfile.max_budget <='=>$maxBudget));
+        }
         if(count($conditions) > 0){
             $persons = $this->Person->find('all', array(
                     'conditions'=> $conditions

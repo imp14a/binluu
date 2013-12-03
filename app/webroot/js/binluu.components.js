@@ -38,9 +38,6 @@ BinluuSlider.prototype = {
                     }
                 }                
             },
-            onChange: function(){
-                eval(that.options.onChange);
-            },
             restricted: true
         });
         this.slider.setValue(options.initMin,0);

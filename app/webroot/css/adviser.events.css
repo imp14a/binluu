@@ -1,3 +1,15 @@
+.search_users{
+	background: #FFBB00;
+	border: 1px solid #FFF;
+	display: block;
+	width: 100px;
+	height: 28px;
+	text-align: center;
+	line-height: 1.9;
+	cursor: pointer;
+	margin-bottom: 20px;
+	float: right;
+}
 .response{
 	position: absolute;
 	bottom:  0px;
@@ -243,6 +255,7 @@ p.title{
 }
 
 .cancel{
+	clear: right;
 	margin-right: 25px;
 	float: left;
 	text-align: center;
@@ -257,6 +270,9 @@ p.title{
 }
 
 input[type=submit]{
+	position: relative;
+	top: 100px;
+	clear: right;
 	background: #46A0C3;
 	height: 30px;
 	color: #FFF;

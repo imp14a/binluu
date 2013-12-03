@@ -10,11 +10,15 @@
       <?php echo $this->Form->input('age', array('label'=>false, 'placeholder'=>'Edad', 'style'=>'width:35%;float:left;margin-right:30px;')); ?>
       <div class="input select">
         <?php $options = array('N'=>'Sexo','M' => 'Masculino', 'F' => 'Femenino'); 
-        echo $this->Form->select('sex', $options,array('disabled' => array('N'),"value"=>"N","class"=>"optionEmpty half",'empty'=>false,'style'=>'width:35%'));  ?>
+        echo $this->Form->select('sex', $options,array("value"=>"N","class"=>"optionEmpty half",'empty'=>false,'style'=>'width:35%'));  ?>
       </div>
-      <?php echo $this->Form->input('transport', array('label'=>false, 'placeholder'=>'Medio de transporte', 'style'=>'width:87.3%')); ?>
-      <?php echo $this->Form->input('ocupation', array('label'=>false, 'placeholder'=>'Ocupación', 'style'=>'width:87.3%')); ?>
-      <div class="slider_input" style="margin-left: 6.5%;">
+      <div class="input select">
+      <?php echo $this->Form->select('transport', $transports,array("value"=>"N","class"=>"optionEmpty half",'empty'=>false,'style'=>'width:94% !important')); ?>
+      </div>
+      <div class="input select">
+      <?php echo $this->Form->select('ocupation', $ocupations, array("value"=>"N","class"=>"optionEmpty half",'empty'=>false,'style'=>'width:94% !important')); ?>
+      </div>
+      <div class="slider_input" style="margin-left: 6.5%;margin-top: 30px;">
         <span class="legend">Presupuesto</span>
         <div class="slider_container">
           <div id="slider" class="slider">
@@ -29,6 +33,7 @@
         <?php echo $this->Form->input('EventProfile.max_budget', array('label' => 'Hasta','value'=>'$ 12,000.00','readonly',"class"=>"midle","type"=>"text")); ?>
       </div>
       <div class="action">
+        <a id="search" class="search_users">Buscar ></a>
         <?php echo $this->Html->link('< Regresar', array('action'=>'create'), array('class'=>'cancel')); ?>
         <?php echo $this->Form->end(array('label'=>'Terminar', 'div'=>array('class'=>'end'))); ?>
       </div>
@@ -37,18 +42,6 @@
       <a id="up" class="btn_flow"></a>
       <div id="wrapper" class="wrapper_list">
         <ul id="user_list" class="invite_list" style="margin-top: 0px;">
-          <?php foreach ($persons as $person): ?>
-          <li>
-            <div class="user_item">
-              <?php $image = $person['User']['image']===null?$person['PersonProfile']['sex']==='M'?'default_img_male.png':'default_img_female.png':$person['User']['image']; ?>
-              <?php echo $this->Html->image('/files/'.$image, array('width'=>'55px', 'height'=>'55px', 'title'=>$person['User']['name'])); ?>
-              <label class="name"><?php echo $person['User']['name']; ?></label>
-              <label><?php echo $person['PersonProfile']['age']; ?> a&ntilde;os</label>
-              <label><?php echo $person['PersonProfile']['ocupation']; ?></label>
-              <a class="invite">Invitar</a>
-            </div>
-          </li>
-          <?php endforeach; ?>
         </ul>
       </div>
       <a id="down" class="btn_flow"></a>
@@ -74,8 +67,7 @@
                         concurrency : { coinSimbol: "$",sufijo: ",000.00"},
                         initMin:1,
                         initMax:12,
-                        size:14,
-                        onChange: 'getUsers()'
+                        size:14
                     }
                 );
 
@@ -103,7 +95,6 @@
       var obj;
       new Ajax.Request('http://binluu.com.mx/index.php/Person/getPersonsByProfile.json', {
           method: 'get',
-          asynchronous: false,
           parameters: {
             age:        $('EventProfileAge').value,
             sex:        $('EventProfileSex').value,
@@ -116,45 +107,46 @@
           onSuccess: function(transport) {
             var response = transport.responseJSON || "no response text";
             obj = JSON.parse(response);
+            $('user_list').update('');
+            obj.each(function(person){
+              var text = isPersonInvited(<?php echo $event_id; ?>, person.Person.id);
+              var resultInvited = 'Invitar '+text;
+              var linkInvite = new Element('a', {
+                class: resultInvited
+              }).observe('click', function(){
+                if(text!='Invitado'){
+                  sendMail(<?php echo $event_id; ?>, person.Person.id);
+                  this.update('Invitado');
+                  this.addClassName('Invitado');
+                }
+              });
+              linkInvite.update(text);
+              $('user_list').insert(new Element('li').insert(new Element('div', {
+                class: 'user_item'
+              }).insert(new Element('img',{
+                src:   '/app/webroot/files/' + (person.User.image!=null?person.User.image:person.PersonProfile.sex=='M'?'default_img_male.png':'default_img_female.png'),
+                width: '55px',
+                height:'55px'
+              })).insert(new Element('label', {
+                class: 'name'
+              }).update(person.User.name)).insert(new Element('label').update(person.PersonProfile.age + ' años')).insert(new Element('label').update(person.PersonProfile.ocupation)).insert(linkInvite)));
+            });
+            $('img_loading').setStyle({
+              'display': 'none'
+            });
+            $('wrapper').removeClassName('loading');
           },
           onFailure: function() {
+            $('img_loading').setStyle({
+              'display': 'none'
+            });
+            $('wrapper').removeClassName('loading');
           }
         }
       );
-      $('user_list').update('');
-      obj.each(function(person){
-        var text = isPersonInvited(<?php echo $event_id; ?>, person.Person.id);
-        var resultInvited = 'Invitar '+text;
-        var linkInvite = new Element('a', {
-          class: resultInvited
-        }).observe('click', function(){
-          if(text!='Invitado'){
-            sendMail(<?php echo $event_id; ?>, person.Person.id);
-            this.update('Invitado');
-            this.addClassName('Invitado');
-          }
-        });
-        linkInvite.update(text);
-        $('user_list').insert(new Element('li').insert(new Element('div', {
-          class: 'user_item'
-        }).insert(new Element('img',{
-          src:   '/app/webroot/files/' + (person.User.image!=null?person.User.image:person.PersonProfile.sex=='M'?'default_img_male.png':'default_img_female.png'),
-          width: '55px',
-          height:'55px'
-        })).insert(new Element('label', {
-          class: 'name'
-        }).update(person.User.name)).insert(new Element('label').update(person.PersonProfile.age + ' años')).insert(new Element('label').update(person.PersonProfile.ocupation)).insert(linkInvite)));
-      });
-      $('img_loading').setStyle({
-        'display': 'none'
-      });
-      $('wrapper').removeClassName('loading');
     }
 
-    $('EventProfileAge').observe('change', getUsers);
-    $('EventProfileSex').observe('change', getUsers);
-    $('EventProfileTransport').observe('change', getUsers);
-    $('EventProfileOcupation').observe('change', getUsers);
+    $('search').observe('click', getUsers);
 
     function isPersonInvited(event_id, person_id){
       var result;
@@ -202,4 +194,5 @@
       return result;
     }
 
+    getUsers();
 </script>
