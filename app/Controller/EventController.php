@@ -4,47 +4,41 @@ App::uses('AppController', 'Controller');
 
 class EventController extends AppController {
 
-	public $components = array('BinluuEmail', 'Paginator');
+	public $components = array('BinluuEmail', 'Paginator', 'BinluuImage');
 
 	public $paginate = array(
         'limit' => 3,
         'recursive' => 4,
-        'order' => array(
-            'Event.name' => 'asc'
-        )
+        'order' => array('Event.name' => 'asc'),
     );
 
 	public function create(){
 		$this->set('title_for_layout','Creación de eventos');
-		$this->loadModel('AdviserProperty');
-		$this->AdviserProperty->recursive = -1;
+		//SALVAR DATOS
 		$this->loadModel('Adviser');
 		$adviser = $this->Adviser->find('first', array('conditions'=>array('user_id'=>$this->Session->read('Auth.User.id'))));
 		$adviser_id = $adviser['Adviser']['id'];
-		//PROPIEDADES
-		$properties = $this->AdviserProperty->find('all', array('conditions'=>
-			array('adviser_id'=>$adviser_id)));
-		$enum = array();
-		foreach ($properties as $property){
-			$enum[$property['AdviserProperty']['id']] = $property['AdviserProperty']['description'];
-		}
-		$this->set('properties', $enum);
-		//SEXO
-		$this->loadModel('EventProfile');
-		$sex = $this->EventProfile->getColumnType('sex');
-		preg_match_all("/'(.*?)'/", $sex, $enums);
-		unset($enum);
-		foreach($enums[1] as $value )
-  	{
-      $enum[$value] = $value;
-  	}
-		$this->set('sex', $enum);	
-		//SALVAR DATOS
 		if(!empty($this->request->data)){
+			$this->request->data['AdviserProperty']['adviser_id'] = $adviser_id;
+			$this->request->data['AdviserProperty']['latitude'] = '19.161819869398563';
+			$this->request->data['AdviserProperty']['longitude'] = '-99.6160951629281';
 			$this->request->data['Event']['adviser_id'] = $adviser_id;
-			if($this->Event->saveAll($this->request->data)){
-        $this->Session->setFlash('Registrado!, tu evento se ha agregado con éxito.');
-        $this->redirect(array('controller'=>'Event','action' => 'inviteusers', $this->Event->getInsertID()));
+			$this->loadModel('AdviserProperty');
+			$no = 0;
+			foreach ($this->request->data['PropertyImage'] as $image) {
+				$ok = $this->BinluuImage->uploadImage($image['image']['name'], $image['image']);
+				if($ok){
+					$this->request->data['PropertyImage'][$no]['image'] = $image['image']['name'];
+					$no++;
+				}
+			}
+			if($this->AdviserProperty->saveAll($this->request->data)){
+				$this->request->data['Event']['property_id'] = $this->AdviserProperty->getInsertID();
+				if($this->Event->save($this->request->data)){
+					$this->redirect(array('controller'=>'Event','action' => 'inviteusers', $this->Event->getInsertID()));
+				}else{
+        	$this->Session->setFlash("Ha ocurrido en error, intente de nuevo.");
+      	}
       }else{
         $this->Session->setFlash("Ha ocurrido en error, intente de nuevo.");
       }
@@ -53,56 +47,42 @@ class EventController extends AppController {
 
 	public function inviteusers($event_id){
 		$this->set('title_for_layout','Invitar usuarios a evento');
+		$this->set('event_id', $event_id);
 		$this->loadModel('EventProfile');
-		$event_profile = $this->EventProfile->find('first', array('conditions'=>array('event_id'=>$event_id)));
-		//Analizar usuarios a invitar
-		$this->loadModel('Person');
-		$this->Person->recursive = 2;
-		//var_dump($profiles);
-		$interests = array('OR'=>array());
-		$no = 0;
-		foreach (explode(' ', $event_profile['EventProfile']['interests']) as $interest) {
-			$interests['OR'][$no++] = array('PersonProfile.interests LIKE' => '%'.$interest.'%');
-		}
-		$persons = $this->Person->find('all', array(
-			'conditions'=>array(
-				'PersonProfile.age'=>$event_profile['EventProfile']['age'],
-				'PersonProfile.sex'=>$event_profile['EventProfile']['sex'],
-				'PersonProfile.budget'=>$event_profile['EventProfile']['budget'])));
-		$enum = array();
-		foreach($persons as $person)
-    {
-    	$enum[$person['Person']['id']] = $person['User']['name'];
-    }
-		$this->set('options', $enum);		
-		$this->set('persons', $persons);
+		$this->loadModel('InterestCategory');
+		$this->InterestCategory->recursive = 2;
+		$aux = $this->InterestCategory->find('all', array(
+			'conditions'=>array('InterestCategory.name'=>'Medio de transporte')));
 		if(!empty($this->request->data)){
-			$data = array('Request'=>array());
-			$data['Request']['event_id'] = $event_id;
-			$data['Request']['date'] = date("Y-m-d H:i:s");
-			$this->loadModel('Request');
-			$adviser_id = $this->Session->read('Auth.User.id');
-			//SALVAR INVITACION
-			foreach ($this->request->data['Request']['person_id'] as $person_id) {
-				$data['Request']['person_id'] = $person_id;
-				$this->Request->create();
-				if(!$this->Request->save($data)){
-					//Agregar error
-				}else{
-					$request_id = $this->Request->getInsertID();
-				}
-				//Recuperar email para enviar correo
-				$person = $this->Person->find('first', array('conditions'=>array('Person.id'=>$person_id)));
-				if(!$this->BinluuEmail->sendMail($adviser_id, $person['User']['username'], INVITE_EMAIL_TYPE, $event_id)){
-					//Agregar error
-				}else{
-					//Actualizar campo notified_by_email
-				}
+			$this->loadModel('EventProfile');
+			$this->request->data['EventProfile']['event_id'] = $event_id;
+			$minBudget = $this->request->data['EventProfile']['min_budget'];
+			$minBudget = preg_replace('/[^\d\.]/', '', $minBudget);
+			$this->request->data['EventProfile']['min_budget'] = $minBudget;
+			$maxBudget = $this->request->data['EventProfile']['max_budget'];
+			$maxBudget = preg_replace('/[^\d\.]/', '', $maxBudget);
+			$this->request->data['EventProfile']['max_budget'] = $maxBudget;
+			if($this->EventProfile->save($this->request->data)){
+				$this->redirect(array('action'=>'eventCreated'));
+			}else{
+				$this->Session->setFlash('Ha ocurrido un error, intente más tarde.');
 			}
-			//Determinar si hubo error y enviar notificación
-			$this->Session->setFlash('Se han enviado las invitaciones a los usuarios!');
-			$this->redirect(array('action'=>'index'));
 		}
+		$enum = array();
+		array_push($enum, array('N'=>'Medio de transporte'));
+		foreach ($aux[0]['CategoryTag'] as $tag) {
+			$enum[$tag['name']] = $tag['name'];
+		}
+		$this->set('transports', $enum);
+		unset($enum);
+		$aux = $this->InterestCategory->find('all', array(
+			'conditions'=>array('InterestCategory.name'=>'Ocupación')));
+		$enum = array();
+		array_push($enum, array('N'=>'Ocupación'));
+		foreach ($aux[0]['CategoryTag'] as $tag) {
+			$enum[$tag['name']] = $tag['name'];
+		}
+		$this->set('ocupations', $enum);
 	}
 
 	public function index(){
@@ -113,7 +93,19 @@ class EventController extends AppController {
 				$this->loadModel('Adviser');
 				$adviser = $this->Adviser->find('first', array('conditions'=>array('user_id'=>$this->Session->read('Auth.User.id'))));
 				$adviser_id = $adviser['Adviser']['id'];
-				$events = $this->Paginator->paginate('Event', array('Event.adviser_id' => $adviser_id));
+				$events = $this->Paginator->paginate('Event', array('Event.adviser_id' => $adviser_id,
+					'Event.status !=' => 'canceled'));
+				$aux_events = $this->Paginator->paginate('Event', array('Event.adviser_id' => $adviser_id,
+					'Event.status !=' => 'canceled'));
+				$no_events = 0;
+				$this->loadModel('Request');
+				$this->Request->recursive = 2;
+				foreach ($aux_events as $event) {
+					$guests = $this->Request->find('all', array(
+					    'group' => array('Request.person_id'),
+						'conditions'=>array('event_id'=>$event['Event']['id'])));
+					$events[$no_events++]['Request']['Guests'] = $guests;
+				}
 				break;
 			case 'Person':
 				$this->loadModel('Person');
@@ -140,6 +132,17 @@ class EventController extends AppController {
 		$event_id = is_numeric($secret_id) ? $secret_id : $this->BinluuEmail->getIdFromSecretId($secret_id);	
 		$event = $this->Event->find('first', array('conditions'=>array('Event.id'=>$event_id)));
 		$this->set('event', $event);
+	}
+
+	public function cancel($id){
+		$this->Event->read(null, $id);
+		$this->Event->set('status', 'canceled');
+		$this->Event->save();
+		$this->redirect(array('action'=>'index'));
+	}
+
+	public function eventCreated(){
+		$this->set('title_for_layout', 'Evento creado');
 	}
 
 	public function isAuthorized($user) {

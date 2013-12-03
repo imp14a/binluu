@@ -52,8 +52,48 @@ class RequestController extends AppController {
 		}
 	}
 
+	public function isPersonInvited(){
+		$this->layout = 'ajax';
+		$personID = utf8_decode(isset($_REQUEST['personID']) ? $_REQUEST[ 'personID' ] : '');
+		$eventID = utf8_decode(isset($_REQUEST['eventID']) ? $_REQUEST[ 'eventID' ] : '');
+		$out = $this->Request->find('all', array(
+			'conditions'=>array('Request.person_id'=>$personID,
+				'Request.event_id'=>$eventID),
+			'fields'=>array('Request.notified_by_mail')
+		));
+		$this->set('output', $out[0]['Request']);
+	}
+
+	public function invitePerson(){
+		$this->layout = 'ajax';
+		$personID = utf8_decode(isset($_REQUEST['personID']) ? $_REQUEST[ 'personID' ] : '');
+		$eventID = utf8_decode(isset($_REQUEST['eventID']) ? $_REQUEST[ 'eventID' ] : '');
+		$data = array();
+		$data['Request']['person_id'] = $personID;
+		$data['Request']['event_id'] = $eventID;
+		$data['Request']['date'] = date('Y-m-d');
+		$this->loadModel('Person');
+		$adviser_id = $this->Session->read('Auth.User.id');
+		$person = $this->Person->find('first', array('conditions'=>array('Person.id'=>$personID)));
+		if(!$this->BinluuEmail->sendMail($adviser_id, $person['User']['username'], INVITE_EMAIL_TYPE, $eventID)){
+			//Agregar error
+			$data['Request']['notified_by_mail'] = 0;
+		}else{
+			//Actualizar campo notified_by_email
+			$data['Request']['notified_by_mail'] = 1;
+		}
+		if($this->Request->save($data)){
+			$this->set('output', true);
+		}else{
+			$this->set('output', false);
+		}
+	}
+
 	public function isAuthorized($user) {
     if(isset($user['rol']) && $user['rol'] === 'Person'){
+      return true;
+    }
+    if(isset($user['rol']) && $user['rol'] === 'Adviser' && in_array($this->action, array('isPersonInvited', 'invitePerson'))){
       return true;
     }
     return false;

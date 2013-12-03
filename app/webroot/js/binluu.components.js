@@ -36,7 +36,7 @@ BinluuSlider.prototype = {
                             $(that.inputs[i]).value = that.getCurrencyValue(that.options.rangeValues[values.map(Math.round)[i]]);
                         break;
                     }
-                }
+                }                
             },
             restricted: true
         });

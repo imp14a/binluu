@@ -117,6 +117,9 @@ class PersonController extends AppController {
         if (in_array($this->action, array('home', 'edit', 'view')) && isset($user['rol']) && $user['rol'] === 'Person') {
             return true;
         }
+        if($this->action === 'getPersonsByProfile' && isset($user['rol']) && $user['rol'] === 'Adviser'){
+            return true;
+        }
         return false;
     }
 
@@ -124,6 +127,38 @@ class PersonController extends AppController {
         $this->set('title_for_layout', 'Perfil de usuario');
         $this->Person->recursive = 2;
         $this->set('person', $this->Person->read(null, $id));
+    }
+
+    public function getPersonsByProfile(){
+        $this->layout = 'ajax';
+        $conditions = array();
+        $age = utf8_decode(isset($_REQUEST['age']) ? $_REQUEST[ 'age' ] : null);
+        $ocupation = utf8_decode(isset($_REQUEST['ocupation']) ? $_REQUEST[ 'ocupation' ] : null);
+        $sex = utf8_decode(isset($_REQUEST['sex']) ? $_REQUEST[ 'sex' ] : null);
+        $transport = utf8_decode(isset($_REQUEST['transport']) ? $_REQUEST[ 'transport' ] : null);
+        $minBudget = utf8_decode(isset($_REQUEST['minBudget']) ? $_REQUEST[ 'minBudget' ] : null);
+        $maxBudget = utf8_decode(isset($_REQUEST['maxBudget']) ? $_REQUEST[ 'maxBudget' ] : null);
+        if($age!=null) array_push($conditions, array('PersonProfile.age'=>$age));
+        if($ocupation!=null && $ocupation!='N') array_push($conditions, array('PersonProfile.ocupation'=>$ocupation));
+        if($sex!=null && $sex!='N') array_push($conditions, array('PersonProfile.sex'=>$sex));
+        if($transport!=null && $transport!='N') array_push($conditions, array('PersonProfile.transport'=>$transport));
+        if($minBudget!=null){
+            $minBudget = preg_replace('/[^\d\.]/', '', $minBudget);
+            array_push($conditions, array('PersonProfile.min_budget <='=>$minBudget));
+        } 
+        if($maxBudget!=null){
+            $maxBudget = preg_replace('/[^\d\.]/', '', $maxBudget);
+            array_push($conditions, array('PersonProfile.max_budget <='=>$maxBudget));
+        }
+        if(count($conditions) > 0){
+            $persons = $this->Person->find('all', array(
+                    'conditions'=> $conditions
+                )
+            );
+        }else{
+            $persons = $this->Person->find('all');
+        }
+        $this->set('output', json_encode($persons));
     }
 
 }
