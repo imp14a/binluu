@@ -1,10 +1,11 @@
 .user_logged
-{
-	position: relative;
+{	
+	position: absolute;
 	height: 120px;
 	float: right;
 	width: 300px;
-	top: -65px;
+	top: 65px;
+	right: 10%;
 }
 
 .welcome{

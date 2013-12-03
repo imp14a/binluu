@@ -18,6 +18,12 @@ class Event extends AppModel {
         		'foreignKey' => 'property_id'
         )
     );
+    
+   public $validate = array(
+		'name' => array(
+			'required' => array('rule' => array('minLength', '1'),
+				'message' => 'Nombre de usuario obligatorio')),        		
+		);
 }
 
 ?>
