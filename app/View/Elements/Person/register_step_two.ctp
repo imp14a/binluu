@@ -41,7 +41,7 @@
                 </div>
                 <button type=="submit" class="submit"></button>
                 <p class="inforegister">
-                    Al hacer clic en Registrarme, aceptas los <?php echo $this->Html->link("Términos y condiciones",array("controller"=>"Bonluu","action"=>"terms"));?> y que has leido la <?php echo $this->Html->link("Políticas de uso de datos",array("controller"=>"Bonluu","action"=>"politics"));?>
+                    Al hacer clic en Registrarme, aceptas los <?php echo $this->Html->link("Términos y condiciones",array("controller"=>"Binluu","action"=>"terms"));?> y que has leido la <?php echo $this->Html->link("Políticas de uso de datos",array("controller"=>"Binluu","action"=>"politics"));?>
                 </p>
             </div>
             <div class="alternateBox">
