@@ -19,6 +19,7 @@ class EventController extends AppController {
 		$adviser = $this->Adviser->find('first', array('conditions'=>array('user_id'=>$this->Session->read('Auth.User.id'))));
 		$adviser_id = $adviser['Adviser']['id'];
 		if(!empty($this->request->data)){
+
 			$this->request->data['AdviserProperty']['adviser_id'] = $adviser_id;
 			$this->request->data['AdviserProperty']['latitude'] = '19.161819869398563';
 			$this->request->data['AdviserProperty']['longitude'] = '-99.6160951629281';
@@ -32,7 +33,7 @@ class EventController extends AppController {
 					$no++;
 				}
 			}
-			if($this->AdviserProperty->saveAll($this->request->data)){
+			if($this->AdviserProperty->saveAll($this->request->data, array('validate'=>'only'))){
 				$this->request->data['Event']['property_id'] = $this->AdviserProperty->getInsertID();
 				if($this->Event->save($this->request->data)){
 					$this->redirect(array('controller'=>'Event','action' => 'inviteusers', $this->Event->getInsertID()));
@@ -40,7 +41,12 @@ class EventController extends AppController {
         	$this->Session->setFlash("Ha ocurrido en error, intente de nuevo.");
       	}
       }else{
-        $this->Session->setFlash("Ha ocurrido en error, intente de nuevo.");
+      	$errors = $this->AdviserProperty->invalidFields(); 
+      	if(count($errors)>0){
+      		$this->Session->setFlash("Asegúrese de llenar todos los campos.");
+      	}else{
+					$this->Session->setFlash("Ha ocurrido en error, intente de nuevo.");
+      	}
       }
 		}
 	}
@@ -115,7 +121,7 @@ class EventController extends AppController {
 				$this->loadModel('Request');
 				$aux_events = $this->Paginator->paginate('Request', array('Request.person_id'=>$person_id));
 				$no_events = 0;
-				$this->Request->recursive = 2;
+				$this->Request->recursive = 3;
 				foreach ($aux_events as $event) {
 					$guests = $this->Request->find('all', array(
 					    'group' => array('Request.person_id'),

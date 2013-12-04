@@ -57,15 +57,13 @@ document.observe('dom:loaded', function() {
 			  		<label style="float: left; margin-right: 5px;">Invita:</label>
 			  		<?php echo $this->Html->para(null, $event['Event']['Adviser']['User']['name'].' '.$event['Event']['Adviser']['User']['last_name']); ?>
 			  	</div>
-					<div class="invited_users">
+					<div id="view_guest" class="invited_users">
 						<label>Tambi&eacute;n fueron invitados:</label>
 						<?php $guests = $event['Request']['Guests']; ?>
 						<?php foreach ($guests as $guest): ?>
 						<?php $image = $guest['Person']['User']['image']===null?$guest['Person']['PersonProfile']['sex']==='M'?'default_img_male.png':'default_img_female.png':$guest['Person']['User']['image']; ?>
-						<?php echo $this->Html->link(
-								$this->Html->image('/files/'.$image, array('alt'=>$guest['Person']['User']['name'], 'title'=>$guest['Person']['User']['name'], 'width'=>'24px', 'height'=>'24px')),
-								array('controller'=>'Person', 'action'=>'view', $guest['Person']['id']),
-								array('escape'=>false, 'class'=>'guest')); ?>
+						<?php $id = $guest['Person']['id']; echo '<a id="guest'.$id.'" class="guest">'.
+								$this->Html->image('/files/'.$image, array('alt'=>$guest['Person']['User']['name'], 'title'=>$guest['Person']['User']['name'], 'width'=>'24px', 'height'=>'24px')).'</a>'; ?>
 						<?php endforeach; ?>
 					</div>
 			  </div>
@@ -88,3 +86,50 @@ document.observe('dom:loaded', function() {
 	<?php $no_event++; endforeach; ?>
 </div>
 <?php } ?>
+<script type="text/javascript">
+<?php foreach ($guests as $guest): ?>
+<?php $id = $guest['Person']['id']; ?>
+<?php echo "$('guest".$id."').observe('click', viewProfile)"; ?>
+<?php endforeach; ?>
+
+var guests = <?php echo json_encode($guests); ?>;
+
+
+function viewProfile(event){
+	var idPerson = event.target.offsetParent.id.replace('guest','');
+	guests.each(function(guest){
+		if(guest.Person.id = idPerson){
+			var interests = '';
+			for (var i = 0; i < guest.Person.PersonProfile.PersonProfileTag.length; i++) {
+				interests += ' ' + guest.Person.PersonProfile.PersonProfileTag[i].tag;
+			}
+			var profile_view = new Element('div',{
+				class: 'popup_profile'
+			})
+			.insert(new Element('img',{
+				class: 'img_user',
+				src:   '/app/webroot/files/' + guest.Person.User.image,
+				width: '60px',
+				height:'60px'	
+			}))
+			.insert(new Element('a',{
+				id: 'close'
+			}).observe('click', function(){
+				profile_view.remove();
+			}))
+			.insert(new Element('p',{
+				class: 'name'
+			}).update(guest.Person.User.name + ' ' + guest.Person.User.last_name))
+			.insert(new Element('p').update('Ocupación'))
+			.insert(new Element('p',{
+				class: 'desc'
+			}).update(guest.Person.PersonProfile.ocupation))
+			.insert(new Element('p').update('Intereses'))
+			.insert(new Element('p',{
+				class: 'desc'
+			}).update(interests));
+			$('view_guest').insert(profile_view);
+		}
+	});
+}
+</script>

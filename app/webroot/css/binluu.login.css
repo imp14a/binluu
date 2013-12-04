@@ -16,7 +16,7 @@ body{
     width: 72%;
     display: inline-block;
     float: left;
-    background-image: url('/img/home.jpg');
+    background-image: url(../img/home.jpg);
     background-size: cover;
 }
 .logintitle{
@@ -38,7 +38,7 @@ body{
     
 }
 .loginContainer .detail{
-    background-image: url('/img/login-detail.png');
+    background-image: url(../img/login-detail.png);
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: cover;
@@ -110,7 +110,7 @@ body{
     margin-top: 15px;
 }
 .play{
-    background-image: url('/img/inciar-sesion.png');
+    background-image: url(../img/inciar-sesion.png);
     height: 16px;
     width: 100%;
     background-repeat: no-repeat;
@@ -154,7 +154,7 @@ body{
     text-decoration: none;
     display: inline-block;
     width: 320px;
-    background-image: url('/img/engranes.png');
+    background-image: url(../img/engranes.png);
     background-repeat: no-repeat;
     height: 60px;
     line-height: 60px;

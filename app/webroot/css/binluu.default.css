@@ -6,7 +6,7 @@ body{
         min-width: 1024px;
         width: 100%;
         height: 100%;
-        background-image: url('/img/background.jpeg');
+        background-image: url(../img/background.jpeg);
         background-repeat: repeat-x;
         background-size: contain;
         font-family: StoneSansStd-Medium;

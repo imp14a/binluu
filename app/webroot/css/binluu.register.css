@@ -13,7 +13,7 @@
         float: left;
         width: 400px;
         background-color: #ff6400;
-        background-image: url('/img/information_background.png');
+        background-image: url(../img/information_background.png);
         background-size: cover;
         text-align: center;
         height: 620px;
@@ -30,7 +30,7 @@
     .mapdetail{
         width: 100%;
         height: 28px;
-        background-image: url('/img/map_detail.png');
+        background-image: url(../img/map_detail.png);
         background-repeat: no-repeat;
         background-position: center;
     }
@@ -95,7 +95,7 @@
         margin-bottom: 15px;
     }
     .next{
-        background-image: url('/img/next_button.png');
+        background-image: url(../img/next_button.png);
         width: 90px;
         height: 28px;
         display: block;
@@ -121,7 +121,7 @@
         text-align: left;
     }
     .showTagsButton{
-        background-image: url('/img/open_tags.png');
+        background-image: url(../img/open_tags.png);
         width: 18px;
         height: 18px;
         cursor: pointer;
@@ -133,13 +133,13 @@
         width: 600px;
         height: 620px;
         display: inline-block;
-        background-image: url('/img/register_image.png');
+        background-image: url(../img/register_image.png);
         background-size: cover;
     }
     .sexQuestion{
         width: 80%;
         height: 84px;
-        background-image: url('/img/register_question.png');
+        background-image: url(../img/register_question.png);
         margin-left: 10%;
         margin-top: 20px;
         background-repeat: no-repeat;
@@ -160,7 +160,7 @@
     .submit{
         margin-top: 60px;
         border: none;
-        background-image: url('/img/submit_register.png');
+        background-image: url(../img/submit_register.png);
         background-color: white;
         width: 165px;
         height: 43px;
@@ -176,7 +176,7 @@
         text-decoration: none;
     }
     .tagSelector{
-        background-image: url('/img/background_tags.png');
+        background-image: url(../img/background_tags.png);
         background-size: contain;
         margin-top: 100px;
         height: 270px;

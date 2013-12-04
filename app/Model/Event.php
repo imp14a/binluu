@@ -22,7 +22,10 @@ class Event extends AppModel {
    public $validate = array(
 		'name' => array(
 			'required' => array('rule' => array('minLength', '1'),
-				'message' => 'Nombre de usuario obligatorio')),        		
+				'message' => 'Nombre de evento obligatorio')),
+        'property_description' => array(
+            'required' => array('rule' => array('minLength', '1'),
+                'message' => 'Descripción obligatoria')),		
 		);
 }
 

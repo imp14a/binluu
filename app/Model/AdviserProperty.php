@@ -11,6 +11,12 @@ class AdviserProperty extends AppModel {
             'className' => 'PropertyImage',
             'conditions' => array('DefaultImage.type' => 'default')
     ));
+
+	public $validate = array(
+		'address' => array(
+			'required' => array('rule' => array('minLength', '1'),
+				'message' => 'Dirección obligatoria'))
+		);
 	
 }
 

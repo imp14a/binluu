@@ -208,7 +208,6 @@ p.title{
 	font-family: StoneSansStd-MediumItalic;
 	float: right;
 	position: relative;
-	right: -29%;
 }
 
 .no_events
@@ -273,7 +272,6 @@ p.title{
 
 input[type=submit]{
 	position: relative;
-	top: 100px;
 	clear: right;
 	background: #46A0C3;
 	height: 30px;

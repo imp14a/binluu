@@ -1,3 +1,50 @@
+.popup_profile{
+	font-size: 12pt;
+	color: #FFF;
+	position: absolute;
+	top: -100px;
+	left: 130px;
+	padding: 10px;
+	width: 150px;
+	background: -webkit-linear-gradient(#EF8416, #FF6400); /* For Safari */
+	background: -o-linear-gradient(#EF8416, #FF6400); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#EF8416, #FF6400); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#EF8416, #FF6400); /* Standard syntax (must be last) */
+	z-index: 1001;
+}
+
+.popup_profile .name{
+	font-family: StoneSansStd-MediumItalic;
+	position: relative;
+	top: -22px;
+	left: 5px;
+}
+
+.popup_profile .desc{
+	background: #FFF;
+	font-family: StoneSansStd-Medium;
+	font-size: 10pt;
+	color: #474747;
+	text-align: center;
+	padding: 5px;
+	margin: 5px;
+}
+
+.popup_profile a#close{
+	display: inline-block;
+	background: url(../img/Cerrar-perfil-emergente.png) no-repeat;
+	cursor: pointer;
+	height: 30px;
+	width: 30px;
+	position: relative;
+	right: -79px;
+	top: -19px;
+}
+
+.popup_profile img.img_user{
+	float: left;
+}
+
 .paginator{
 	float: right;
 	position: relative;
@@ -244,6 +291,7 @@ p.title{
 }
 
 .guest{
+	cursor: pointer;
 	position: relative;
 	top: 7px;
 	background: url(../img/Recuadro-foto.png) no-repeat;

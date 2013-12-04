@@ -45,7 +45,7 @@ $cakeDescription = __d('cake_dev', 'Binluu');
 	<div id="container">
 		<div id="header">
 			<?php echo $this->Html->link($this->Html->div('logo','') ,array('controller' => 'User', 'action' => 'home'), array('escape'=>false)); ?>
-			<span id="slogan">La red de departamentos compartidos m&aacute;s grande de M&eacute;xico.</span>
+			<span id="slogan">Descubre el departamento ideal para compartir.</span>
 			<div class="user_logged">
 				<div class="name_profile">
 					<?php echo $this->Html->para('welcome', '!Hola, '.$this->Session->read('Auth.User.name').'!'); ?>

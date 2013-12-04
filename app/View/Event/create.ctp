@@ -1,5 +1,6 @@
 <?php echo $this->Html->css('binluu.components'); ?>
 <?php echo $this->Html->css('adviser.events'); ?>
+<br>
 <div class="event_creation">
     <div class="back_img">
 	    <p class="desc_title">Intoduzca los datos y escoja una ubicaci&oacute;n</p>
@@ -18,18 +19,18 @@
 		    <div class="images_files">
 			    <p>Suba dos fotos del lugar</p>	
 			    <div class="img_box">			    
-			        <?php echo $this->Form->input('PropertyImage.0.image', array('label'=>false , 'type'=>'file', 'style'=>'opacity:0;')); ?>
+			        <?php echo $this->Form->input('PropertyImage.0.image', array('label'=>false , 'type'=>'file','required'=>'required', 'style'=>'opacity:0;')); ?>
 			        <?php echo $this->Form->input('PropertyImage.0.type', array('type'=>'hidden', 'value'=>'description')); ?>
 			    </div>
 			    <div class="img_box">
-			        <?php echo $this->Form->input('PropertyImage.1.image', array('label'=>false, 'type'=>'file', 'style'=>'opacity:0;')); ?>
+			        <?php echo $this->Form->input('PropertyImage.1.image', array('label'=>false, 'type'=>'file', 'required'=>'required', 'style'=>'opacity:0;')); ?>
 			        <?php echo $this->Form->input('PropertyImage.1.type', array('type'=>'hidden', 'value'=>'description')); ?>
 			    </div>		
 		    </div>
 	    </div>
 	    <div class="action">
 			    <?php echo $this->Html->link('Cancelar', array('action'=>'index'), array('class'=>'cancel')); ?>
-			    <?php echo $this->Form->end("Siguiente >"); ?>
+			    <?php echo $this->Form->end("Siguiente >", array('formnovalidate'=>'formnovalidate')); ?>
 	    </div>
 	</div>
 </div>
