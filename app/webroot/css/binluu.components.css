@@ -36,6 +36,7 @@ textarea{
     height: 24px;
     background-color: white;
     text-align: center;
+    padding-left: 30px;
 }
 .input input::-webkit-input-placeholder {
     font-size: 10pt;

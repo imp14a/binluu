@@ -91,19 +91,9 @@ function placeMarker(location) {
                 <?php echo $this->Form->input("User.username",array("type"=>"email",'label'=>false,"placeholder"=>"Correo electrónico")); ?>
                 <?php echo $this->Form->password("User.password",array('placeholder'=>"Contraseña"))?>
                 <?php echo $this->Form->password("User.password_confirm",array('placeholder'=>"Repite tu contraseña")); ?>
-                <div class="slider_input">
-                    <span class="legend">Presupuesto</span>
-                    <div class="slider_container">
-                        <div id="slider" class="slider">
-                            <div class="handle"></div>
-                            <div class="handle"></div>
-                            <div class="top" style="left: -3%;"></div>
-                            <div id="id_range" class="range"></div>
-                            <div class="top" style="left: 97%;"></div>
-                        </div>
-                    </div>
-                     <?php echo $this->Form->input('PersonProfile.min_budget', array('label' => 'Desde','value'=>'$ 1,000.00','readonly',"class"=>"midle","type"=>"text")); ?>
-                     <?php echo $this->Form->input('PersonProfile.max_budget', array('label' => 'Hasta','value'=>'$ 12,000.00','readonly',"class"=>"midle","type"=>"text")); ?>
+                <div class="input select" style="width:100%; text-align: left; display: block; width: 100%; padding-left: 25px;">
+                     <?php $options = array("N"=>"Presupuesto","500.00"=>'$ 500.00',"1000.00"=>"$ 1,000.00","2000.00"=>"$ 2,000.00","3000.00"=>"$ 3,000.00","4000.00"=>"$ 4,000.00","5000.00"=>"$ 5,000.00","6000.00"=>"$ 6,000.00","8000.00"=>"$ 8,000.00","10000.00"=>"$ 10,000.00","12000.00"=>"$ 12,000.00","15000.00"=>"$ +12,000.00"); 
+                     echo $this->Form->select('PersonProfile.budget',$options, array('disabled' => array('N'),'value'=>'N',"class"=>"optionEmpty half","empty"=>false)); ?>
                 </div>
                 
                 <div class="captcha">
@@ -127,6 +117,10 @@ function placeMarker(location) {
 <script>
     
     $("PersonProfileSex").observe('change',function () {
+        if($(this).value == "N") $(this).addClassName("optionEmpty");
+        else $(this).removeClassName("optionEmpty");
+    });
+    $("PersonProfileBudget").observe('change',function () {
         if($(this).value == "N") $(this).addClassName("optionEmpty");
         else $(this).removeClassName("optionEmpty");
     });
