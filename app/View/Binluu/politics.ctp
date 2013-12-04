@@ -1,5 +1,6 @@
 <?php echo $this->Html->css('binluu.document');?>
-<div>
+<div class="informatioContaner">
+    
     <h3 class="title">Política de privacidad de Binluu</h3>
     <h4>Fecha de la última revisión: 1 de Diciembre del 2013</h4>
     <p>En cumplimiento con lo establecido por la <span style="text-decoration: underline;">Ley Federal de Transparencia y Acceso a la Información Pública Gubernamental</span> te informamos nuestra política de privacidad y manejo de datos personales </p>

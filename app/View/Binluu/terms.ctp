@@ -1,6 +1,6 @@
 <?php echo $this->Html->css('binluu.document');?>
-<div >
-
+<div class="informatioContaner">
+    
   <h3 class="title">Términos y Condiciones de Uso de <a href="www.binluu.com.mx">www.binluu.com.mx</a> y <a href="www.binluu.mx">www.binluu.mx</a></h3>
   <h4>Última Actualización Diciembre 2013</h4>
   <p>Este contrato describe los términos y condiciones generales (los "Términos y Condiciones Generales") aplicables al uso de los servicios ofrecidos por Omar Peña Cárdenas ("los Servicios") dentro del sitio <a href="www.binluu.com.mx">www.binluu.com.mx</a> y <a href="www.binluu.mx">www.binluu.mx</a> (" Binluu " o el "sitio"). Cualquier persona que desee acceder y/o usar el sitio o los servicios podrá hacerlo sujetándose a los Términos y Condiciones Generales, junto con todas las demás políticas y principios que rigen Binluu y que son incorporados al presente por referencia.</p>
