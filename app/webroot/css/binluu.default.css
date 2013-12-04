@@ -28,11 +28,12 @@ body,html{
 }
 #header .logo{
 	background-image: url(../img/logo.png);
-	width: 145px;
-	height: 48px;
+	width: 165px;
+	height: 60px;
 	background-repeat: no-repeat;
 	margin-top: 50px;
 	display: inline-block;
+	background-size: contain;
 }
 #header #slogan{
 	display: inline-block;
@@ -58,13 +59,13 @@ body,html{
 }
 #footer .contact{
 	background-image: url(../img/contact.png);
-	width: 110px;
+	width: 120px;
 	background-position: right;
 	background-repeat: no-repeat;
 }
 #footer .adviser{
 	background-image: url(../img/adviser.png);
-	width: 234px;
+	width: 244px;
 	background-position: top right;
 	background-repeat: no-repeat;
 }
@@ -78,6 +79,7 @@ body,html{
 #footer div{
 	display: inline-block;
 	margin-left: 70px;
+	background-size: contain;
 }
 .clear{
     clear: left;

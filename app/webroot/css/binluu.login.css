@@ -30,7 +30,7 @@ body{
 .loginContainer{
     position: relative;
     display: inline-block;
-    width: 22%;
+    width: 25%;
     color: #fff;
     min-width: 230px;
     float: right;
@@ -160,6 +160,7 @@ body{
     line-height: 60px;
     padding-left: 25px;
     margin-top: 30px;
+    background-size: contain;
 }
 form{
     text-align: center;
