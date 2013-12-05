@@ -61,7 +61,7 @@ document.observe('dom:loaded', function() {
 		<?php echo $this->Paginator->next(' > ', array(), null, array('class' => 'next disabled'));?>
 	</div>
 	<?php $no_event = 0; ?>
-	<?php foreach ($events as $event): ?>
+	<?php foreach ($events as $event): ?>	
 	<?php $images = $event['Event']['AdviserProperty']['PropertyImage']; ?>
 	<div class="wrapper" style="<?php echo $no_event>0?$no_event===1?'top:-145px;':'top:-290px;':''; ?>">
 		<div class="event_item">

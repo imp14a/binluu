@@ -51,6 +51,14 @@ class EventController extends AppController {
 
 	public function inviteusers($event_id){
 		$this->set('title_for_layout','Invitar usuarios a evento');
+		$this->loadModel('Adviser');
+		$adviser = $this->Adviser->find('first', array('conditions'=>array('user_id'=>$this->Session->read('Auth.User.id'))));
+		$adviser_id = $adviser['Adviser']['id'];
+		$event = $this->Event->find('first', array('conditions'=>array('Event.adviser_id'=>$adviser_id, 'Event.id'=>$event_id)));
+		if(count($event) === 0){ //No tiene permisos para invitar a este evento
+			$this->redirect($this->referer());
+			return;
+		}		
 		$this->set('event_id', $event_id);
 		$this->loadModel('EventProfile');
 		$this->loadModel('InterestCategory');
