@@ -10,7 +10,7 @@ document.observe('dom:loaded', function() {
 	<?php $no_images++; endforeach; ?>
 });
 </script>
-<?php if(count($events)===3){ ?>
+<?php if(count($events)===0){ ?>
 	<br>	
 	<?php echo $this->Html->link('Nuevo evento', array('action'=>'create'), array('class'=>'new')); ?>
 <div class="no_events">
@@ -81,19 +81,7 @@ document.observe('dom:loaded', function() {
 					<?php echo $this->Html->link(
 							$this->Html->image('/files/'.$image, array('alt'=>$guest['Person']['User']['name'], 'title'=>$guest['Person']['User']['name'], 'width'=>'30px', 'height'=>'30px')),
 							array('controller'=>'Person', 'action'=>'view', $guest['Person']['id']),
-							array('escape'=>false, 'class'=>'guest')); ?>
-					<?php echo $this->Html->link(
-							$this->Html->image('/files/'.$image, array('alt'=>$guest['Person']['User']['name'], 'title'=>$guest['Person']['User']['name'], 'width'=>'30px', 'height'=>'30px')),
-							array('controller'=>'Person', 'action'=>'view', $guest['Person']['id']),
-							array('escape'=>false, 'class'=>'guest')); ?>
-					<?php echo $this->Html->link(
-						$this->Html->image('/files/'.$image, array('alt'=>$guest['Person']['User']['name'], 'title'=>$guest['Person']['User']['name'], 'width'=>'30px', 'height'=>'30px')),
-					array('controller'=>'Person', 'action'=>'view', $guest['Person']['id']),
-					array('escape'=>false, 'class'=>'guest')); ?>
-					<?php echo $this->Html->link(
-							$this->Html->image('/files/'.$image, array('alt'=>$guest['Person']['User']['name'], 'title'=>$guest['Person']['User']['name'], 'width'=>'30px', 'height'=>'30px')),
-							array('controller'=>'Person', 'action'=>'view', $guest['Person']['id']),
-							array('escape'=>false, 'class'=>'guest')); ?>
+							array('escape'=>false, 'class'=>'guest')); ?>					
 					<?php endforeach; ?>
 				</div>
 				<div class="response">

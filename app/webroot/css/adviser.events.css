@@ -11,6 +11,7 @@ a img {border: none; }
 	cursor: pointer;
 	margin-bottom: 20px;
 	float: right;
+	margin-right: 30px;
 }
 .response{
 	position: absolute;
@@ -258,7 +259,6 @@ p.title{
 .cancel{
 	clear: right;
 	margin-right: 25px;
-	float: left;
 	text-align: center;
 	line-height: 1.9;
 	height: 28px;
@@ -271,8 +271,9 @@ p.title{
 }
 
 input[type=submit]{
+	margin-top: 20px;
+	margin-right: 27px;
 	position: relative;
-	clear: right;
 	background: #46A0C3;
 	height: 30px;
 	color: #FFF;
@@ -293,13 +294,12 @@ input[type=submit]{
 }
 
 .action{
-	margin-top: 27px;
-	clear: both;
-	float: right;
-	width: 300px;
+	margin-top: 100px;	
+	width: 100%;
 	position: relative;
 	right: -48px;
 	top: -56px;
+	text-align: center;
 }
 
 .img_box{

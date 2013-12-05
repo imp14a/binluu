@@ -60,8 +60,8 @@ class RequestController extends AppController {
 			'conditions'=>array('Request.person_id'=>$personID,
 				'Request.event_id'=>$eventID),
 			'fields'=>array('Request.notified_by_mail')
-		));
-		$this->set('output', $out[0]['Request']);
+		));		
+		$this->set('output', count($out) > 0 ? $out[0]['Request'] : array('notified_by_mail'=>false));
 	}
 
 	public function invitePerson(){
