@@ -408,7 +408,7 @@ var protoShow = Class.create({
 
         if (typeof this.protoNavigation==="undefined" ) {
             var navEle      =   new Element('ol', { 'class': 'proto-navigation'});          
-            var navTemplate =   new Template('<li><a href="##{number}" title="Skip to Slide #{number}">#{number}</a></li>');
+            var navTemplate =   new Template('<li><a href="##{number}" title="Ver imagen #{number}">#{number}</a></li>');
 
             this.slides.each(function(e,index) {        // for each slide in the show create a Nav <li> using the Template above
                 var li = navTemplate.evaluate({number: index+1});

@@ -1,3 +1,8 @@
+.event_map{
+	width: 275px !important;
+	height: 178px !important;
+}
+
 .img_popup{
 	width: 15px;
 	position: relative;

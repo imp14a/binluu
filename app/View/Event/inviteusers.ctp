@@ -93,7 +93,7 @@
       });
       $('wrapper').addClassName('loading');
       var obj;
-      new Ajax.Request('http://binluu.com.mx/index.php/Person/getPersonsByProfile.json', {
+      new Ajax.Request('http://binluu.com.mx/Person/getPersonsByProfile.json', {
           method: 'get',
           parameters: {
             age:        $('EventProfileAge').value,
@@ -110,10 +110,10 @@
             $('user_list').update('');
             obj.each(function(person){
               var text = isPersonInvited(<?php echo $event_id; ?>, person.Person.id);
-              var resultInvited = 'Invitar '+text;
+              var resultInvited = 'Invitar ' + (typeof text != 'undefined' ? text : '');
               var linkInvite = new Element('a', {
                 class: resultInvited
-              }).observe('click', function(){
+              }).update(text).observe('click', function(){
                 if(text!='Invitado'){
                   sendMail(<?php echo $event_id; ?>, person.Person.id);
                   this.update('Invitado');
@@ -150,7 +150,7 @@
 
     function isPersonInvited(event_id, person_id){
       var result;
-      var request = new Ajax.Request('http://binluu.com.mx/index.php/Request/isPersonInvited.json', {
+      var request = new Ajax.Request('http://binluu.com.mx/Request/isPersonInvited.json', {
           method: 'get',
           asynchronous: false,
           parameters: {
@@ -159,7 +159,8 @@
           },
           onSuccess: function(transport) {
             var obj = transport.responseJSON;
-            if(typeof obj!='undefined')
+            console.log(transport);
+            if(typeof obj !='undefined')
               result = obj.notified_by_mail ? 'Invitado' : 'Invitar';
             else
               result= 'Invitar';

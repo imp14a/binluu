@@ -2,6 +2,37 @@
 <?php echo $this->Html->css('protoshow'); ?>
 <?php echo $this->Html->script('protoshow'); ?>
 <?php $this->layout = 'person'; ?>   
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+<script>
+// Enable the visual refresh
+google.maps.visualRefresh = true;
+
+<?php foreach ($events as $event) {
+	echo 'var map_'.$event['Event']['id'].";\n";
+}?>
+
+function placeMarker(location, map_item) {	
+	var marker = new google.maps.Marker({
+	    position: location	
+	});
+	marker.setMap(map_item);
+}
+
+function initialize() {  
+  <?php foreach ($events as $event) {  	
+  	$map_id = 'map_'.$event['Event']['id'];
+  	echo 'var mapOptions'.$map_id.' = {
+      zoom: 15,   
+      disableDoubleClickZoom: true,     
+      center: new google.maps.LatLng('.$event['Event']['AdviserProperty']['latitude'].', '.$event['Event']['AdviserProperty']['longitude'].'),
+      mapTypeId: google.maps.MapTypeId.ROADMAP        
+  };'."\n";
+		echo $map_id." = new google.maps.Map(document.getElementById('".$map_id."'), mapOptions".$map_id.");\n";
+		echo 'placeMarker(new google.maps.LatLng('.$event['Event']['AdviserProperty']['latitude'].', '.$event['Event']['AdviserProperty']['longitude'].'), '.$map_id.');'."\n";
+	}?>
+}    
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 <script type="text/javascript">
 document.observe('dom:loaded', function() {
 	<?php $no_images = 0; ?>
@@ -30,7 +61,7 @@ document.observe('dom:loaded', function() {
 		<?php echo $this->Paginator->next(' > ', array(), null, array('class' => 'next disabled'));?>
 	</div>
 	<?php $no_event = 0; ?>
-	<?php foreach ($events as $event): ?>
+	<?php foreach ($events as $event): ?>	
 	<?php $images = $event['Event']['AdviserProperty']['PropertyImage']; ?>
 	<div class="wrapper" style="<?php echo $no_event>0?$no_event===1?'top:-145px;':'top:-290px;':''; ?>">
 		<div class="event_item">
@@ -38,8 +69,11 @@ document.observe('dom:loaded', function() {
 				<?php $no_images = 0; ?>
 				<div id="myshow<?php echo $no_event;?>" class="protoshow" style="height: 250px;"><!-- protoshow container -->
 					<ul class="show"><!-- slideshow itself -->
+						<li class="slide">								
+							<div id="map_<?php echo $event['Event']['id']; ?>" class="event_map"></div>
+						</li>
 					<?php foreach ($images as $image): ?>
-						<?php if($no_images++ < 3){ ?>
+						<?php if($no_images++ < 2){ ?>
 							<li class="slide">
 								<?php echo $this->Html->image('/files/'.$image['image'], array('alt' => 'test', 'width' => '275px', 'height' => '178px')); ?>
 							</li>

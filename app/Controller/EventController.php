@@ -19,9 +19,7 @@ class EventController extends AppController {
 		$adviser_id = $adviser['Adviser']['id'];
 		if(!empty($this->request->data)){
 
-			$this->request->data['AdviserProperty']['adviser_id'] = $adviser_id;
-			$this->request->data['AdviserProperty']['latitude'] = '19.161819869398563';
-			$this->request->data['AdviserProperty']['longitude'] = '-99.6160951629281';
+			$this->request->data['AdviserProperty']['adviser_id'] = $adviser_id;			
 			$this->request->data['Event']['adviser_id'] = $adviser_id;
 			$this->loadModel('AdviserProperty');
 			$no = 0;
@@ -32,7 +30,7 @@ class EventController extends AppController {
 					$no++;
 				}
 			}
-			if($this->AdviserProperty->saveAll($this->request->data, array('validate'=>'only'))){
+			if($this->AdviserProperty->saveAll($this->request->data)){
 				$this->request->data['Event']['property_id'] = $this->AdviserProperty->getInsertID();
 				if($this->Event->save($this->request->data)){
 					$this->redirect(array('controller'=>'Event','action' => 'inviteusers', $this->Event->getInsertID()));
@@ -52,6 +50,14 @@ class EventController extends AppController {
 
 	public function inviteusers($event_id){
 		$this->set('title_for_layout','Invitar usuarios a evento');
+		$this->loadModel('Adviser');
+		$adviser = $this->Adviser->find('first', array('conditions'=>array('user_id'=>$this->Session->read('Auth.User.id'))));
+		$adviser_id = $adviser['Adviser']['id'];
+		$event = $this->Event->find('first', array('conditions'=>array('Event.adviser_id'=>$adviser_id, 'Event.id'=>$event_id)));
+		if(count($event) === 0){ //No tiene permisos para invitar a este evento
+			$this->redirect($this->referer());
+			return;
+		}		
 		$this->set('event_id', $event_id);
 		$this->loadModel('EventProfile');
 		$this->loadModel('InterestCategory');

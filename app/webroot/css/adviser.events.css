@@ -1,3 +1,8 @@
+.event_map{
+	width: 275px !important;
+	height: 178px !important;
+}
+
 a img {border: none; }
 
 .search_users{
@@ -11,6 +16,7 @@ a img {border: none; }
 	cursor: pointer;
 	margin-bottom: 20px;
 	float: right;
+	margin-right: 30px;
 }
 .response{
 	position: absolute;
@@ -212,7 +218,7 @@ p.title{
 
 .no_events
 {
-	margin-top: 30px;
+	margin-top: 60px;
 	background: url(../img/without_events.png) no-repeat;
 	height: 460px;
 	background-position:center;
@@ -226,7 +232,7 @@ p.title{
 	background: -o-linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* For Opera 11.1 to 12.0 */
 	background: -moz-linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* For Firefox 3.6 to 15 */
 	background: linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* Standard syntax (must be last) */
-	height: 535px;
+	height: 600px;
 	color: #FFF;	
 }
 
@@ -258,7 +264,6 @@ p.title{
 .cancel{
 	clear: right;
 	margin-right: 25px;
-	float: left;
 	text-align: center;
 	line-height: 1.9;
 	height: 28px;
@@ -267,17 +272,18 @@ p.title{
 	width: 100px;
 	border: 1px solid #FFF;
 	color: #FFF;
-	font-family: StoneSansStd-MediumItalic;
+	font-family: StoneSansStd-SemiBoldItalic;
 }
 
 input[type=submit]{
+	margin-top: 20px;
+	margin-right: 27px;
 	position: relative;
-	clear: right;
 	background: #46A0C3;
 	height: 30px;
 	color: #FFF;
 	border: 1px solid #FFF;
-	font-family: StoneSansStd-MediumItalic;
+	font-family: StoneSansStd-SemiBoldItalic;
 	font-size: 13pt;
 	width: 100px;
 	line-height: 1.9;
@@ -286,17 +292,19 @@ input[type=submit]{
 
 #map{	
 	width: 65%;
-	height: 200px;
+	height: 260px;
 	border: 1px solid;	
 	float: left;
 	margin-top: 25px;
 }
 
 .action{
-	margin-top: 27px;
-	clear: both;
-	float: right;
-	width: 300px;
+	margin-top: 100px;	
+	width: 100%;
+	position: relative;
+	right: -48px;
+	top: -56px;
+	text-align: center;
 }
 
 .img_box{
