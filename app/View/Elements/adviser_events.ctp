@@ -11,6 +11,9 @@ document.observe('dom:loaded', function() {
 });
 </script>
 <?php if(count($events)===0){ ?>
+	<br>
+	<p class="list_title">Mis Eventos</p>
+	<?php echo $this->Html->link('Nuevo evento', array('action'=>'create'), array('class'=>'new')); ?>
 <div class="no_events">
 	<p style="
     font-family: StoneSansStd-MediumItalic;

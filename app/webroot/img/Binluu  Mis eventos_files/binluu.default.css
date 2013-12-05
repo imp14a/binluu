@@ -34,8 +34,6 @@ body,html{
 	margin-top: 50px;
 	display: inline-block;
 	background-size: contain;
-	position: relative;
-	top: -3px;
 }
 #header #slogan{
 	display: inline-block;
@@ -76,7 +74,6 @@ body,html{
 	width: 224px;
 	background-position: top right;
 	background-repeat: no-repeat;
-	background-size: 24px;
 }
 
 #footer div{

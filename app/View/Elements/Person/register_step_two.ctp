@@ -7,6 +7,7 @@
   
 ?>
 <div style="text-align: center;">
+    <?php echo $this->Html->link("< Regresar",array('controller'=>"User",'action'=>"login"),array('class'=>'backButton'));?>
     <div class="stepProces">
         <div class="step">
         <?php echo $this->Form->create("Register",
@@ -15,7 +16,7 @@
             <div class="information container" style="height: 440px;">
                 <div class="background"></div>
                 <div class="detail"></div>
-                <span class="title" style="margin-top:60px;">Para poder mostrarte recomendaciones personalizadas, &iexcl;Cuent&aacute;nos m&aacute; de t&iacute; &excl; </span>
+                <span class="title" style="margin-top:60px;font-size:15pt;">Para poder mostrarte recomendaciones personalizadas, &iexcl;Cuent&aacute;nos m&aacute; de t&iacute; &excl; </span>
                 <div class="input select">
                     <select id="PersonProfileOcupation" name="data[PersonProfile][ocupation]" class="optionEmpty">
                         <option disabled selected value="N">Ocupaci&oacute;n</option>

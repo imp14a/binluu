@@ -1,0 +1,303 @@
+.popup_profile{
+	font-size: 12pt;
+	color: #FFF;
+	position: absolute;
+	top: -100px;
+	left: 130px;
+	padding: 10px;
+	width: 150px;
+	background: -webkit-linear-gradient(#EF8416, #FF6400); /* For Safari */
+	background: -o-linear-gradient(#EF8416, #FF6400); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#EF8416, #FF6400); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#EF8416, #FF6400); /* Standard syntax (must be last) */
+	z-index: 1001;
+}
+
+.popup_profile .name{
+	font-family: StoneSansStd-MediumItalic;
+	position: relative;
+	top: -22px;
+	left: 5px;
+}
+
+.popup_profile .desc{
+	background: #FFF;
+	font-family: StoneSansStd-Medium;
+	font-size: 10pt;
+	color: #474747;
+	text-align: center;
+	padding: 5px;
+	margin: 5px;
+}
+
+.popup_profile a#close{
+	display: inline-block;
+	background: url(../img/Cerrar-perfil-emergente.png) no-repeat;
+	cursor: pointer;
+	height: 30px;
+	width: 30px;
+	position: relative;
+	right: -79px;
+	top: -19px;
+}
+
+.popup_profile img.img_user{
+	float: left;
+}
+
+.paginator{
+	float: right;
+	position: relative;
+	top: -43px;
+	color: #FF6400;
+	margin-right: 20px;
+}
+
+.no_requests
+{
+	margin-top: 30px;
+	background: url(../img/without_requests.png) no-repeat;
+	height: 460px;
+	background-position:center;
+}
+
+.wrapper{
+	height: 236px;
+	clear: both;
+	position: relative;
+}
+
+.img_back{
+	position: relative;	
+	top: -145px;
+}
+
+.left_img{
+	position: relative;	
+	background: url(../img/img_left.png) no-repeat;
+	left: -62px;	
+	height: 40px;
+	width: 62px;
+	z-index: 1000;
+}
+
+.right_img{	
+	position: relative;
+	right: -62px;
+	float: right;
+	background: url(../img/img_right.png) no-repeat;
+	display: inline-block;
+	height: 40px;
+	width: 62px;
+	z-index: 1000;
+	top: -40px;
+}
+
+.events_container
+{
+	min-width: 820px;
+	margin-top: 20px;
+	padding-top: 30px;
+	-moz-box-shadow: 2px 2px 50px #888888;
+	-webkit-box-shadow: 2px 2px 50px #888888;
+	box-shadow: 2px 2px 50px #888888;
+}
+.person_profile label p{
+	margin: 10px;
+}
+
+.image{
+	float: left;
+	height: 200px;
+	margin-right: 50px;
+}
+
+.person_profile label{
+	font-weight: bold;
+	color: #535353;
+}
+
+.person_profile p{
+	margin-left: 30px;
+	color: #FC4C08;
+}
+
+p.title{
+	color: #FF6400;
+	margin-bottom: 20px;
+}
+
+.detail{
+	position: relative;
+	top: -31px;
+}
+
+.detail label{
+	color: #535353;
+	font-family: StoneSansStd-Medium;
+}
+
+.datetime{
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.img_date{
+	background: url(../img/date.png) no-repeat;
+	background-position: left;
+	background-position-y: 2px;
+	margin-left: 0px;
+	margin-right: 0px;
+	width: 65px; 
+	text-align: right;
+}
+
+.img_time{
+	background: url(../img/time.png) no-repeat;
+	background-position: left;
+	background-position-y: 2px;
+	background-position-x: 8px;
+	margin-left: 0px;
+	margin-right: 10px;
+	width: 65px; 
+	text-align: right;
+}
+
+.event_title{
+	font-family: StoneSansStd-MediumItalic;
+	font-size: 14pt;	
+}
+
+.invited_users{
+	font-family: StoneSansStd-MediumItalic;	
+	font-size: 14pt;
+	color: #FC4C08;
+	top: -35px;
+	position: relative;
+	left: -30px;
+}
+
+.detail p{
+	color: #FC4C08;
+	font-family: StoneSansStd-Medium;
+	margin-right: 10%;
+}
+
+.event_item
+{
+	min-width: 820px;
+	height: 178px;
+	position: relative;		
+	background: -webkit-linear-gradient(#EF8416, #FB530A); /* For Safari */
+	background: -o-linear-gradient(#EF8416, #FB530A); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#EF8416, #FB530A); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#EF8416, #FB530A); /* Standard syntax (must be last) */
+}
+
+.images{
+	width: 30%;
+	float: left;
+	height: 180px;
+	position: relative;
+	left: -62px;
+}
+
+.description{
+	width: 100%;
+	float: left;
+	padding-top: 10px;
+	position: relative;
+	left: -33px;
+	padding-left: 69px;
+	height: 170px;
+	top: -184px;
+}
+
+.black{
+	position: relative;
+	top: 35px;
+	left: 213px;
+	background: #FFF;
+	width: 72%;
+	height: 145px;
+}
+
+.request
+{	
+	position: relative;
+	top: -145px;
+	right: -62px;
+	margin-left: 86%;
+	padding-top: 33px;
+	width: 14%;
+	height: 145px;
+	background: -webkit-linear-gradient(#EF8416, #FB530A);
+	background: -o-linear-gradient(#EF8416, #FB530A);
+	background: -moz-linear-gradient(#EF8416, #FB530A);
+	background: linear-gradient(#EF8416, #FB530A);
+}
+
+.event_title{
+	height: 30px;
+	color: #FFF;
+	position: relative;
+	top: -31px;
+}
+
+.block{
+	display: block;
+	font-family: StoneSansStd-Bold;
+	font-size: 13pt;
+	text-decoration: none;
+	line-height: 2;
+	text-align: center;
+}
+
+.legend{
+	height: 30px;
+	width: 100px;
+	border: 1px solid #FFF;
+	margin: 0 auto 15px;
+	color: #FFF;
+}
+
+.response{
+	height: 30px;
+	width: 100px;
+	margin: 0 auto 15px;
+	background: #EEEEEE;
+	color: #6D6D6D;
+}
+
+.accept{
+	background: #7BBE31;
+	color: #FFF;
+}
+
+.cancel{
+	background: #FB0007;
+	color: #FFF;
+}
+
+.cintillo{
+	text-align: center;
+	margin-top: 40px;
+	position: relative;
+	top: -190px;
+	height: 25px;
+}
+
+.guest{
+	cursor: pointer;
+	position: relative;
+	top: 7px;
+	background: url(../img/Recuadro-foto.png) no-repeat;
+	display: inline-block;
+	width: 24px;
+	border: 1px solid #FC4C08;
+	height: 24px;
+	z-index: 1000;
+}
