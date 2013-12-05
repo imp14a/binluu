@@ -95,7 +95,7 @@ body{
     text-align: center;
 }
 .submit input{
-    font-family: StoneSansStd-BoldItalic;
+    font-family: StoneSansStd-SemiBoldItalic;
     float:right;
     font-size: 12pt;
     background: transparent;
@@ -105,8 +105,10 @@ body{
     color: #fff;
     margin-right: 10%;
     cursor: pointer;
-    width: 65px;
+    width: 75px;
     height: 30px;
+    text-align: center;
+    line-height: 1.1;
 }
 .submit{
     margin-top: 15px;

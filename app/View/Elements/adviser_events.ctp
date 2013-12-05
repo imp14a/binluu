@@ -10,9 +10,8 @@ document.observe('dom:loaded', function() {
 	<?php $no_images++; endforeach; ?>
 });
 </script>
-<?php if(count($events)===0){ ?>
-	<br>
-	<p class="list_title">Mis Eventos</p>
+<?php if(count($events)===3){ ?>
+	<br>	
 	<?php echo $this->Html->link('Nuevo evento', array('action'=>'create'), array('class'=>'new')); ?>
 <div class="no_events">
 	<p style="

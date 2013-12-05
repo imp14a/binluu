@@ -212,7 +212,7 @@ p.title{
 
 .no_events
 {
-	margin-top: 30px;
+	margin-top: 60px;
 	background: url(../img/without_events.png) no-repeat;
 	height: 460px;
 	background-position:center;
@@ -226,7 +226,7 @@ p.title{
 	background: -o-linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* For Opera 11.1 to 12.0 */
 	background: -moz-linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* For Firefox 3.6 to 15 */
 	background: linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* Standard syntax (must be last) */
-	height: 535px;
+	height: 600px;
 	color: #FFF;	
 }
 
@@ -267,7 +267,7 @@ p.title{
 	width: 100px;
 	border: 1px solid #FFF;
 	color: #FFF;
-	font-family: StoneSansStd-MediumItalic;
+	font-family: StoneSansStd-SemiBoldItalic;
 }
 
 input[type=submit]{
@@ -277,7 +277,7 @@ input[type=submit]{
 	height: 30px;
 	color: #FFF;
 	border: 1px solid #FFF;
-	font-family: StoneSansStd-MediumItalic;
+	font-family: StoneSansStd-SemiBoldItalic;
 	font-size: 13pt;
 	width: 100px;
 	line-height: 1.9;
@@ -286,7 +286,7 @@ input[type=submit]{
 
 #map{	
 	width: 65%;
-	height: 200px;
+	height: 260px;
 	border: 1px solid;	
 	float: left;
 	margin-top: 25px;
@@ -297,6 +297,9 @@ input[type=submit]{
 	clear: both;
 	float: right;
 	width: 300px;
+	position: relative;
+	right: -48px;
+	top: -56px;
 }
 
 .img_box{
