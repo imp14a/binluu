@@ -13,6 +13,8 @@
             array('url' => array('controller' => 'Person', 'action' => 'register',2))); ?>
             <?php echo $this->Form->hidden('PersonProfile.id',array('value'=>$person_profile_id));?>
             <div class="information container" style="height: 440px;">
+                <div class="background"></div>
+                <div class="detail"></div>
                 <span class="title" style="margin-top:60px;">Para poder mostrarte recomendaciones personalizadas, &iexcl;Cuent&aacute;nos m&aacute; de t&iacute; &excl; </span>
                 <div class="input select">
                     <select id="PersonProfileOcupation" name="data[PersonProfile][ocupation]" class="optionEmpty">

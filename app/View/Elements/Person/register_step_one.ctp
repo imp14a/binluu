@@ -80,6 +80,8 @@ function placeMarker(location) {
         <?php echo $this->Form->create("Register"); ?>
         <div class="step" id="1">
             <div class="information container">
+                <div class="background"></div>
+                <div class="detail"></div>
                 <span class="title">Informaci&oacute;n b&aacute;sica</span>
                 <?php echo $this->Form->input("User.name",array('label'=>false,'placeholder'=>"Nombre")); ?>
                 <?php echo $this->Form->input("User.last_name",array('label'=>false,'placeholder'=>"Apellidos")); ?>
@@ -97,9 +99,7 @@ function placeMarker(location) {
                 </div>
                 
                 <div class="captcha">
-                    <?php
-                        echo $captcha;
-                    ?>
+                    <?php echo $captcha; ?>
                 </div>
             </div>
             <div class="map container">

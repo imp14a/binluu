@@ -43,8 +43,8 @@ class PersonController extends AppController {
                 $data = $this->data;
                 $data['User']['rol'] = "Person";
                 $data['User']['active'] = 1;
-                $data['PersonProfile']['min_budget'] = str_replace(",", "", str_replace("$", "",$data['PersonProfile']['min_budget']));
-                $data['PersonProfile']['max_budget'] = str_replace(",", "", str_replace("$", "",$data['PersonProfile']['max_budget']));
+                $data['PersonProfile']['budget'] = str_replace(",", "", str_replace("$", "",$data['PersonProfile']['budget']));
+                //$data['PersonProfile']['max_budget'] = str_replace(",", "", str_replace("$", "",$data['PersonProfile']['max_budget']));
                 $resp = $this->ReCaptcha->recaptcha_check_answer ("6LenjeoSAAAAAHsL75gs1WwKnJXnROJP0LpSPk1e",
                                 $_SERVER["REMOTE_ADDR"],
                                 $this->data["recaptcha_challenge_field"],
@@ -64,7 +64,8 @@ class PersonController extends AppController {
                     $data['PersonProfileTag'][$key]['person_profile_id'] = $data['PersonProfile']['id'];
                 }
                 $this->PersonProfile->saveAll($this->data);
-                $person = $this->Person->findByUserId($this->data['PersonProfile']['id']);
+                $profile = $this->PersonProfile->findById($this->data['PersonProfile']['id']);
+                $person = $this->Person->findById($profile['PersonProfile']['person_id']);
                 //debug($person);
                 //$this->Session->setFlash('Registrado!, te hemos enviado un correo de confirmación para que puedas acceder.');
                 $this->BinluuEmail->sendMail($person['User']['id'], $person['User']['username'], CONFIRM_EMAIL_TYPE);
@@ -77,7 +78,8 @@ class PersonController extends AppController {
     public function edit($id = null) {
 
         $id = $id != null ? $id : $this->Session->read('Auth.User.id');
-
+        $this->set('title_for_layout', 'Editar perfil');
+        $this->layout = "person";
         if (!empty($this->data)) {
             $options = array('user_id' => $id);
             $p = $this->Person->find('first', $options);
@@ -94,7 +96,16 @@ class PersonController extends AppController {
         }        
         
         $options = array('conditions'=>array('user_id' => $id));
-        $this->set("person", $this->Person->find('first', $options));
+        $person = $this->Person->find('first', $options);
+        $this->set("person", $person);
+        $res = $this->InterestCategory->findByName('Intereses');
+        $resMedios = $this->InterestCategory->findByName('Medio de transporte');
+        $resOcupacio = $this->InterestCategory->findByName('Ocupación');
+        $this->set('tags', $res['CategoryTag']);
+        $this->set('transports', $resMedios['CategoryTag']);
+        $this->set('ocupations', $resOcupacio['CategoryTag']);
+        $personProfile = $this->PersonProfile->findById($person['PersonProfile']['id']);
+        $this->set('userTags', $personProfile['PersonProfileTag']);
     }
 
     public function listAll($status = null) {

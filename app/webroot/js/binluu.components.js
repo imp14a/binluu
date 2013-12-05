@@ -141,20 +141,27 @@ BinluuSimpleQuestion.prototype = {
         this.container = container;
         var that = this;
         $(container).select(this.options.optionSelector).each(function(opt){
+            //Init whit value
+            if(typeof that.options.value!= "undefined" && $(opt).readAttribute('value')==that.options.value){
+                that.changeValue(opt);
+            }
             $(opt).observe('click',function(){
-                $(that.container).select(that.options.optionSelector).each(function(o){
-                    $(o).setStyle({
-                        opacity: 0.5
-                    });
-                });
-                $(opt).setStyle(
-                    {
-                        opacity: 1
-                    }
-                );
-                that.options.changeOption($(opt).readAttribute('value'));
+                that.changeValue(this);
             });
         });
+     },
+     changeValue:function(opt){
+         $(this.container).select(this.options.optionSelector).each(function(o){
+             $(o).setStyle({
+                 opacity: 0.5
+             });
+         });
+         $(opt).setStyle(
+                 {
+             opacity: 1
+                }
+         );
+             this.options.changeOption($(opt).readAttribute('value'));
      }
 
 };
