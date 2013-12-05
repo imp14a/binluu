@@ -18,6 +18,10 @@ class UserController extends AppController {
                 $this->redirect(array('controller'=>'Event'));
             break;
             default:
+                $this->loadModel('Person');
+                $this->Person->recursive = 2;
+                $person = $this->Person->find('first', array('Person.user_id'=>$this->Session->read('Auth.User.id')));
+                $this->Session->write('User.sex', $person['PersonProfile']['sex']);
                 $this->redirect(array('controller'=>'Event'));
             break;
         }

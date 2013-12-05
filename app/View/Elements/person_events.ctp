@@ -10,9 +10,16 @@ document.observe('dom:loaded', function() {
 	<?php $no_images++; endforeach; ?>
 });
 </script>
-<?php if(count($events)===2){ ?>
+<?php if(count($events)===0){ ?>
 <div class="no_requests">
-	
+	<?php echo $this->Html->image('no_request_1.png', array('width'=>'50px', 'style'=>'float: left;')); ?>
+	<?php echo $this->Html->image('no_request_2.png', array('width'=>'50px', 'style'=>'float: right;')); ?>
+	<?php echo $this->Html->image('no_request_3.png', array('width'=>'50px', 'style'=>'float: left;position: relative;left: -50px;top: 410px;')); ?>
+	<?php echo $this->Html->image('no_request_4.png', array('width'=>'50px', 'style'=>'float: right;position: relative;top: 410px;right: -50px;')); ?>
+	<div class="logo_no_requets">	
+		<p>¡Ups! Aún no tienes invitaciones</p>
+		<?php echo $this->Html->image('Icono-sin-eventos.png', array('width'=>'200px', 'style'=>'top: 30%;position: relative;')); ?>
+	</div>
 </div>
 <?php } else { ?>
 <div class="events_container" style="<?php echo count($events)>1?count($events)===2?'height:580px;':'height:835px':'height:320px'; ?>">
@@ -121,6 +128,10 @@ function viewProfile(event){
 					src:   '/app/webroot/files/' + guest.Person.User.image,
 					width: '60px',
 					height:'60px'	
+				}))
+				.insert(new Element('img', {
+					class: 'img_popup',
+					src:   '/app/webroot/img/popup_profile_pin.png'  
 				}))
 				.insert(new Element('a',{
 					id: 'close'

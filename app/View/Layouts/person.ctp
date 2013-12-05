@@ -51,7 +51,8 @@ $cakeDescription = __d('cake_dev', 'Binluu');
 					<?php echo $this->Html->para('welcome', '¡Hola, '.$this->Session->read('Auth.User.name').'!'); ?>
 					<?php echo $this->Html->link('Editar perfil', array('controller'=>'Person', 'action'=>'edit'), array('class'=>'edit_profile')); ?>
 				</div>
-			<?php $image = $this->Session->read('Auth.User.image')===null?$this->Session->read('Auth.User.sex')==='M'?'default_img_male.png':'default_img_female.png':$this->Session->read('Auth.User.image'); ?>
+				<?php //var_dump($this->Session->read('Auth.User')); ?>
+			  <?php $image = $this->Session->read('Auth.User.image')===null?$this->Session->read('User.sex')==='M'?'default_img_male.png':'default_img_female.png':$this->Session->read('Auth.User.image'); ?>
 			<?php $image = '/files/'.$image; ?>
 			<div class="image_profile">
 			<?php echo $this->Html->image($image,array('title'=>$this->Session->read('Auth.User.name'), 'width'=>'45px', 'height'=>'46px')); ?>
