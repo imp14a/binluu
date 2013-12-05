@@ -21,6 +21,8 @@
         width: 80px;
     }
 </style>
+<?php echo $this->Html->link("< Regresar",array('controller'=>"User",'action'=>"login"),array('class'=>'backButton'));?>
+<h3 style="text-align:center; color:#666;">Usuarios en mapa</h3>
 <div style="text-align: center">
     <?php echo $this->element("users_map"); ?>
 </div>

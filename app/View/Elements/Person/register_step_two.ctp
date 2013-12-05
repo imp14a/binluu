@@ -78,6 +78,7 @@ var binluuSimpleQuestion = new BinluuSimpleQuestion('sexQuestion',{
 
 var binluuTagSelector = new BinluuTagSelector('tagSelector',{
     actionButton:'showTagsButton',
+    initElementsFrom:"tagContainer",        
     tagChanged: function(tag,remove){
         if(remove){
             $('tagContainer').select("#"+$(tag).readAttribute('id')).each(function(t){
@@ -87,14 +88,27 @@ var binluuTagSelector = new BinluuTagSelector('tagSelector',{
             $('tagContainer').insert({
                 bottom: new Element('span',{id:$(tag).readAttribute('id'),class:"usedTag"}).update($(tag).innerHTML)
                     .insert({
-                        bottom: new Element('input',{type:'hidden',value:$(tag).innerHTML})
+                        bottom: new Element('input',{type:'hidden',value:$(tag).innerHTML,ele:"tag"})
+                    })
+                    .insert({
+                        bottom: new Element('input',{type:'hidden',value:$(tag).id,'ele':"category_tag_id"})
                     })
             });
         }
         if($('tagContainer').select('input').length>0){
+            var indxT=0;
+            var indxC=0;
             $('tagContainer').select('input').each(function(input,indx){
-                $(input).writeAttribute('id','PersonProfileCategoryTag'+indx);
-                $(input).writeAttribute('name','data[PersonProfileTag]['+indx+'][tag]');
+                if(input.readAttribute('ele')=="tag"){
+                    $(input).writeAttribute('id','PersonProfileCategoryTag'+indxT);
+                    $(input).writeAttribute('name','data[PersonProfileTag]['+indxT+'][tag]');
+                    indxT++;
+                }
+                else{
+                    $(input).writeAttribute('id','PersonProfileCategoryTag'+indxC);
+                    $(input).writeAttribute('name','data[PersonProfileTag]['+indxC+'][category_tag_id]');
+                    indxC++;
+                }
             });
             $('emptyIntereses').hide();
         }else{

@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 class PersonController extends AppController {
 
-    public $uses = array('Person', 'User', 'IdealProperty', 'PersonProfile','InterestCategory');
+    public $uses = array('Person', 'User', 'IdealProperty', 'PersonProfile','InterestCategory','PersonProfileTag');
     public $components = array('BinluuEmail', 'BinluuImage', 'Paginator','ReCaptcha');
     public $paginate = array(
         'limit' => 25,
@@ -81,20 +81,22 @@ class PersonController extends AppController {
         $this->set('title_for_layout', 'Editar perfil');
         $this->layout = "person";
         if (!empty($this->data)) {
-            $options = array('user_id' => $id);
-            $p = $this->Person->find('first', $options);
+            $p = $this->Person->findByUserId($id);
             $data = $this->data;
             $data['User']['id'] = $id;
             $data['Person']['id'] = $p['Person']['id'];
             $data['PersonProfile']['id'] = $p['PersonProfile']['id'];
             $data['IdealProperty']['id'] = $p['IdealProperty']['id'];
+            if(isset($this->data['PersonProfileTag'])){
+                $this->PersonProfileTag->deleteAll(array('PersonProfileTag.person_profile_id' => $p['PersonProfile']['id']),false);
+                $this->PersonProfileTag->saveAll($this->data['PersonProfileTag']);
+            }
             if ($this->Person->saveAssociated($data)) {
                 $this->Session->setFlash('Información actualizada correctamente!.');
             } else {
                 $this->Session->setFlash('Ha ocurrido un error, intente de nuevo.');
             }
-        }        
-        
+        }
         $options = array('conditions'=>array('user_id' => $id));
         $person = $this->Person->find('first', $options);
         $this->set("person", $person);
@@ -109,6 +111,7 @@ class PersonController extends AppController {
     }
 
     public function listAll($status = null) {
+        $this->layout = "admin";
         $this->Paginator->settings = $this->paginate;
         if ($status != null) {
             $users = $this->Paginator->paginate('Person', array('User.active' => $status));

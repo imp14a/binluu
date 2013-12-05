@@ -187,7 +187,10 @@ function placeMarker(location) {
                         <div id="map-canvas"></div>
                         <div class="mapdetail"></div>
                         <p class="mapinfo">Indica en el mapa donde deseas vivir se creara un radio de 1.5km a partir del punto que escojas</p>
-                        <?php echo $this->Html->link('Desactivar Cuenta',array('controller'=>'User','action'=>'delete'),array('class'=>'deactivate'));?>
+                        <?php echo $this->Form->postLink("Desactivar Cuenta", 
+                                array('controller'=>'User', 'action' => 'delete', $person['User']['id']), 
+                                array('confirm' => '¿Deseas desactivar tu cuenta?','class'=>'deactivate'));
+                        ?>
                     </div>
                 </div>
                  <?php echo $this->Form->end(); ?>
@@ -229,12 +232,14 @@ function placeMarker(location) {
                     </div>
                     <div class="tagContainer" id="tagContainer">
                         <div class="showTagsButton" id="showTagsButton"></div>
-                        <?php foreach($userTags as $utag):?>
-                            <span class="usedTag">
+                        <?php $ix=0; foreach($userTags as $utag):?>
+                            <span class="usedTag" id="<?php echo $utag['category_tag_id']; ?>">
                                 <?php echo $utag['tag']; ?>
-                                <input type="hidden" value="<?php echo $utag['tag']; ?>" />
+                                <input type="hidden" value="<?php echo $person['PersonProfile']['id']?>" ele="usr" name="data[PersonProfileTag][<?php echo $ix; ?>][person_profile_id]" />
+                                <input type="hidden" value="<?php echo $utag['tag']; ?>" ele="tag" name="data[PersonProfileTag][<?php echo $ix; ?>][category_tag_id]" />
+                                <input type="hidden" value="<?php echo $utag['category_tag_id']; ?>" ele="category_tag_id" name="data[PersonProfileTag][<?php echo $ix;?>][id]" />
                             </span>
-                        <?php endforeach;?>
+                        <?php $ix++; endforeach;?>
                     </div>
                     <div class="sexQuestion" id="sexQuestion">
                         <?php echo $this->Form->hidden('PersonProfile.alow_both_sex',array("value"=>$person['PersonProfile']['alow_both_sex']));?>
@@ -242,7 +247,7 @@ function placeMarker(location) {
                         <div class="optionButton" value="0">No</div>
                     </div>
                     <div class="submit" style="margin-left: 15px;">
-                        <input type=="submit" class="submit" value="Actualizar Perfil" style="width: 30%;">
+                        <input type="submit" class="submit" value="Actualizar Perfil" style="width: 30%;">
                     </div>
                     <p class="inforegister" style="margin-top: 110px;">
                         Leer los <?php echo $this->Html->link("Términos y condiciones",array("controller"=>"Binluu","action"=>"terms"));?> y las <?php echo $this->Html->link("Políticas de uso de datos",array("controller"=>"Binluu","action"=>"politics"));?>
@@ -270,21 +275,7 @@ function placeMarker(location) {
         if($(this).value == "N") $(this).addClassName("optionEmpty");
         else $(this).removeClassName("optionEmpty");
     });
-
-    /*var slider = new BinluuSlider('slider',
-                    [   'PersonProfileMinBudget',
-                        'PersonProfileMaxBudget'
-                    ],
-                    {
-                        rangeValues : [0,1,2,3,4,5,6,7,8,9,10,11,12,13],
-                        minLabel : "$ 500.00",
-                        maxLabel : "+ $ 12,000.00",
-                        concurrency : { coinSimbol: "$",sufijo: ",000.00"},
-                        initMin:1,
-                        initMax:12,
-                        size:14
-                    }
-                );*/
+    
     valueSaved = $('PersonProfileAlowBothSex').getValue()!=""?$('PersonProfileAlowBothSex').getValue():0;
     var binluuSimpleQuestion = new BinluuSimpleQuestion('sexQuestion',{
         optionSelector:".optionButton",
@@ -296,27 +287,46 @@ function placeMarker(location) {
 
 var binluuTagSelector = new BinluuTagSelector('tagSelector',{
     actionButton:'showTagsButton',
+    initElementsFrom:"tagContainer",        
     tagChanged: function(tag,remove){
         if(remove){
             $('tagContainer').select("#"+$(tag).readAttribute('id')).each(function(t){
                 $(t).remove();
             });
         }else{
+            var usrId =$('PersonProfileId').value;
             $('tagContainer').insert({
                 bottom: new Element('span',{id:$(tag).readAttribute('id'),class:"usedTag"}).update($(tag).innerHTML)
                     .insert({
-                        bottom: new Element('input',{type:'hidden',value:$(tag).innerHTML})
+                        bottom: new Element('input',{type:'hidden',value:$(tag).innerHTML,ele:"tag"})
+                    })
+                    .insert({
+                        bottom: new Element('input',{type:'hidden',value:$(tag).id,'ele':"category_tag_id"})
+                    })
+                    .insert({
+                        bottom: new Element('input',{type:'hidden',value:usrId,'ele':"usr"})
                     })
             });
         }
         if($('tagContainer').select('input').length>0){
+            var indxT=0;
+            var indxC=0;
+            var indxU=0;
             $('tagContainer').select('input').each(function(input,indx){
-                $(input).writeAttribute('id','PersonProfileCategoryTag'+indx);
-                $(input).writeAttribute('name','data[PersonProfileTag]['+indx+'][tag]');
+                if($(input).readAttribute('ele')=="tag"){
+                    $(input).writeAttribute('name','data[PersonProfileTag]['+indxT+'][tag]');
+                    indxT++;
+                }
+                else if($(input).readAttribute('ele')=="usr"){
+                    $(input).writeAttribute('name','data[PersonProfileTag]['+indxU+'][person_profile_id]');
+                    indxU++;
+                }
+                else{
+                    $(input).writeAttribute('name','data[PersonProfileTag]['+indxC+'][category_tag_id]');
+                    indxC++;
+                }
             });
-            $('emptyIntereses').hide();
         }else{
-             $('emptyIntereses').show();
         }
         
     }
@@ -333,9 +343,7 @@ $$('.tab').each(function(tab){
         $$('.content').each(function(content){
             $(content).hide();
         });
-        console.log("entro aqui");
         var openId = $(this).readAttribute('for');
-        console.log(openId);
         $(openId).show();
     });
 });

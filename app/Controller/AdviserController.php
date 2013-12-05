@@ -1,6 +1,8 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::import('Model', 'IdealProperty');
+App::import('Model', 'AdviserProperty');
 
 class AdviserController extends AppController {
 
@@ -22,7 +24,8 @@ class AdviserController extends AppController {
     }
 
     public function register(){
-        $this->set('title_for_layout','Registro de usuarios');
+        $this->layout = "admin";
+        $this->set('title_for_layout','Registro de Asesores');
         if (!empty($this->data)) {
             $data = $this->data;
             $data['User']['rol'] = "Adviser";
@@ -70,6 +73,7 @@ class AdviserController extends AppController {
     }
 
     public function listAll($status = null){
+        $this->layout = "admin";
         $this->Paginator->settings = $this->paginate;
         if($status!=null){
             $users = $this->Paginator->paginate('Adviser', array('User.active' => $status));
@@ -89,7 +93,23 @@ class AdviserController extends AppController {
         if($this->action != 'listAll' && isset($user['rol']) && $user['rol'] === 'Adviser'){
             return true;
         }
+        if($this->action == 'usersMap' && isset($user['rol']) && ($user['rol'] === 'Adviser' || $user['rol'] === 'Admin')){
+            return true;
+        }
         return false;
     }
+    
+    public function usersMap($id_adviser=null){
+        $ip = new IdealProperty();
+        $ap = new AdviserProperty();
+        $this->layout = "admin";
+        if($id_adviser!=null){
+            
+        }else{
+            $this->set('ideal_properties',$ip->find('all'));
+            $this->set('adviser_properties',$ap->find('all'));
+        }
+    }
+    
 }
 ?>

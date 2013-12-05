@@ -1,0 +1,54 @@
+.user_logged
+{	
+	position: absolute;
+	height: 120px;
+	float: right;
+	width: 300px;
+	top: 65px;
+	right: 10%;
+}
+
+.welcome{
+	font-size: 13pt;
+}
+
+.name_profile{
+	position: relative;
+	left: 25px;
+	float: left;
+	text-align: right;
+	font-family: StoneSansStd-MediumItalic;
+	color: #333;
+}
+
+.edit_profile{
+	color: #333;
+	text-decoration: none;
+	font-family: StoneSansStd-Medium;
+	font-size: 10pt;
+}
+
+.logout_profile{
+	height: 15px;
+	position: relative;
+	top: -1px;
+	background: url(../img/adviser_logout.png) no-repeat;
+	background-position: right;
+	background-position-y: 0px; 
+	width: 100px;
+	color: #999;
+	text-decoration: none;
+	font-size: 11pt;
+	display: block;
+	float: right;
+	text-align: left;
+}
+
+.image_profile
+{
+	width: 45px;
+	height: 45px;
+	float: right;
+	position: relative;
+	top: -12px;
+}

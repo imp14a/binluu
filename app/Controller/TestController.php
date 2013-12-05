@@ -1,6 +1,8 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::import('Model', 'IdealProperty');
+App::import('Model', 'AdviserProperty');
 
 
 class TestController extends AppController {
@@ -32,7 +34,10 @@ class TestController extends AppController {
 	}
         
         public function userMap(){
-            
+            $ip = new IdealProperty();
+            $ap = new AdviserProperty();
+            $this->set('ideal_properties',$ip->find('all'));
+            $this->set('adviser_properties',$ap->find('all'));
         }
 }
 ?>

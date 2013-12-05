@@ -7,10 +7,9 @@ class EventController extends AppController {
 	public $components = array('BinluuEmail', 'Paginator', 'BinluuImage');
 
 	public $paginate = array(
-        'limit' => 3,
-        'recursive' => 4,
-        'order' => array('Event.name' => 'asc'),
-    );
+            'limit' => 30,
+            'recursive' => 4
+            );
 
 	public function create(){
 		$this->set('title_for_layout','Creación de eventos');
@@ -152,14 +151,20 @@ class EventController extends AppController {
 	}
 
 	public function isAuthorized($user) {
-    if($this->action === 'index' && isset($user['rol']) && ($user['rol'] === 'Adviser' || $user['rol'] === 'Person')){
-        return true;
-    }
-    if(isset($user['rol']) && $user['rol'] === 'Adviser'){
-    	return true;
-    }
-    return false;
-  }
+            if($this->action === 'index' && isset($user['rol']) && ($user['rol'] === 'Adviser' || $user['rol'] === 'Person')){
+                return true;
+            }
+            if(isset($user['rol']) && ($user['rol'] === 'Adviser' || $user['rol'] === 'Admin')){
+                return true;
+            }
+            return false;
+       }
+       
+       public function eventsCompleted(){
+           $this->layout = "admin";
+           $events = $this->Paginator->paginate('Event', array('status'=>'concretized'));
+           $this->set('events',$events);
+       }
 }
 
 ?>

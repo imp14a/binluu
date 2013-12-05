@@ -10,6 +10,7 @@ class AdminController extends AppController {
     public $components = array('BinluuEmail');
 
     public function index(){
+        $this->layout = "admin";
         if($this->Session->read('Auth.User.rol')!='Admin'){
             $this->Session->setFlash('No tienes permisos para acceder a esta opcion');
             $this->redirect(array('controller'=>'User','action'=>'home'));

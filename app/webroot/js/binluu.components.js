@@ -76,7 +76,6 @@ BinluuProcess.prototype = {
                 that.step=1;
             }
         });
-        console.log(options);
         $(container).select('.next').each(function(element){
             $(element).observe('click',function(){
                 var toClose = $(that.container).select("#"+that.step).detect(function(n){return n;});
@@ -102,6 +101,17 @@ BinluuTagSelector.prototype = {
         this.options = options;
         $(container).hide();
         var that = this;
+        // init elements
+        if(typeof this.options.initElementsFrom !='undefined'){
+            $(this.options.initElementsFrom).select('.usedTag').each(function(ut){
+                $(that.container).select('.tag').each(function(t){
+                    if(ut.id== t.id){
+                        $(t).addClassName("selected");
+                    }
+                });
+            });
+        }
+        
         $(options.actionButton).observe('click',function(){
             if($(that.container).hasClassName('active')){
                 $(that.container).removeClassName('active');
