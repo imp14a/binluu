@@ -48,7 +48,7 @@ $cakeDescription = __d('cake_dev', 'Binluu');
 			<span id="slogan">Descubre el departamento ideal para compartir.</span>
 			<div class="user_logged">
 				<div class="name_profile">
-					<?php echo $this->Html->para('welcome', '!Hola, '.$this->Session->read('Auth.User.name').'!'); ?>
+					<?php echo $this->Html->para('welcome', '¡Hola, '.$this->Session->read('Auth.User.name').'!'); ?>
 					<?php echo $this->Html->link('Editar perfil', array('controller'=>'Person', 'action'=>'edit'), array('class'=>'edit_profile')); ?>
 				</div>
 			<?php $image = $this->Session->read('Auth.User.image')===null?$this->Session->read('Auth.User.sex')==='M'?'default_img_male.png':'default_img_female.png':$this->Session->read('Auth.User.image'); ?>

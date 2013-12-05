@@ -10,8 +10,10 @@ document.observe('dom:loaded', function() {
 	<?php $no_images++; endforeach; ?>
 });
 </script>
-<?php if(count($events)===0){ ?>
-<div class="no_requests"></div>
+<?php if(count($events)===2){ ?>
+<div class="no_requests">
+	
+</div>
 <?php } else { ?>
 <div class="events_container" style="<?php echo count($events)>1?count($events)===2?'height:580px;':'height:835px':'height:320px'; ?>">
 	<p class="title">Eventos a los que has sido invitado :)</p>

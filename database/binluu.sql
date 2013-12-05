@@ -219,7 +219,7 @@ CREATE TABLE `ideal_properties` (
   `longitude` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `address` varchar(460) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -228,6 +228,7 @@ CREATE TABLE `ideal_properties` (
 
 LOCK TABLES `ideal_properties` WRITE;
 /*!40000 ALTER TABLE `ideal_properties` DISABLE KEYS */;
+INSERT INTO `ideal_properties` (`id`, `person_id`, `latitude`, `longitude`, `address`) VALUES (1,3,'19.423372920825656','-99.17555809020996',NULL),(2,4,'19.446157569060766','-99.13719177246094',NULL);
 /*!40000 ALTER TABLE `ideal_properties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,7 +297,7 @@ CREATE TABLE `people` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -305,7 +306,7 @@ CREATE TABLE `people` (
 
 LOCK TABLES `people` WRITE;
 /*!40000 ALTER TABLE `people` DISABLE KEYS */;
-INSERT INTO `people` (`id`, `user_id`) VALUES (1,3),(2,4);
+INSERT INTO `people` (`id`, `user_id`) VALUES (1,3),(2,4),(3,5),(4,6);
 /*!40000 ALTER TABLE `people` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -329,7 +330,7 @@ CREATE TABLE `person_profile_tags` (
 
 LOCK TABLES `person_profile_tags` WRITE;
 /*!40000 ALTER TABLE `person_profile_tags` DISABLE KEYS */;
-INSERT INTO `person_profile_tags` (`person_profile_id`, `category_tag_id`, `tag`) VALUES (1,3,'Deportes'),(1,4,'Música'),(2,1,'Deportes'),(2,2,'Danza');
+INSERT INTO `person_profile_tags` (`person_profile_id`, `category_tag_id`, `tag`) VALUES (1,3,'Deportes'),(1,4,'Música'),(2,1,'Deportes'),(2,2,'Danza'),(3,NULL,'Películas de acción'),(3,NULL,'Deportes'),(3,NULL,'Música'),(3,NULL,'Futbol soccer'),(3,NULL,'Películas de acción'),(3,NULL,'Deportes'),(3,NULL,'Música'),(3,NULL,'Futbol soccer'),(4,NULL,'Música'),(4,NULL,'Bebidas alcohólicas'),(4,NULL,'Futbol soccer'),(4,NULL,'Películas de acción'),(4,NULL,'Música'),(4,NULL,'Bebidas alcohólicas'),(4,NULL,'Futbol soccer'),(4,NULL,'Películas de acción');
 /*!40000 ALTER TABLE `person_profile_tags` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,11 +348,10 @@ CREATE TABLE `person_profiles` (
   `ocupation` varchar(400) CHARACTER SET utf8 DEFAULT NULL,
   `sex` enum('M','F') CHARACTER SET utf8 DEFAULT NULL,
   `transport` varchar(180) DEFAULT NULL,
-  `min_budget` float DEFAULT NULL,
-  `max_budget` float DEFAULT NULL,
+  `budget` float DEFAULT NULL,
   `alow_both_sex` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -360,7 +360,7 @@ CREATE TABLE `person_profiles` (
 
 LOCK TABLES `person_profiles` WRITE;
 /*!40000 ALTER TABLE `person_profiles` DISABLE KEYS */;
-INSERT INTO `person_profiles` (`id`, `person_id`, `age`, `ocupation`, `sex`, `transport`, `min_budget`, `max_budget`, `alow_both_sex`) VALUES (1,1,24,'Ingeniero','M','Metro',1000,4000,1),(2,2,24,'Ingeniero','M','Bicicleta',1000,4000,1);
+INSERT INTO `person_profiles` (`id`, `person_id`, `age`, `ocupation`, `sex`, `transport`, `budget`, `alow_both_sex`) VALUES (1,1,24,'Ingeniero','M','Metro',4000,1),(2,2,24,'Ingeniero','M','Bicicleta',4000,1),(3,3,23,'Profesionista','M','Transporte público',NULL,1),(4,4,24,'Profesionista','M','Transporte público',NULL,1);
 /*!40000 ALTER TABLE `person_profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -405,7 +405,7 @@ CREATE TABLE `requests` (
   `status` enum('A','C','N') CHARACTER SET utf8 DEFAULT 'N',
   `notified_by_mail` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -414,7 +414,7 @@ CREATE TABLE `requests` (
 
 LOCK TABLES `requests` WRITE;
 /*!40000 ALTER TABLE `requests` DISABLE KEYS */;
-INSERT INTO `requests` (`id`, `person_id`, `event_id`, `date`, `status`, `notified_by_mail`) VALUES (7,1,1,'2013-11-16','C',1),(22,2,1,'2013-12-02','N',1);
+INSERT INTO `requests` (`id`, `person_id`, `event_id`, `date`, `status`, `notified_by_mail`) VALUES (7,1,1,'2013-11-16','C',1),(22,2,1,'2013-12-02','N',1),(23,2,2,'2013-12-04','N',1),(24,1,2,'2013-12-04','N',1);
 /*!40000 ALTER TABLE `requests` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -437,7 +437,7 @@ CREATE TABLE `users` (
   `active` tinyint(1) DEFAULT NULL,
   `image` varchar(280) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -446,7 +446,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `username`, `password`, `name`, `last_name`, `mail_confirmed`, `rol`, `last_login`, `active`, `image`) VALUES (1,'rgarcia@mail.com','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','ricardo','garcía',1,'Admin','2013-11-20 22:29:12',1,NULL),(2,'ricardo_soulost@hotmail.com','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','Inmobiliaria','Zumo',1,'Adviser','2013-12-02 20:32:36',1,NULL),(3,'ricardo_soulost@hotmail.com','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','usuario 1',NULL,1,'Person','2013-11-16 16:46:40',1,'Foto2.jpg'),(4,'rgarcia.cejudo@gmail.com','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','usuario 2',NULL,1,'Person','2013-11-24 15:19:53',1,NULL);
+INSERT INTO `users` (`id`, `username`, `password`, `name`, `last_name`, `mail_confirmed`, `rol`, `last_login`, `active`, `image`) VALUES (1,'rgarcia@mail.com','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','ricardo','garcía',1,'Admin','2013-11-20 22:29:12',1,NULL),(2,'ricardo_soulost@hotmail.com','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','Inmobiliaria','Zumo',1,'Adviser','2013-12-04 23:17:33',1,NULL),(3,'ricardo_soulost@hotmail.com','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','Usuario','De Prueba',1,'Person','2013-11-16 16:46:40',1,'Foto2.jpg'),(4,'rgarcia.cejudo@gmail.com','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','Usuario','last',1,'Person','2013-12-04 23:17:45',1,NULL),(6,'ricardo@wowinteractive.com.mx','5dc21f42ee6e71cb135bbdbd5b12e3601986ce71','Wow','Interactive',NULL,'Person',NULL,1,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -459,4 +459,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-12-02 22:43:10
+-- Dump completed on 2013-12-04 23:28:21

@@ -83,7 +83,6 @@ class BinluuEmailComponent extends Component {
             } 
         } catch (Exception $e) {
             debug($e);
-            die();
             return false;
         }
     }
