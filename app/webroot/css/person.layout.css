@@ -3,7 +3,7 @@
 	position: absolute;
 	height: 120px;
 	float: right;
-	width: 175px;
+	width: 190px;
 	top: 65px;
 	right: 10%;
 }
@@ -13,6 +13,7 @@
 }
 
 .name_profile{
+	margin-top: -5px;
 	float: left;
 	text-align: right;
 	font-family: StoneSansStd-MediumItalic;
