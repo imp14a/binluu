@@ -8,16 +8,33 @@
 body{
     min-width: 1084px;
 }
+
 .loginContent{
-    margin-top: 30px;
+        
+        width: 1024px;
+        height: 460px;
+        display: inline-block;
+        margin-top:30px;
 }
-.loginimage{
-    height: 500px;
-    width: 72%;
-    display: inline-block;
-    float: left;
-    background-image: url(../img/home.jpg);
-    background-size: cover;
+.loginContent .loginimage{
+        display: inline-block;
+        background-image: url(../img/home.jpg);
+        background-size: cover;
+        float: left;
+        width: 72%;
+        height: 100%;
+}
+.loginContent .loginContainer{
+        position: relative;
+        display: inline-block;
+        width: 25%;
+        color: #fff;
+        min-width: 230px;
+        float: right;
+        height: 500px;
+        float: right;
+        width: 25%;
+        height: 100%;
 }
 .logintitle{
     margin-top: 15px;
@@ -26,16 +43,6 @@ body{
     display: block;
     width: 100%;
     text-align: center;
-}
-.loginContainer{
-    position: relative;
-    display: inline-block;
-    width: 25%;
-    color: #fff;
-    min-width: 230px;
-    float: right;
-    height: 500px;
-    
 }
 .loginContainer .detail{
     background-image: url(../img/login-detail.png);
@@ -147,7 +154,6 @@ body{
 }
 .aboutContent{
     display: inline-block;
-    margin-top: 40px;
     display: block;
     width: 100%;
     text-align: center;
