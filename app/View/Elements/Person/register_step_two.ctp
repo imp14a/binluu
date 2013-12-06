@@ -11,7 +11,7 @@
     <div class="stepProces">
         <div class="step">
         <?php echo $this->Form->create("Register",
-            array('url' => array('controller' => 'Person', 'action' => 'register',2))); ?>
+            array('url' => array('controller' => 'Person', 'action' => 'register',2,$person_profile_id))); ?>
             <?php echo $this->Form->hidden('PersonProfile.id',array('value'=>$person_profile_id));?>
             <div class="information container" style="height: 440px;">
                 <div class="background"></div>

@@ -36,7 +36,6 @@ class PersonController extends AppController {
         $this->set('step',$step);
         if($person_profile_id!=null){
             $this->set('person_profile_id',$person_profile_id);
-            //TODO poner el user_profile_id
         }
         if (!empty($this->data)) {
             if($step==1){
@@ -63,11 +62,10 @@ class PersonController extends AppController {
                 foreach($data['PersonProfileTag'] as $key=>$val){
                     $data['PersonProfileTag'][$key]['person_profile_id'] = $data['PersonProfile']['id'];
                 }
-                $this->PersonProfile->saveAll($this->data);
+                $this->PersonProfileTag->saveAll($data['PersonProfileTag']);
+                $this->PersonProfile->save($data['PersonProfile']);
                 $profile = $this->PersonProfile->findById($this->data['PersonProfile']['id']);
                 $person = $this->Person->findById($profile['PersonProfile']['person_id']);
-                //debug($person);
-                //$this->Session->setFlash('Registrado!, te hemos enviado un correo de confirmación para que puedas acceder.');
                 $this->BinluuEmail->sendMail($person['User']['id'], $person['User']['username'], CONFIRM_EMAIL_TYPE);
                 $this->set("after_register");
                 $this->redirect(array('controller' => 'User', 'action' => 'login',"after_register"));
