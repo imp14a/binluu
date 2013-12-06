@@ -2,6 +2,7 @@
 <?php echo $this->Html->css('binluu.register'); ?>
 <?php echo $this->Html->css('adviser.events'); ?>
 <?php echo $this->Html->script('binluu.components'); ?>
+<?php $this->layout = 'adviser'; ?>
 <div class="event_creation">
   <div class="back_img">
     <p class="desc_title">Encuentre perfiles acordes a su oferta</p>
@@ -93,7 +94,7 @@
       });
       $('wrapper').addClassName('loading');
       var obj;
-      new Ajax.Request('http://binluu.com.mx/Person/getPersonsByProfile.json', {
+      new Ajax.Request('http://www.binluu.com.mx/Person/getPersonsByProfile.json', {
           method: 'get',
           parameters: {
             age:        $('EventProfileAge').value,
@@ -150,7 +151,7 @@
 
     function isPersonInvited(event_id, person_id){
       var result;
-      var request = new Ajax.Request('http://binluu.com.mx/Request/isPersonInvited.json', {
+      var request = new Ajax.Request('http://www.binluu.com.mx/Request/isPersonInvited.json', {
           method: 'get',
           asynchronous: false,
           parameters: {

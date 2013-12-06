@@ -162,6 +162,7 @@ class PersonController extends AppController {
             $maxBudget = preg_replace('/[^\d\.]/', '', $maxBudget);
             array_push($conditions, array('PersonProfile.budget <='=>$maxBudget));
         }
+        $this->Person->recursive = 2;
         if(count($conditions) > 0){
             $persons = $this->Person->find('all', array(
                     'conditions'=> $conditions

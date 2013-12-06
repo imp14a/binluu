@@ -269,7 +269,7 @@ p.title{
 }
 
 .cancel{
-	margin-left: 12%;
+	margin-top: 75px;
 	text-align: center;
 	line-height: 1.9;
 	text-decoration: none;
@@ -278,6 +278,12 @@ p.title{
 	border: 1px solid #FFF;
 	color: #FFF;
 	font-family: StoneSansStd-SemiBoldItalic;
+}
+
+.end{
+	display: inline-block;
+	position: relative;
+	top: 2px;
 }
 
 input[type=submit]{	
@@ -306,8 +312,7 @@ input[type=submit]{
 .action{
 	position: relative;
 	top: 54px;
-	float: right;
-	width: 34%;
+	width: 100%;
 }
 
 .img_box{
