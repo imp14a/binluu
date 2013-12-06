@@ -48,6 +48,11 @@ body{
 	color: darkgray;
 }
 
+#content{
+    text-align: center;
+    min-height: 500px;
+}
+
 #footer{
 	font-size: 15pt;
 	height: 100px;

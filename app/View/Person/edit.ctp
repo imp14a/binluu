@@ -164,7 +164,7 @@ function placeMarker(location) {
                             <?php echo $this->Form->hidden("IdealProperty.longitude",array("value"=>$person['IdealProperty']['longitude'])); ?>
                             <div class="input select" style="width:100%; text-align: left; display: block; width: 100%; padding-left: 25px;">
                                  <?php $options = array("N"=>"Presupuesto","500.00"=>'$ 500.00',"1000.00"=>"$ 1,000.00","2000.00"=>"$ 2,000.00","3000.00"=>"$ 3,000.00","4000.00"=>"$ 4,000.00","5000.00"=>"$ 5,000.00","6000.00"=>"$ 6,000.00","8000.00"=>"$ 8,000.00","10000.00"=>"$ 10,000.00","12000.00"=>"$ 12,000.00","15000.00"=>"$ +12,000.00"); 
-                                 echo $this->Form->select('PersonProfile.budget',$options, array('disabled' => array('N'),$person['PersonProfile']['budget'],"class"=>"half","empty"=>false)); ?>
+                                 echo $this->Form->select('PersonProfile.budget',$options, array('disabled' => array('N'),'value'=>$person['PersonProfile']['budget'],$person['PersonProfile']['budget'],"class"=>"half","empty"=>false)); ?>
                             </div>
                         <?php echo $this->Form->end("Actualizar Información")?>
                         <?php echo $this->Form->create(null,array('url' => array('controller'=>'User','action'=>'password','Person', $person['User']['id']))); ?>
