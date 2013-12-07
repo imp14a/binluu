@@ -94,7 +94,7 @@
       });
       $('wrapper').addClassName('loading');
       var obj;
-      new Ajax.Request('http://binluu.com.mx/index.php/Person/getPersonsByProfile.json', {
+      new Ajax.Request('http://www.binluu.com.mx/Person/getPersonsByProfile.json', {
           method: 'get',
           parameters: {
             age:        $('EventProfileAge').value,
@@ -172,7 +172,7 @@
 
     function isPersonInvited(event_id, person_id){
       var result;
-      var request = new Ajax.Request('binluu.com.mx/index.php/Request/isPersonInvited.json', {
+      var request = new Ajax.Request('http://www.binluu.com.mx/Request/isPersonInvited.json', {
           method: 'get',
           asynchronous: false,
           parameters: {
@@ -195,7 +195,7 @@
 
     function sendMail(event_id, person_id){
       var result;
-      var request = new Ajax.Request('binluu.com.mx/index.php/Request/invitePerson.json', {
+      var request = new Ajax.Request('http://www.binluu.com.mx/Request/invitePerson.json', {
           method: 'get',
           asynchronous: false,
           parameters: {
