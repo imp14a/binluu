@@ -248,6 +248,7 @@ p.title{
 }
 
 .black{
+	text-align: left;
 	position: relative;
 	top: 35px;
 	left: 213px;

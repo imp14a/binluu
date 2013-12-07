@@ -63,12 +63,12 @@ document.observe('dom:loaded', function() {
 		<?php echo $this->Paginator->next(' > ', array(), null, array('class' => 'next disabled'));?>
 	</div>
 	<br>
-	<div class="event_list" style="<?php echo count($events)>1?count($events)===2?'height:600px;':'height:901px':'height:306px'; ?>">
+	<div class="event_list" style="<?php echo count($events)>1?count($events)===2?'height:498px;':'height:746px':'height:251px'; ?>">
 		<?php $no_event = 0; ?>
 		<?php foreach ($events as $event): ?>		
 		<?php //var_dump($event['AdviserProperty']); ?>
 		<?php $images = $event['AdviserProperty']['PropertyImage']; ?>
-	<div class="wrapper" style="<?php echo $no_event>0?$no_event===1?'top:-65px;':'top:-128px;':''; ?>">
+	<div class="wrapper" style="<?php echo $no_event>0?$no_event===1?'top:-112px;':'top:-225px;':''; ?>">
 		<div class="event_item">
 			<div class="images">
 				<?php $no_images = 0; ?>
@@ -112,15 +112,17 @@ document.observe('dom:loaded', function() {
 		  	<div class="invited_users">
 					<?php $guests = $event['Request']['Guests']; ?>
 					<?php foreach ($guests as $guest): ?>
+					<?php if(count($guest['Person']['User']) > 0){ ?>
 					<?php $image = $guest['Person']['User']['image']===null?$guest['Person']['PersonProfile']['sex']==='M'?'default_img_male.png':'default_img_female.png':$guest['Person']['User']['image']; ?>
 					<?php echo $this->Html->link(
 							$this->Html->image('/files/'.$image, array('alt'=>$guest['Person']['User']['name'], 'title'=>$guest['Person']['User']['name'], 'width'=>'30px', 'height'=>'30px')),
 							array('controller'=>'Person', 'action'=>'view', $guest['Person']['id']),
 							array('escape'=>false, 'class'=>'guest')); ?>					
+					<?php }?>
 					<?php endforeach; ?>
 				</div>
 				<div class="response">
-					<?php echo $this->Html->link('Editar evento', array('action'=>'edit', $event['Event']['id']), array('class'=>'block')); ?>
+					<?php //echo $this->Html->link('Editar evento', array('action'=>'edit', $event['Event']['id']), array('class'=>'block')); ?>
 					<?php echo $this->Form->postLink('Cancelar evento', array('action'=>'cancel', $event['Event']['id']), array('class'=>'block'), '¿Está seguro que quiere borrar este evento?'); ?>
 				</div>
 		  </div>

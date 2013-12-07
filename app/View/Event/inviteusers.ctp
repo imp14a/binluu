@@ -73,9 +73,9 @@
                 );
 
     $('down').observe('click', function(){
-      if(parseInt($('user_list').getStyle('margin-top')) > (Math.ceil($$('li').length/4)-1)*-328){
+      if(parseInt($('user_list').getStyle('margin-top')) > (Math.ceil($$('li').length/2)-1)*-303){
         $('user_list').setStyle({
-          'margin-top': (parseInt($('user_list').getStyle('margin-top')) - 328) + 'px'
+          'margin-top': (parseInt($('user_list').getStyle('margin-top')) - 303) + 'px'
         });
       }
     });
@@ -83,7 +83,7 @@
     $('up').observe('click', function(){
       if(parseInt($('user_list').getStyle('margin-top')) < 0){
         $('user_list').setStyle({
-          'margin-top': (parseInt($('user_list').getStyle('margin-top')) + 328) + 'px'
+          'margin-top': (parseInt($('user_list').getStyle('margin-top')) + 303) + 'px'
         });
       }
     });
@@ -94,7 +94,7 @@
       });
       $('wrapper').addClassName('loading');
       var obj;
-      new Ajax.Request('http://www.binluu.com.mx/Person/getPersonsByProfile.json', {
+      new Ajax.Request('http://binluu.com.mx/index.php/Person/getPersonsByProfile.json', {
           method: 'get',
           parameters: {
             age:        $('EventProfileAge').value,
@@ -112,6 +112,11 @@
             obj.each(function(person){
               var text = isPersonInvited(<?php echo $event_id; ?>, person.Person.id);
               var resultInvited = 'Invitar ' + (typeof text != 'undefined' ? text : '');
+              var tags = '';
+              person.PersonProfile.PersonProfileTag.each(function(tag){
+                tags += tag.tag + ', ';
+              });
+              tags = tags.substring(0, tags.length-2);              
               var linkInvite = new Element('a', {
                 class: resultInvited
               }).update(text).observe('click', function(){
@@ -130,7 +135,23 @@
                 height:'55px'
               })).insert(new Element('label', {
                 class: 'name'
-              }).update(person.User.name)).insert(new Element('label').update(person.PersonProfile.age + ' años')).insert(new Element('label').update(person.PersonProfile.ocupation)).insert(linkInvite)));
+              }).update(person.User.name))
+              .insert(new Element('label').update(person.PersonProfile.age + ' años'))
+              .insert(new Element('label').update(person.PersonProfile.ocupation))
+              .insert(linkInvite).insert(new Element('div',{class: 'interest_tags'})
+              .insert(new Element('label', {class: 'name'}).update('Intereses:'))
+              .insert(new Element('label').update(tags)).insert(new Element('label', {class: 'name'}).update('Medio de transporte:')
+                .setStyle({
+                  float: 'left',
+                  'margin-top': '-2px'
+                }))
+              .insert(new Element('label').update(person.PersonProfile.transport)
+                .setStyle({
+                  'display': 'inline-block',
+                  'margin-left': '10px',
+                  'position': 'relative',
+                  'top': '-2px'
+              })))));
             });
             $('img_loading').setStyle({
               'display': 'none'
@@ -151,7 +172,7 @@
 
     function isPersonInvited(event_id, person_id){
       var result;
-      var request = new Ajax.Request('http://www.binluu.com.mx/Request/isPersonInvited.json', {
+      var request = new Ajax.Request('binluu.com.mx/index.php/Request/isPersonInvited.json', {
           method: 'get',
           asynchronous: false,
           parameters: {
@@ -160,7 +181,6 @@
           },
           onSuccess: function(transport) {
             var obj = transport.responseJSON;
-            console.log(transport);
             if(typeof obj !='undefined')
               result = obj.notified_by_mail ? 'Invitado' : 'Invitar';
             else
@@ -175,7 +195,7 @@
 
     function sendMail(event_id, person_id){
       var result;
-      var request = new Ajax.Request('http://binluu.com.mx/index.php/Request/invitePerson.json', {
+      var request = new Ajax.Request('binluu.com.mx/index.php/Request/invitePerson.json', {
           method: 'get',
           asynchronous: false,
           parameters: {

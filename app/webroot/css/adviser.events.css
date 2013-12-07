@@ -1,3 +1,7 @@
+.interest_tags{
+	padding-left: 10px;
+}
+
 .event_map{
 	width: 275px !important;
 	height: 178px !important;
@@ -20,7 +24,7 @@ a img {border: none; }
 }
 .response{
 	position: absolute;
-	bottom:  0px;
+	bottom:  -6px;
 }
 
 .invited_users{
@@ -138,6 +142,7 @@ p.title{
 }
 
 .black{
+	text-align: left;
 	position: relative;
 	top: 35px;
 	left: 213px;
@@ -154,7 +159,7 @@ p.title{
 	margin-left: 84%;
 	padding-top: 33px;
 	width: 16%;
-	height: 192px;
+	height: 144px;
 	background: #3D9FCD;
 }
 
@@ -175,7 +180,7 @@ p.title{
 .event_item{
 	background: #3D9FCD;
 	min-width: 820px;
-	height: 225px;
+	height: 177px;
 	position: relative;
 }
 .event_list{
@@ -203,6 +208,7 @@ p.title{
 }
 
 .new{
+	text-align: left;
 	background: url(../img/Boton-nuevo-evento.png) no-repeat;
 	height: 30px;
 	display: inline-block;
@@ -232,7 +238,7 @@ p.title{
 	background: -o-linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* For Opera 11.1 to 12.0 */
 	background: -moz-linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* For Firefox 3.6 to 15 */
 	background: linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* Standard syntax (must be last) */
-	height: 600px;
+	height: 487px;
 	color: #FFF;	
 }
 
@@ -283,7 +289,6 @@ p.title{
 .end{
 	display: inline-block;
 	position: relative;
-	top: 2px;
 }
 
 input[type=submit]{	
@@ -337,6 +342,7 @@ input[type=file]
 
 .back_img
 {
+	text-align: left;
 	background: url(../img/adviser-detail.png) no-repeat;
 	width: 100%;
 	height: 100%;
@@ -345,10 +351,11 @@ input[type=file]
 
 .users
 {
+	text-align: left;
 	float: right;
 	background: #FFF;
 	width: 40%;
-	height: 399px;
+	height: 373px;
 	margin-right: 40px;
 	padding: 10px;
 }
@@ -385,7 +392,7 @@ input[type=file]
 
 .user_item
 {
-	height: 70px;
+	height: 140px;
 	border: 1px solid #CCC;
 	width: 99%;
 }
@@ -410,7 +417,7 @@ input[type=file]
 
 .wrapper_list{
 	overflow: hidden;
-	height: 338px;
+	height: 313px;
 }
 
 .loading{
