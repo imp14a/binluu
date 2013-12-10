@@ -14,6 +14,10 @@ class BinluuController extends AppController {
     public function faq(){
         $this->set("title_for_layout","Preguntas frecuentes");
     }
+    
+    public function about(){
+        
+    }
 
 }
 ?>

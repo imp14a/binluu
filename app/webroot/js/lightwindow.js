@@ -205,7 +205,7 @@ lightwindow.prototype = {
 							'</div>'+
 						'</div>',	
 				loading : 	'<div id="lightwindow_loading" >'+
-								'<img src="/app/webroot/img/ajax-loader.gif" alt="loading" />'+
+								'<img src="/img/ajax-loader.gif" alt="loading" />'+
 							'</div>',
 				iframe : 	'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'+
 							'<html xmlns="http://www.w3.org/1999/xhtml">'+
@@ -290,9 +290,11 @@ lightwindow.prototype = {
 		
 		// hide the window.
 		this._displayLightWindow('none', 'visible');
+                
+                //MODIFY detenemos el video
 		
 		// Clear out the window Contents
-		this._clearWindowContents(false);
+		this._clearWindowContents(true);
 		
 		// Stop all animation
 		var queue = Effect.Queues.get('lightwindowAnimation').each(function(e){e.cancel();});

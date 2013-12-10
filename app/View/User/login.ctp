@@ -1,4 +1,4 @@
-<?php   echo $this->Html->css('binluu.login');
+<?php   echo $this->Html->css('binluu.login'); 
         echo $this->Html->css('lightwindow');
         echo $this->Html->script('lightwindow');
 ?>
@@ -36,10 +36,9 @@
         </div>    
 </div>
 <div class="aboutContent">
-    <a href="https://www.youtube.com/watch?v=z6dPtqPI93A" class="lightwindow" 
-       params="lightwindow_width=425,lightwindow_height=340,lightwindow_loading_animation=false">
-        <div class="about">&iquest;C&oacute;mo funciona&quest;</div>
-    </a>
+    <?php echo $this->Html->link($this->Html->div('about','¿Cómo funciona?') ,
+            array('controller' => 'Binluu', 'action' => 'about'),
+            array('escape'=>false,'id'=>'aboutBinluu',"class"=>"lightwindow",'params'=>'lightwindow_width=640,lightwindow_height=367,lightwindow_type=page')); ?>
 </div>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -49,5 +48,8 @@
 
 ga('create', 'UA-46238782-1', 'binluu.com.mx');
 ga('send', 'pageview');
-
+Event.observe(window, 'load', function(){
+    $('aboutBinluu').click();
+});
+$('lightwindow_overlay').observe();
 </script>
