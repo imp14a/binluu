@@ -12,7 +12,7 @@
 
 .input input[type=text],input[type=password],input[type=number],input[type=email],input[type=tel]{
     text-align: left;
-    margin-top: 20px;
+    margin-top: 15px;
     border: none;
     width: 80%;
     height: 24px;

@@ -9,14 +9,14 @@
 <div style="text-align: center;">
     <?php echo $this->Html->link("< Regresar",array('controller'=>"User",'action'=>"login"),array('class'=>'backButton'));?>
     <div class="stepProces">
-        <div class="step">
+        <div class="step" style="height: 520px;">
         <?php echo $this->Form->create("Register",
             array('url' => array('controller' => 'Person', 'action' => 'register',2,$person_profile_id))); ?>
             <?php echo $this->Form->hidden('PersonProfile.id',array('value'=>$person_profile_id));?>
-            <div class="information container" style="height: 440px;">
+            <div class="information container" style="height: 400px;">
                 <div class="background"></div>
                 <div class="detail"></div>
-                <span class="title" style="margin-top:60px;font-size:15pt;">Para poder mostrarte recomendaciones personalizadas, &iexcl;Cuent&aacute;nos m&aacute;s de t&iacute; &excl; </span>
+                <span class="title" style="margin-top:25px;font-size:15pt;">Para poder mostrarte recomendaciones personalizadas, &iexcl;Cuent&aacute;nos m&aacute;s de t&iacute; &excl; </span>
                 <div class="input select">
                     <select id="PersonProfileOcupation" name="data[PersonProfile][ocupation]" class="optionEmpty">
                         <option disabled selected value="N">Ocupaci&oacute;n</option>
