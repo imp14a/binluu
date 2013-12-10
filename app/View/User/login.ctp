@@ -1,4 +1,7 @@
-<?php echo $this->Html->css('binluu.login'); ?>
+<?php   echo $this->Html->css('binluu.login');
+        echo $this->Html->css('lightwindow');
+        echo $this->Html->script('lightwindow');
+?>
 <div class="loginContent">
         <?php echo $this->Session->flash('auth'); ?>
         <?php if(isset($after_register)):?>
@@ -33,7 +36,10 @@
         </div>    
 </div>
 <div class="aboutContent">
-    <?php echo $this->Html->link($this->Html->div('about','¿Cómo funciona?') ,array('controller' => 'User', 'action' => 'about'), array('escape'=>false)); ?>
+    <a href="https://www.youtube.com/watch?v=z6dPtqPI93A" class="lightwindow" 
+       params="lightwindow_width=425,lightwindow_height=340,lightwindow_loading_animation=false">
+        <div class="about">&iquest;C&oacute;mo funciona&quest;</div>
+    </a>
 </div>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
