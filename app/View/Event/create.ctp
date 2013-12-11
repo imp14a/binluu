@@ -101,7 +101,7 @@ function codeAddress(address) {
 		    <?php echo $this->Form->input('Event.date', array('label'=>false, 'placeholder'=>'Fecha', 'style'=>'width:100px')); ?>
 	    </div>
 	    <div class="right">
-		    <?php echo $this->Form->textarea('Event.property_description', array('label'=>false,'rows'=>'9', 'placeholder'=>'Descripción del inmueble', 'style'=>'width:100%; height: 150px;')); ?>
+		    <?php echo $this->Form->textarea('Event.property_description', array('label'=>false,'rows'=>'3', 'placeholder'=>'Descripción del inmueble', 'style'=>'width:100%; height: 64px;margin-top: 2px;')); ?>
 	    </div>
 	    <div class="details">
 		    <div id="map">

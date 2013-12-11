@@ -58,11 +58,19 @@ a img {border: none; }
 }
 
 .datetime{
-	float: left;
+	/*float: left;
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-top: 5px;
-	margin-bottom: 5px;
+	margin-bottom: 5px;*/
+}
+
+.input input[type=text]{
+	margin-top: 5px !important;
+}
+
+.input select{
+	margin-top: 5px !important;
 }
 
 .img_date{
@@ -175,6 +183,7 @@ p.title{
 	width: 30%;
 	float: right;
 	height: 180px;
+	margin-top: 8px;
 }
 
 .event_item{
@@ -243,7 +252,7 @@ p.title{
 }
 
 .desc_title{
-	padding-top: 30px;
+	padding-top: 10px;
 	padding-left: 30px;
 }
 
@@ -311,7 +320,7 @@ input[type=submit]{
 	height: 260px;
 	border: 1px solid;	
 	float: left;
-	margin-top: 25px;
+	margin-top: 10px;
 }
 
 .action{
