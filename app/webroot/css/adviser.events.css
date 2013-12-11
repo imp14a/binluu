@@ -247,7 +247,7 @@ p.title{
 	background: -o-linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* For Opera 11.1 to 12.0 */
 	background: -moz-linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* For Firefox 3.6 to 15 */
 	background: linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* Standard syntax (must be last) */
-	height: 487px;
+	height: 450px;
 	color: #FFF;	
 }
 
@@ -319,6 +319,14 @@ input[type=submit]{
 	border: 1px solid;	
 	float: left;
 	margin-top: 10px;
+}
+
+.action_invite{
+	width: 100%;
+	height: 40px;
+	position: relative;
+	top: 28px;
+	text-align: right;
 }
 
 .action{

@@ -88,6 +88,7 @@ function codeAddress(address) {
     });
 }
 </script>
+<?php $this->layout = 'adviser'; ?>
 <br>
 <div class="event_creation">
     <div class="back_img">

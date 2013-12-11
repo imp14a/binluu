@@ -11,15 +11,15 @@
       <?php echo $this->Form->input('age', array('label'=>false, 'placeholder'=>'Edad', 'style'=>'width:35%;float:left;margin-right:30px;')); ?>
       <div class="input select">
         <?php $options = array('N'=>'Sexo','M' => 'Masculino', 'F' => 'Femenino'); 
-        echo $this->Form->select('sex', $options,array("value"=>"N","class"=>"optionEmpty half",'empty'=>false,'style'=>'width:35%'));  ?>
+        echo $this->Form->select('sex', $options,array("value"=>"N","class"=>"optionEmpty half",'empty'=>false,'style'=>'width:35%;margin-top: 15px !important;'));  ?>
       </div>
       <div class="input select">
-      <?php echo $this->Form->select('transport', $transports,array("value"=>"N","class"=>"optionEmpty half",'empty'=>false,'style'=>'width:94% !important')); ?>
+      <?php echo $this->Form->select('transport', $transports,array("value"=>"N","class"=>"optionEmpty half",'empty'=>false,'style'=>'width:94% !important; margin-top: 20px !important;')); ?>
       </div>
       <div class="input select">
-      <?php echo $this->Form->select('ocupation', $ocupations, array("value"=>"N","class"=>"optionEmpty half",'empty'=>false,'style'=>'width:94% !important')); ?>
+      <?php echo $this->Form->select('ocupation', $ocupations, array("value"=>"N","class"=>"optionEmpty half",'empty'=>false,'style'=>'width:94% !important;margin-top: 20px !important;')); ?>
       </div>
-      <div class="slider_input" style="margin-left: 6.5%;margin-top: 30px;">
+      <div class="slider_input" style="margin-left: 6.5%;margin-top: 50px;">
         <span class="legend">Presupuesto</span>
         <div class="slider_container">
           <div id="slider" class="slider">
@@ -33,7 +33,7 @@
         <?php echo $this->Form->input('EventProfile.min_budget', array('label' => 'Desde','value'=>'$ 1,000.00','readonly',"class"=>"midle","type"=>"text")); ?>
         <?php echo $this->Form->input('EventProfile.max_budget', array('label' => 'Hasta','value'=>'$ 12,000.00','readonly',"class"=>"midle","type"=>"text")); ?>
       </div>
-      <div class="action">
+      <div class="action_invite">
         <a id="search" class="search_users">Buscar ></a>
         <?php echo $this->Html->link('< Regresar', array('action'=>'create'), array('class'=>'cancel')); ?>
         <?php echo $this->Form->end(array('label'=>'Terminar', 'div'=>array('class'=>'end'))); ?>
