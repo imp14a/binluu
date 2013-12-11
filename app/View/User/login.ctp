@@ -11,7 +11,7 @@
                 <div style="background-image: url('/img/confirmed_message.png'); background-size: contain; background-position: top left; background-repeat: no-repeat;width: 100%; height: 100%; background-size: 40%; margin-top: 20px; margin-left: 20px;"></div>
             </div>
         <?php else: ?>
-            <div  class="loginimage" ></div>
+            <div  class="loginimage normalIndex"></div>
         <?php endif;?>
         <div class="loginContainer">
             <div class="background"></div>
@@ -48,8 +48,12 @@
 
 ga('create', 'UA-46238782-1', 'binluu.com.mx');
 ga('send', 'pageview');
-Event.observe(window, 'load', function(){
-    $('aboutBinluu').click();
-});
-$('lightwindow_overlay').observe();
+
+console.log()
+if($$('.normalIndex').size()==1)
+{   
+    Event.observe(window, 'load', function(){
+        $('aboutBinluu').click();
+    });
+}
 </script>
