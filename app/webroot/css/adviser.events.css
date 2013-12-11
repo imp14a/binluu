@@ -279,8 +279,6 @@ p.title{
 .submit{
 	width: 45%;
 	display: inline-block;
-	position: relative;
-	top: 2px;
 }
 
 .cancel{
@@ -324,9 +322,12 @@ input[type=submit]{
 }
 
 .action{
+	float: right;
+	width: 34%;
+	height: 40px;
+	text-align: center;
 	position: relative;
-	top: 54px;
-	width: 100%;
+	top: 28px;
 }
 
 .img_box{
