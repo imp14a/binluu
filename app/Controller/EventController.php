@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 class EventController extends AppController {
 
-	public $components = array('BinluuEmail', 'Paginator', 'BinluuImage');
+	public $components = array('BinluuEmail', 'Paginator', 'BinluuImage', 'Account');
 
 	public $paginate = array(
             'limit' => 3,
@@ -30,21 +30,26 @@ class EventController extends AppController {
 					$no++;
 				}
 			}
-			if($this->AdviserProperty->saveAll($this->request->data)){
-				$this->request->data['Event']['property_id'] = $this->AdviserProperty->getInsertID();
-				if($this->Event->save($this->request->data)){
-					$this->redirect(array('controller'=>'Event','action' => 'inviteusers', $this->Event->getInsertID()));
-				}else{
-        	$this->Session->setFlash("Ha ocurrido en error, intente de nuevo.");
-      	}
-      }else{
-      	$errors = $this->AdviserProperty->invalidFields(); 
-      	if(count($errors)>0){
-      		$this->Session->setFlash("Asegúrese de llenar todos los campos.");
-      	}else{
-					$this->Session->setFlash("Ha ocurrido en error, intente de nuevo.");
-      	}
-      }
+			//Consumir creditos
+			if(!$this->Account->consumeCredit($adviser_id)){
+				$this->Session->setFlash($this->Account->errorMessaje);
+			}else{
+				if($this->AdviserProperty->saveAll($this->request->data)){
+					$this->request->data['Event']['property_id'] = $this->AdviserProperty->getInsertID();
+					if($this->Event->save($this->request->data)){
+						$this->redirect(array('controller'=>'Event','action' => 'inviteusers', $this->Event->getInsertID()));
+					}else{
+	        	$this->Session->setFlash("Ha ocurrido en error, intente de nuevo.");
+	      	}
+	      }else{
+	      	$errors = $this->AdviserProperty->invalidFields(); 
+	      	if(count($errors)>0){
+	      		$this->Session->setFlash("Asegúrese de llenar todos los campos.");
+	      	}else{
+						$this->Session->setFlash("Ha ocurrido en error, intente de nuevo.");
+	      	}
+	      }
+			}
 		}
 	}
 

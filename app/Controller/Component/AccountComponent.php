@@ -41,16 +41,15 @@ class AccountComponent extends Component {
 		
 	}
 
-	public function consumeCredit($account_id){
+	public function consumeCredit($adviser_id){
 		$a = new Account();
-		$account = $a->find('first',array('id'=>$account_id));
-		
+		$account = $a->find('first',array('adviser_id'=>$adviser_id));
 		if(empty($account)){
-			$errorMessaje = 'La cuenta no existe';
+			$this->errorMessaje = 'La cuenta no existe';
 			return false;
 		}
 		if($account['Account']['credits']==0){
-			$errorMessaje = 'No cuentas con créditos suficientes para realizar la transacción';
+			$this->errorMessaje = 'No cuentas con créditos suficientes para realizar la transacción';
 			return false;
 		}
 		$a->id = $account['Account']['id'];

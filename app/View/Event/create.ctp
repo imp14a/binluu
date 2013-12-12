@@ -89,6 +89,7 @@ function codeAddress(address) {
 }
 </script>
 <?php $this->layout = 'adviser'; ?>
+<?php if($this->Session->check('Message')){ echo $this->Session->flash();} ?>
 <br>
 <div class="event_creation">
     <div class="back_img">
