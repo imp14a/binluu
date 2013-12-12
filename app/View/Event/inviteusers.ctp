@@ -19,20 +19,19 @@
       <div class="input select">
       <?php echo $this->Form->select('ocupation', $ocupations, array("value"=>"N","class"=>"optionEmpty half",'empty'=>false,'style'=>'width:94% !important;margin-top: 20px !important;')); ?>
       </div>
-      <div class="slider_input" style="margin-left: 6.5%;margin-top: 50px;">
+        <div class="bidget_input">
         <span class="legend">Presupuesto</span>
-        <div class="slider_container">
-          <div id="slider" class="slider">
-              <div class="handle"></div>
-              <div class="handle"></div>
-              <div class="top" style="left: -3%;"></div>
-              <div id="id_range" class="range"></div>
-              <div class="top" style="left: 97%;"></div>
-          </div>
+        <span>Desde</span>
+        <div class="input select" style="width:100%; text-align: left; display: block; width: 100%; padding-left: 25px;">
+            <?php $options = array("500.00"=>'$ 500.00',"1000.00"=>"$ 1,000.00","2000.00"=>"$ 2,000.00","3000.00"=>"$ 3,000.00","4000.00"=>"$ 4,000.00","5000.00"=>"$ 5,000.00","6000.00"=>"$ 6,000.00","8000.00"=>"$ 8,000.00","10000.00"=>"$ 10,000.00","12000.00"=>"$ 12,000.00","15000.00"=>"$ +12,000.00");
+            echo $this->Form->select('EventProfile.min_budget',$options, array('disabled' => array('N'),'value'=>'N',"class"=>"half","empty"=>false)); ?>
         </div>
-        <?php echo $this->Form->input('EventProfile.min_budget', array('label' => 'Desde','value'=>'$ 1,000.00','readonly',"class"=>"midle","type"=>"text")); ?>
-        <?php echo $this->Form->input('EventProfile.max_budget', array('label' => 'Hasta','value'=>'$ 12,000.00','readonly',"class"=>"midle","type"=>"text")); ?>
-      </div>
+        <span>hasta</span>
+        <div class="input select" style="width:100%; text-align: left; display: block; width: 100%; padding-left: 25px;">
+            <?php $options = array("500.00"=>'$ 500.00',"1000.00"=>"$ 1,000.00","2000.00"=>"$ 2,000.00","3000.00"=>"$ 3,000.00","4000.00"=>"$ 4,000.00","5000.00"=>"$ 5,000.00","6000.00"=>"$ 6,000.00","8000.00"=>"$ 8,000.00","10000.00"=>"$ 10,000.00","12000.00"=>"$ 12,000.00","15000.00"=>"$ +12,000.00");
+            echo $this->Form->select('EventProfile.max_budget',$options, array('disabled' => array('N'),'value'=>'N',"class"=>"half","empty"=>false)); ?>
+        </div>
+        </div>
       <div class="action_invite">
         <a id="search" class="search_users">Buscar ></a>
         <?php echo $this->Html->link('< Regresar', array('action'=>'create'), array('class'=>'cancel')); ?>
@@ -57,7 +56,7 @@
         else $(this).removeClassName("optionEmpty");
     });
 
-    var slider = new BinluuSlider('slider',
+    /*var slider = new BinluuSlider('slider',
                     [   'EventProfileMinBudget',
                         'EventProfileMaxBudget'
                     ],
@@ -70,7 +69,7 @@
                         initMax:12,
                         size:14
                     }
-                );
+                );*/
 
     $('down').observe('click', function(){
       if(parseInt($('user_list').getStyle('margin-top')) > (Math.ceil($$('li').length/2)-1)*-303){

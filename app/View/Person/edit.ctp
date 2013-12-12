@@ -94,11 +94,13 @@ function placeMarker(location) {
         border: 1px solid white;
         margin-left: 25px;
         margin-right: 5px;
+        width: 100px;
+        height: 100px;
     }
     .imageprofile .input.file{
         display: inline-block;
         float: left;
-        margin-top: 60px;
+        margin-top: 40px;
         margin-bottom: 5px;
     }
     .binluuTabs{
@@ -130,7 +132,7 @@ function placeMarker(location) {
         height: 28px;
         float: right;
         margin-right: 20px;
-        margin-top: 60px;
+        margin-top: 20px;
         text-decoration: none;
         color: #FF6400;
         font-size: 14pt;
@@ -152,6 +154,16 @@ function placeMarker(location) {
                     <div class="information container">
                         <div class="background"></div>
                         <div class="detail"></div>
+                        <div class="imageprofile" style="text-align:left;">
+                            <?php echo $this->Form->create(null,array('url' => array('controller'=>'User','action'=>'image','Person', $person['User']['id']), 'type'=>'file')); ?>
+                                    <?php 
+                                            $sex = $person['PersonProfile']['sex'];				
+                                            $image = $person['User']['image']===null?$sex==='M'?'default_img_male.png':'default_img_female.png':$person['User']['image'];
+                                            $image = '/files/'.$image;
+                                            echo $this->Html->image($image); ?>
+                                    <?php echo $this->Form->input('User.image', array('label'=>false, 'type'=>'file')) ;?>
+                            <?php echo $this->Form->end('Actualizar imagen'); ?>
+                        </div>
                         <?php echo $this->Form->create("Edit"); ?>
                             <?php echo $this->Form->input("User.name",array('label'=>false,'placeholder'=>"Nombre","value"=>$person['User']['name'])); ?>
                             <?php echo $this->Form->input("User.last_name",array('label'=>false,'placeholder'=>"Apellidos","value"=>$person['User']['last_name'])); ?>
@@ -168,20 +180,9 @@ function placeMarker(location) {
                             </div>
                         <?php echo $this->Form->end("Actualizar Información")?>
                         <?php echo $this->Form->create(null,array('url' => array('controller'=>'User','action'=>'password','Person', $person['User']['id']))); ?>
-                            <?php echo $this->Form->input("User.username",array("type"=>"email",'label'=>false,"placeholder"=>"Correo electrónico",'value'=>$person['User']['username'],'disabled'=>'disabled')); ?>
                             <?php echo $this->Form->password("User.password",array('placeholder'=>"Nueva Contraseña"))?>
                             <?php echo $this->Form->password("User.password_confirm",array('placeholder'=>"Repite tu contraseña")); ?>
                         <?php echo $this->Form->end("Actualizar Contraseña")?>
-                        <div class="imageprofile" style="text-align:left;">
-                            <?php echo $this->Form->create(null,array('url' => array('controller'=>'User','action'=>'image','Person', $person['User']['id']), 'type'=>'file')); ?>
-                                    <?php 
-                                            $sex = $person['PersonProfile']['sex'];				
-                                            $image = $person['User']['image']===null?$sex==='M'?'default_img_male.png':'default_img_female.png':$person['User']['image'];
-                                            $image = '/files/'.$image;
-                                            echo $this->Html->image($image); ?>
-                                    <?php echo $this->Form->input('User.image', array('label'=>false, 'type'=>'file')) ;?>
-                            <?php echo $this->Form->end('Actualizar imagen'); ?>
-                        </div>
                     </div>
                     <div class="map container">
                         <div id="map-canvas"></div>
@@ -203,7 +204,7 @@ function placeMarker(location) {
             <div class="step">
                 <?php echo $this->Form->create("Edit"); ?>
                 <?php echo $this->Form->hidden('PersonProfile.id',array('value'=>$person['PersonProfile']['id']));?>
-                <div class="information container" style="height: 440px;">
+                <div class="information container" style="height: 420px;">
                     <div class="background"></div>
                     <div class="detail"></div>
                     <div class="input select">
@@ -249,7 +250,7 @@ function placeMarker(location) {
                     <div class="submit" style="margin-left: 15px;">
                         <input type="submit" class="submit" value="Actualizar Perfil" style="width: 30%;">
                     </div>
-                    <p class="inforegister" style="margin-top: 110px;">
+                    <p class="inforegister" style="margin-top: 90px;">
                         Leer los <?php echo $this->Html->link("Términos y condiciones",array("controller"=>"Binluu","action"=>"terms"));?> y las <?php echo $this->Html->link("Políticas de uso de datos",array("controller"=>"Binluu","action"=>"politics"));?>
                     </p>
                 </div>

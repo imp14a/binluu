@@ -30,11 +30,12 @@ class AdviserController extends AppController {
             $data = $this->data;
             $data['User']['rol'] = "Adviser";
             $data['User']['active'] = 1;
+            $data['User']['mail_confirmed'] = 1;
             $data['Account']['status'] = "A";
             $data['Account']['credits'] = 0;
 
             if($this->Adviser->saveAssociated($data)){
-                $this->Session->setFlash('Registrado!, le hemos enviado un correo de confirmación para que puedas acceder.');
+                $this->Session->setFlash('¡Asesor Inmobiliaria Registrado!');
                 /*$this->BinluuEmail->sendAdviserConfirmMail($this->User->getInsertID(),$data['User']['username'],
                     $data['User']['password']);
                 $this->redirect(array('controller'=>'User','action' => 'login'));
