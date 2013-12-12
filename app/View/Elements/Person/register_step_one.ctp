@@ -75,7 +75,9 @@ function placeMarker(location) {
     }
 </style>
 <div style="text-align: center;">
-    <?php echo $this->Html->link("< Regresar",array('controller'=>"User",'action'=>"login"),array('class'=>'backButton'));?>
+    <div class="toolbar">
+        <?php echo $this->Html->link("< Regresar",array('controller'=>"User",'action'=>"login"),array('class'=>'backButton'));?>
+    </div>
     <div id="stepProces" class="stepProces">
         <?php echo $this->Form->create("Register"); ?>
         <div class="step" id="1">
