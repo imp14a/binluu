@@ -25,6 +25,7 @@ class PersonController extends AppController {
     }
 
     public function register($step = 1,$person_profile_id=null) {
+        $this->layout = "register";
         $this->set('title_for_layout', 'Registro de usuarios');
         $this->set('captcha',$this->ReCaptcha->recaptcha_get_html("6LenjeoSAAAAAKnORAHl_6axBenfII6MBXD-UK9T"));
         $res = $this->InterestCategory->findByName('Intereses');
@@ -42,7 +43,7 @@ class PersonController extends AppController {
                 $data = $this->data;
                 $data['User']['rol'] = "Person";
                 $data['User']['active'] = 1;
-                $data['PersonProfile']['budget'] = str_replace(",", "", str_replace("$", "",$data['PersonProfile']['budget']));
+                //$data['PersonProfile']['budget'] = str_replace(",", "", str_replace("$", "",$data['PersonProfile']['budget']));
                 //$data['PersonProfile']['max_budget'] = str_replace(",", "", str_replace("$", "",$data['PersonProfile']['max_budget']));
                 $resp = $this->ReCaptcha->recaptcha_check_answer ("6LenjeoSAAAAAHsL75gs1WwKnJXnROJP0LpSPk1e",
                                 $_SERVER["REMOTE_ADDR"],
@@ -54,7 +55,8 @@ class PersonController extends AppController {
                     if ($this->Person->saveAssociated($data)) {
                         $this->redirect(array("controller"=>"Person","action"=>"register",2,$this->PersonProfile->getLastInsertID()));
                     } else {
-                        $this->Session->setFlash("Ha ocurrido en error, intente de nuevo. (Aún no seleccionas tu opción en mapa)");
+                        if($data['IdealProperty']['latitude']=="")
+                            $this->Session->setFlash("Ha ocurrido en error, intente de nuevo. (Aún no seleccionas tu opción en mapa)");
                     }
                 }
             }elseif($step==2){

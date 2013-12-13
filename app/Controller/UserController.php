@@ -7,7 +7,7 @@ App::uses('Model', 'User');
 class UserController extends AppController {
 
 	public $uses = array('User');
-    public $components = array('BinluuImage','BinluuEmail');
+        public $components = array('BinluuImage','BinluuEmail');
 
 	public function home() {
         switch($this->Session->read('Auth.User.rol')){
@@ -28,21 +28,28 @@ class UserController extends AppController {
 	}
 
 	public function login($type=null) {
-        $this->set('title_for_layout','Ingresa');
-        if($this->Session->read('Auth.User')) $this->redirect(array('controller'=>'User','action'=>'home'));
-        if($type!=null){
-            $this->set($type,1);
-        }
-        if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
-            	$this->User->id = $this->Session->read('Auth.User.id');
-            	$this->User->saveField('last_login',DboSource::expression('NOW()'));
-                $this->redirect($this->Auth->redirectUrl());
+            $this->layout = "register";
+            $this->set('title_for_layout','Ingresa');
+            if($this->Session->read('Auth.User')) $this->redirect(array('controller'=>'User','action'=>'home'));
+            if($type!=null){
+                $this->set($type,1);
             }
-            $this->Session->setFlash('Usuario o contraseña incorrectos, intente de nuevo.');
-        }
+            if ($this->request->is('post')) {
+                if ($this->Auth->login()) {
+                    $this->User->id = $this->Session->read('Auth.User.id');
+                    $this->User->saveField('last_login',DboSource::expression('NOW()'));
+                    $this->redirect($this->Auth->redirectUrl());
+                }
+                $this->Session->setFlash('Usuario o contraseña incorrectos, intente de nuevo.');
+            }
+            if(!$this->Session->check('FirstTime')){
+                $this->Session->write('FirstTime',true);
+            }else{
+                $this->Session->write('FirstTime',false);
+            }
+       
     }
-
+    
     public function logout() {
         return $this->redirect($this->Auth->logout());
     }

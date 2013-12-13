@@ -33,24 +33,24 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 	public $components = array(
-		'RequestHandler',
-        'Session',
-        'Auth'
+            'RequestHandler',
+            'Session',
+            'Auth'
     );
 
     public function beforeFilter() {
     	$this->Auth->userModel = 'User';
     	$this->Auth->authorize = array('Controller');
     	$this->Auth->loginAction = array('controller' => 'User', 'action' => 'login');
-		$this->Auth->authenticate = array(
-		    'Form' => array(
-		        'fields' => array('username' => 'username', 'password' => 'password'),
-		        'scope' => array('mail_confirmed' => 1,'active'=>1)
-		    ),
-		);
-		$this->Auth->authError = "Acceso denegado.";
-		$this->Auth->unauthorizedRedirect = array('controller' => 'User', 'action' => 'login');
-		$this->Auth->loginRedirect = array('controller' => 'User','action'=>"home");
+        $this->Auth->authenticate = array(
+            'Form' => array(
+                'fields' => array('username' => 'username', 'password' => 'password'),
+                'scope' => array('mail_confirmed' => 1,'active'=>1)
+                ),
+            );
+        $this->Auth->authError = "Acceso denegado.";
+        $this->Auth->unauthorizedRedirect = array('controller' => 'User', 'action' => 'login');
+        $this->Auth->loginRedirect = array('controller' => 'User','action'=>"home");
     	$this->Auth->logoutRedirect = array('controller' => 'User','action'=>'login');
         $this->Auth->allow('login','register','confirm','contact','getTagsByCategory','faq','terms','politics','about');
     }

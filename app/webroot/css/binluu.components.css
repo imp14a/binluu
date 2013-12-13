@@ -45,16 +45,22 @@ textarea{
     text-align: left;
 }
 .input input::-moz-placeholder { /* Firefox 18- */
-    color: red;
-    text-align: center;
+    font-size: 10pt;
+    color: #b3b3b3;
+    font-family: StoneSansStd-Medium;
+    text-align: left;
 }
 .input input::-moz-placeholder {  /* Firefox 19+ */
-    color: red;
-    text-align: center;
+    font-size: 10pt;
+    color: #b3b3b3;
+    font-family: StoneSansStd-Medium;
+    text-align: left;
 }
 .input input:-ms-input-placeholder {
-    color: red;
-    text-align: center;
+    font-size: 10pt;
+    color: #b3b3b3;
+    font-family: StoneSansStd-Medium;
+    text-align: left;
 }
 .input .error-message{
     margin-top: 5px;

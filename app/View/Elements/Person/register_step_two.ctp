@@ -7,7 +7,9 @@
   
 ?>
 <div style="text-align: center;">
-    <?php echo $this->Html->link("< Regresar",array('controller'=>"User",'action'=>"login"),array('class'=>'backButton'));?>
+    <div class="toolbar">
+        <?php echo $this->Html->link("< Regresar",array('controller'=>"User",'action'=>"login"),array('class'=>'backButton'));?>
+    </div>
     <div class="stepProces">
         <div class="step" style="height: 520px;">
         <?php echo $this->Form->create("Register",

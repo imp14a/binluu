@@ -2,6 +2,9 @@
         echo $this->Html->css('lightwindow');
         echo $this->Html->script('lightwindow');
 ?>
+<?php if($this->Session->read('FirstTime')): ?>
+    <div class="firsttime" style="display: none;"></div>
+<?php endif;?>
 <div class="loginContent">
         <?php echo $this->Session->flash('auth'); ?>
         <?php if(isset($after_register)):?>
@@ -11,7 +14,7 @@
                 <div style="background-image: url('/img/confirmed_message.png'); background-size: contain; background-position: top left; background-repeat: no-repeat;width: 100%; height: 100%; background-size: 40%; margin-top: 20px; margin-left: 20px;"></div>
             </div>
         <?php else: ?>
-            <div  class="loginimage normalIndex"></div>
+            <div  class="loginimage"></div>
         <?php endif;?>
         <div class="loginContainer">
             <div class="background"></div>
@@ -50,7 +53,7 @@ ga('create', 'UA-46238782-1', 'binluu.com.mx');
 ga('send', 'pageview');
 
 console.log()
-if($$('.normalIndex').size()==1)
+if($$('.firsttime').size()==1)
 {   
     Event.observe(window, 'load', function(){
         $('aboutBinluu').click();

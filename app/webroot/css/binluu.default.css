@@ -112,6 +112,14 @@ body{
     color: #fff;
 }
 
+#flashMessage{
+    display: inline-block;
+    margin-left: 60px;
+    background-image: url('/img/form-error.png');
+    background-repeat: no-repeat;
+    padding-left: 32px;
+}
+
 /*agregar*/
 @font-face {
 	font-family: StoneInformalStd-BoldItalic;
