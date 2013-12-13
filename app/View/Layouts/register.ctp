@@ -36,8 +36,7 @@ $cakeDescription = __d('cake_dev', 'Binluu');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->Html->script('prototype');
-    echo $this->Html->script('scriptaculous/scriptaculous');
-    echo $this->Html->css('admin.layout');
+                echo $this->Html->script('scriptaculous/scriptaculous');
 		echo $this->fetch('script');
 	?>
 </head>
@@ -46,24 +45,13 @@ $cakeDescription = __d('cake_dev', 'Binluu');
 		<div id="header">
 			<?php echo $this->Html->link($this->Html->div('logo','') ,array('controller' => 'User', 'action' => 'home'), array('escape'=>false)); ?>
 			<span id="slogan">Descubre el departamento ideal para compartir.</span>
-			<div class="user_logged">
-				<div class="name_profile">
-					<?php echo $this->Html->para('welcome', 'Bienvenido, '.$this->Session->read('Auth.User.name').' '.$this->Session->read('Auth.User.last_name')); ?>
-					<?php echo $this->Html->link('Cerrar sesion', array('controller'=>'User', 'action'=>'logout'), array('class'=>'logout_profile')); ?>
-				</div>
-				<div class="image_profile">
-				</div>
-			</div>
 		</div>
 		<div id="content">
-
-			<?php echo $this->Session->flash(); ?>
-
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
 			<span>binluu&reg; 2013</span>
-                        <?php echo $this->Html->link($this->Html->div('faq','Preguntas frecuentes') ,array('controller' => 'User', 'action' => 'faq'), array('escape'=>false)); ?>
+                        <?php echo $this->Html->link($this->Html->div('faq','Preguntas frecuentes') ,array('controller' => 'Binluu', 'action' => 'faq'), array('escape'=>false)); ?>
 			<?php echo $this->Html->link($this->Html->div('contact','Contacto') ,'mailto:contact@binluu.com.mx', array('escape'=>false)); ?>
 			<?php echo $this->Html->link($this->Html->div('adviser','Soy asesor inmobiliario',array('style'=>'float:right; color: #FF6400;')) ,array('controller' => 'Adviser', 'action' => 'contact'), array('escape'=>false)); ?>
 		</div>

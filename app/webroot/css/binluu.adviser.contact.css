@@ -1,10 +1,12 @@
 .concatContent{
     margin-top: 30px;
-    height: 600px;
+    height: 520px;
+    width: 1000px;
+    display: inline-block;
 }
 .mainImage{
-    height: 600px;
-    width: 55%;
+    height: 520px;
+    width: 550px;
     display: inline-block;
     float: left;
     background-image: url('/img/adviser.jpg');
@@ -21,15 +23,12 @@
 }
 .information{
     display: inline-block;
-    width: 35%;
+    width: 400px;
     color: #fff;
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: 100%;
-    min-width: 230px;
-    float: right;
-    margin-right: 5%;
-    height: 600px;
+    height: 520px;
     position: relative;
 }
 .information .background{

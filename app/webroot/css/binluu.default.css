@@ -55,13 +55,13 @@ body{
 }
 
 #footer{
-	font-size: 15pt;
-	height: 80px;
-	display: block;
-	margin-top: 50px;
-	color: darkgray;
-	font-family: StoneSansStd-Medium;
-	margin-left: 10%;
+    font-size: 13pt;
+    height: 80px;
+    display: block;
+    margin-top: 50px;
+    color: darkgray;
+    font-family: StoneSansStd-Medium;
+    margin-left: 10%;
     margin-right: 10%;
     text-align: left;
 }
@@ -71,25 +71,25 @@ body{
 #footer a{
 	color: #999;
         text-decoration: none;
+        line-height: 24px;
+        height: 24px;
+}
+#footer a div{
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: 24px;
 }
 #footer .contact{
 	background-image: url(/img/contact.png);
-	width: 120px;
-	background-position: right;
-	background-repeat: no-repeat;
+	width: 105px;
 }
 #footer .adviser{
 	background-image: url(/img/adviser.png);
-	width: 244px;
-	background-position: top right;
-	background-repeat: no-repeat;
+	width: 214px;
 }
 #footer .faq{
-	background-image: url(/img/faq.png);
-	width: 224px;
-	background-position: top right;
-	background-repeat: no-repeat;
-	background-size: 24px;
+    background-image: url(/img/faq.png);
+    width: 190px;	
 }
 
 #footer div{
