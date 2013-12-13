@@ -162,12 +162,13 @@ lightwindow.prototype = {
 							'<div id="lightwindow_title_bar" >'+
 								'<div id="lightwindow_title_bar_inner" >'+
 									'<span id="lightwindow_title_bar_title"></span>'+
-									
+									'<div id="lightwindow_title_bar_close_link"></div>'+
 								'</div>'+
 							'</div>'+
 							'<div id="lightwindow_stage" >'+
 								'<div id="lightwindow_contents" >'+
 								'</div>'+
+                                                                '<div id="lightwindow_video_message"><span>!Checa el video para saber como funciona Binluu!</span><div class="detail"></div></div>'+
 								'<div id="lightwindow_navigation" >'+
 									'<a href="#" id="lightwindow_previous" >'+
 										'<span id="lightwindow_previous_title"></span>'+

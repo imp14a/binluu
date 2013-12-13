@@ -41,7 +41,7 @@
 <div class="aboutContent">
     <?php echo $this->Html->link($this->Html->div('about','¿Cómo funciona?') ,
             array('controller' => 'Binluu', 'action' => 'about'),
-            array('escape'=>false,'id'=>'aboutBinluu',"class"=>"lightwindow",'params'=>'lightwindow_width=640,lightwindow_height=367,lightwindow_type=page')); ?>
+            array('escape'=>false,'id'=>'aboutBinluu',"class"=>"lightwindow",'params'=>'lightwindow_width=853,lightwindow_height=480,lightwindow_type=page')); ?>
 </div>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
