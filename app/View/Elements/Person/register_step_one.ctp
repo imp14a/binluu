@@ -89,10 +89,12 @@ function placeMarker(location) {
                 <span class="title">Informaci&oacute;n b&aacute;sica</span>
                 <?php echo $this->Form->input("User.name",array('label'=>false,'placeholder'=>"Nombre")); ?>
                 <?php echo $this->Form->input("User.last_name",array('label'=>false,'placeholder'=>"Apellidos")); ?>
-		        <?php echo $this->Form->input("PersonProfile.age",array('label'=>false,'placeholder'=>"Edad",'class'=>"half", "min"=>14,"max"=>100,'type'=>'text')); ?>
-                <div class="input select">
-                    <?php $options = array('N'=>'Sexo','M' => 'Masculino', 'F' => 'Femenino'); 
-                    echo $this->Form->select('PersonProfile.sex', $options,array('disabled' => array('N'),"value"=>"N","class"=>"optionEmpty half",'empty'=>false));  ?>
+                <div>
+                    <?php echo $this->Form->input("PersonProfile.age",array('label'=>false,'placeholder'=>"Edad",'class'=>"half", "min"=>14,"max"=>100,'type'=>'text',"style"=>"width: 155px !important; float: left; margin-left: 25px;")); ?>
+                    <div class="input select">
+                        <?php $options = array('N'=>'Sexo','M' => 'Masculino', 'F' => 'Femenino'); 
+                        echo $this->Form->select('PersonProfile.sex', $options,array('disabled' => array('N'),"value"=>"N","class"=>"optionEmpty half",'empty'=>false,"style"=>"width: 155px !important; float: left; margin-left: 10px;"));  ?>
+                    </div>
                 </div>
                 <?php echo $this->Form->input("User.username",array("type"=>"email",'label'=>false,"placeholder"=>"Correo electrónico")); ?>
                 <?php echo $this->Form->password("User.password",array('placeholder'=>"Contraseña"))?>
