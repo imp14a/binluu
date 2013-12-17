@@ -1,9 +1,7 @@
 <?php
 
-//Configure::write('email.info', 'info@zumoinmobiliaria.com.mx');
 Configure::write('email.info', 'notify@binluu.com.mx');
 Configure::write('email.admin', 'omar.pc@binluu.com.mx');
-//Configure::write('email.contact', 'contacto@zumoinmobiliaria.com.mx');
 Configure::write('email.contact', 'contact@binluu.com.mx');
 
 class EmailConfig {
@@ -18,12 +16,11 @@ class EmailConfig {
     );*/
     
     public $binluumail = array(
-        'host' => 'mail.binluu.com.mx',
-        'port' => 25,
-        'username' => 'notify',
+        'host' => 'ssl://smtp.googlemail.com',
+        'port' => 465,
+        'username' => 'info@binluu.com.mx',
         'password' => '9C1h9emV',
-        'transport' => 'Smtp',
-        'tls' => true
+        'transport' => 'Smtp'
     );
 }
 ?>
