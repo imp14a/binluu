@@ -71,9 +71,9 @@
 	background-image: url(../img/without_requests.png);
 	background-position: center bottom, left top;
 	background-repeat: no-repeat;
-	height: 520px;
-        display: inline-block;
-        width: 1024px;
+	height: 460px;
+  display: inline-block;
+  width: 1024px;
 }
 
 .logo_no_requets{
@@ -132,6 +132,8 @@
 	-moz-box-shadow: 2px 2px 50px #888888;
 	-webkit-box-shadow: 2px 2px 50px #888888;
 	box-shadow: 2px 2px 50px #888888;
+	width: 1000px;
+	display: inline-block;
 }
 .person_profile label p{
 	margin: 10px;

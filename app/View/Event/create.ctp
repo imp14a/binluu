@@ -88,6 +88,13 @@ function codeAddress(address) {
     });
 }
 </script>
+
+<style type="text/css">
+#content{
+	min-height: 470px;
+}
+</style>
+
 <?php $this->layout = 'adviser'; ?>
 <?php if($this->Session->check('Message')){ echo $this->Session->flash();} ?>
 <br>

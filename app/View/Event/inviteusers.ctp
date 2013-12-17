@@ -3,6 +3,11 @@
 <?php echo $this->Html->css('adviser.events'); ?>
 <?php echo $this->Html->script('binluu.components'); ?>
 <?php $this->layout = 'adviser'; ?>
+<style type="text/css">
+#content{
+  min-height: 450px;
+}
+</style>
 <div class="event_creation">
   <div class="back_img">
     <p class="desc_title">Encuentre perfiles acordes a su oferta</p>
@@ -19,14 +24,14 @@
       <div class="input select">
       <?php echo $this->Form->select('ocupation', $ocupations, array("value"=>"N","class"=>"optionEmpty half",'empty'=>false,'style'=>'width:94% !important;margin-top: 20px !important;')); ?>
       </div>
-        <div class="bidget_input">
+        <div class="budget_input">
         <span class="legend">Presupuesto</span>
         <span>Desde</span>
         <div class="input select" style="width:100%; text-align: left; display: block; width: 100%; padding-left: 25px;">
             <?php $options = array("500.00"=>'$ 500.00',"1000.00"=>"$ 1,000.00","2000.00"=>"$ 2,000.00","3000.00"=>"$ 3,000.00","4000.00"=>"$ 4,000.00","5000.00"=>"$ 5,000.00","6000.00"=>"$ 6,000.00","8000.00"=>"$ 8,000.00","10000.00"=>"$ 10,000.00","12000.00"=>"$ 12,000.00","15000.00"=>"$ +12,000.00");
             echo $this->Form->select('EventProfile.min_budget',$options, array('disabled' => array('N'),'value'=>'N',"class"=>"half","empty"=>false)); ?>
         </div>
-        <span>hasta</span>
+        <span>Hasta</span>
         <div class="input select" style="width:100%; text-align: left; display: block; width: 100%; padding-left: 25px;">
             <?php $options = array("500.00"=>'$ 500.00',"1000.00"=>"$ 1,000.00","2000.00"=>"$ 2,000.00","3000.00"=>"$ 3,000.00","4000.00"=>"$ 4,000.00","5000.00"=>"$ 5,000.00","6000.00"=>"$ 6,000.00","8000.00"=>"$ 8,000.00","10000.00"=>"$ 10,000.00","12000.00"=>"$ 12,000.00","15000.00"=>"$ +12,000.00");
             echo $this->Form->select('EventProfile.max_budget',$options, array('disabled' => array('N'),'value'=>'N',"class"=>"half","empty"=>false)); ?>

@@ -1,3 +1,17 @@
+.budget_input{
+	margin-top: 35px;
+}
+
+.budget_input span{
+	display: block;
+	text-align: left;
+}
+
+.events_container{
+	width: 1000px;
+	display: inline-block;
+}
+
 .interest_tags{
 	padding-left: 10px;
 }
@@ -57,12 +71,12 @@ a img {border: none; }
 	color: #FFF;
 }
 
-.datetime{
-	/*float: left;
+.datetime_label{
+	float: left;
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-top: 5px;
-	margin-bottom: 5px;*/
+	margin-bottom: 5px;
 }
 
 .input input[type=text]{
@@ -249,6 +263,8 @@ p.title{
 	background: linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* Standard syntax (must be last) */
 	height: 450px;
 	color: #FFF;	
+	width: 1000px;
+	display: inline-block;
 }
 
 .desc_title{
