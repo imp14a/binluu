@@ -1,3 +1,8 @@
+.events_container{
+	width: 1000px;
+	display: inline-block;
+}
+
 .interest_tags{
 	padding-left: 10px;
 }
@@ -57,12 +62,12 @@ a img {border: none; }
 	color: #FFF;
 }
 
-.datetime{
-	/*float: left;
+.datetime_label{
+	float: left;
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-top: 5px;
-	margin-bottom: 5px;*/
+	margin-bottom: 5px;
 }
 
 .input input[type=text]{

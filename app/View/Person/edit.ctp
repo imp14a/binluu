@@ -100,8 +100,9 @@ function placeMarker(location) {
     .imageprofile .input.file{
         display: inline-block;
         float: left;
-        margin-top: 40px;
-        margin-bottom: 5px;
+        margin-top: 10px;
+        margin-bottom: -2px;
+        margin-left: 25px;
     }
     .binluuTabs{
         text-align: center;
