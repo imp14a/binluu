@@ -1,3 +1,12 @@
+.budget_input{
+	margin-top: 35px;
+}
+
+.budget_input span{
+	display: block;
+	text-align: left;
+}
+
 .events_container{
 	width: 1000px;
 	display: inline-block;
@@ -254,6 +263,8 @@ p.title{
 	background: linear-gradient(-90deg, #8FD2CF, #3D9FCD); /* Standard syntax (must be last) */
 	height: 450px;
 	color: #FFF;	
+	width: 1000px;
+	display: inline-block;
 }
 
 .desc_title{
